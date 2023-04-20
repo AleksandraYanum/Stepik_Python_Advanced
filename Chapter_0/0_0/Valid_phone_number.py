@@ -1,4 +1,4 @@
-PATTERN_DIGIT = 'd'
+PATTERN_DIGIT_CHAR = 'd'
 PATTERN_SEP_CHAR = 'p'
 
 PATTERN_SEP_LIST = '-_.,:'
@@ -13,7 +13,7 @@ def check_phone_number_by_pattern(phone_number, pattern):
     else:
         for i in range(phone_number_len):
 
-            if pattern[i] == PATTERN_DIGIT:
+            if pattern[i] == PATTERN_DIGIT_CHAR:
                 if not phone_number[i].isdigit():
                     is_pattern_matched = False
                     break
