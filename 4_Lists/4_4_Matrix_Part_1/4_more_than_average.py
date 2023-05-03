@@ -14,3 +14,5 @@ for row in range(n):
     result_arr.append(num_count)
 
 print(*result_arr, sep='\n')
+
+# comment
