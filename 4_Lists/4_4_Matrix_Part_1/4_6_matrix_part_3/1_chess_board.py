@@ -1,5 +1,5 @@
 EVEN_SYM = '.'
-ODD_SYM = '+'
+ODD_SYM = '*'
 
 EVEN_CHAR_CODE = 0
 ODD_CHAR_CODE = 1
