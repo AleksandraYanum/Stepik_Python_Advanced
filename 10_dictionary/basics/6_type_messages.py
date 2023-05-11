@@ -12,17 +12,17 @@ PHONE_DIGIT_CHARS = {
 }
 
 
-phone_digit_dict = {}
+phone_char_digits = {}
 for digit, chars in PHONE_DIGIT_CHARS.items():
     for i in range(len(chars)):
-        phone_digit_dict[chars[i]] = digit * (i + 1)
+        phone_char_digits[chars[i]] = digit * (i + 1)
 
 input_text = input().upper()
 
 output_digits = []
 
 for c in input_text:
-    if c in phone_digit_dict:
-        output_digits.append(phone_digit_dict[c])
+    if c in phone_char_digits:
+        output_digits.append(phone_char_digits[c])
 
 print(*output_digits, sep='')
