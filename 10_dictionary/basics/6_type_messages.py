@@ -17,7 +17,7 @@ input_text = input().upper()
 output_digits = []
 
 for c in input_text:
-    for key, value in PHONE_DIGIT_CARS.items():
+    for key, value in PHONE_DIGIT_CHARS.items():
         if c in value:
             output_digits.append(key * (value.index(c) + 1))
             break
