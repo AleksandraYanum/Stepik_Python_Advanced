@@ -10,5 +10,6 @@ for c in input_text:
     for key in phone_digit_chars.keys():
         if c in phone_digit_chars[key]:
             output_digits.append(key * (phone_digit_chars[key].index(c) + 1))
+            break
 
 print(*output_digits, sep='')
