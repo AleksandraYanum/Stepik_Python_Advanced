@@ -14,8 +14,8 @@ PHONE_DIGIT_CHARS = {
 
 phone_digit_dict = {}
 for digit, chars in PHONE_DIGIT_CHARS.items():
-    for char in chars:
-        phone_digit_dict[char] = digit * (chars.index(char) + 1)
+    for i in range(len(chars)):
+        phone_digit_dict[chars[i]] = digit * (i + 1)
 
 input_text = input().upper()
 
