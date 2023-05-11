@@ -1,30 +1,32 @@
-# Stepik_Python_Advanced
+## Stepik Python Advanced
 
-## 0. Switch to main and do git pull 
+### 0. Switch to main and do git pull 
 
-## 1. Create branch
-Name: feature/<chapter_num>/<sub_chapter_second_num>/<ex. num>_<task_name> 
+### 1. Create branch
+Name: feature/<chapter_num>/<sub_chapter_second_num>/<ex_num>_<task_name> 
 
-e.g. feature/4/4/5_check_number
+Example: **feature/4/4/5_check_number**
 
-### Notes:
-a. DO NOT USE capital letters
-b. use undrscore between words
+#### Notes:
+1. DO NOT USE capital letters
+2. Use undrscore between words
 
-## 2. Create the corresponding Pull Request (PR):
-Name: <sub-chapter-num>_<ex. num>_<task_name> 
-e.g. 4_4_5 Check Number
+### 2. Create initial commit (empty main)
 
-### Notes:
-a. Use regular text: spaces, capital letters, e.g.
-b. Pull request should be in draft status
+### 3. Create the corresponding Pull Request (PR):
+Name: <ex_num><task_name> 
 
+Example: **4_3_5 Check Number**
 
-## 3. Promote Pull Request to regular status on completion of development
-   So that Vlad can review and ultimately approve it
+### 4. Do development with regular commits and pushes
 
-## 4. Fix all comments in Pull Request
+### 5. Promote Pull Request to OPEN status on completion of development
+   (so that Vlad can review and ultimately approve it)
 
-## 5. Merge approved Pull Request (PR) to main
+### 6. Fix all comments in Pull Request
+
+### 7. Merge approved Pull Request (PR) to main
    
-## 6. Delete local feature branch
+### 8. Switch to main and delete local feature branch
+
+### 9. Git pull/update main
