@@ -1,4 +1,4 @@
-# Stepik_Python_Advanced
+# Stepik_Python_Advanced)
 
 ## 0. Switch to main and do git pull 
 
