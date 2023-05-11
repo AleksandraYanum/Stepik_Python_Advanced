@@ -3,7 +3,8 @@
 ## 0. Switch to main and do git pull 
 
 ## 1. Create branch
-Name: feature/<chapter_num>/<sub-chapter-second-num>/<ex. num>_<task_name>
+Name: feature/<chapter_num>/<sub_chapter_second_num>/<ex. num>_<task_name> 
+
 e.g. feature/4/4/5_check_number
 
 ### Notes:
