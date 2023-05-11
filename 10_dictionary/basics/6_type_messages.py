@@ -7,9 +7,9 @@ phone_digit_chars = dict(zip(phone_digits, digit_chars))
 output_digits = []
 
 for c in input_text:
-    for key in phone_digit_chars.keys():
-        if c in phone_digit_chars[key]:
-            output_digits.append(key * (phone_digit_chars[key].index(c) + 1))
+    for key, value in phone_digit_chars.items():
+        if c in value:
+            output_digits.append(key * (value.index(c) + 1))
             break
 
 print(*output_digits, sep='')
