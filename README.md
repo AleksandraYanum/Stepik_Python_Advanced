@@ -13,7 +13,7 @@ Example: **feature/4/4/5_check_number**
 
 ### 2. Create initial commit (empty main)
 
-### 3. Create the corresponding Pull Request (PR):
+### 3. Create the corresponding DRAFT Pull Request (PR):
 Name: <ex_num><task_name> 
 
 Example: **4_3_5 Check Number**
