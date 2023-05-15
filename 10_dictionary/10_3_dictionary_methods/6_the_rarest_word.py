@@ -1,7 +1,7 @@
 DEFAULT_MARKS = ' .,-_:!@#$%^&?'
 
 
-def find_the_rarest_word(text, delimiters):
+def find_the_rarest_word(text, delimiters=DEFAULT_MARKS):
     word_list = text.lower().split()
     word_frequencies = {}
     for word in word_list:
@@ -21,7 +21,9 @@ MARKS = ' .,-_:!@#$%^&?H'
 
 def main():
     input_text = input()
-    the_rarest_word = find_the_rarest_word(input_text, DEFAULT_MARKS)
+    the_rarest_word = find_the_rarest_word(input_text)
+    # the_rarest_word = find_the_rarest_word(input_text, MARKS)
+
     print(the_rarest_word)
 
 
