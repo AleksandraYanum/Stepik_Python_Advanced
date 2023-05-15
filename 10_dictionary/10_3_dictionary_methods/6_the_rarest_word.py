@@ -1,4 +1,5 @@
-MARKS = ' .,-_:!@#$%^&?'
+DEFAULT_MARKS = ' .,-_:!@#$%^&?'
+
 
 def find_the_rarest_word(text, delimiters):
     word_list = text.lower().split()
@@ -13,10 +14,14 @@ def find_the_rarest_word(text, delimiters):
  
     return the_rarest_word
 
+#########################################################################
+
+MARKS = ' .,-_:!@#$%^&?H'
+
 
 def main():
     input_text = input()
-    the_rarest_word = find_the_rarest_word(input_text, MARKS)
+    the_rarest_word = find_the_rarest_word(input_text, DEFAULT_MARKS)
     print(the_rarest_word)
 
 
