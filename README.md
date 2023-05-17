@@ -30,7 +30,7 @@ Example: **feature/4/4/5_check_number**
 
 
 ### 4. Create the corresponding DRAFT Pull Request (PR):
-Name: <ex_num><task_name> 
+Name: **<ex_num><task_name>** 
 
 Example: **4_3_5 Check Number**
 
