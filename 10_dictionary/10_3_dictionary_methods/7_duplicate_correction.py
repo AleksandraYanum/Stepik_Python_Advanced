@@ -21,12 +21,15 @@ def fix_duplicates(text, pattern=DEFAULT_PATTERN):
     return deduplicated_text
 
 
+###################################################################################
+
 DUPLICATE_PATTERN = 'w(n)'
 
 
 def main():
     input_text = input()
-    deduplicated_text = fix_duplicates(input_text, DUPLICATE_PATTERN)
+    # deduplicated_text = fix_duplicates(input_text, DUPLICATE_PATTERN)
+    deduplicated_text = fix_duplicates(input_text)
 
     print(deduplicated_text)
 
