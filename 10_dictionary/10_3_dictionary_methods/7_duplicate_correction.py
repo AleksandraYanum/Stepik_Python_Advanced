@@ -1,7 +1,9 @@
 PATTERN_WORD_CHAR = 'w'
 PATTERN_NUM_CHAR = 'n'
+DEFAULT_PATTERN = 'w_n'
 
-def fix_duplicates(text, pattern):
+
+def fix_duplicates(text, pattern=DEFAULT_PATTERN):
     word_list = text.split()
     deduplicated_word_list = []
     word_duplicate_amount = {}
@@ -19,9 +21,12 @@ def fix_duplicates(text, pattern):
     return deduplicated_text
 
 
+DUPLICATE_PATTERN = 'w(n)'
+
+
 def main():
     input_text = input()
-    deduplicated_text = fix_duplicates(input_text, 'w(n)')
+    deduplicated_text = fix_duplicates(input_text, DUPLICATE_PATTERN)
 
     print(deduplicated_text)
 
