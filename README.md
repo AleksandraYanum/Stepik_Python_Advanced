@@ -1,3 +1,5 @@
+<!-- Add issue approach description -->
+
 ## Stepik Python Advanced
 
 ### 0. Switch to main and do git pull 
