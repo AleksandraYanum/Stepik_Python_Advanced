@@ -16,7 +16,7 @@ Example: **4_3_5 Check Number**
 2. Add corresponding labels
 
 
-### 2. Create branch linked to the issue on GitHub, copy commands and execute it lokally
+### 2. Create branch linked to the issue on GitHub, copy commands and execute it locally
 Name: **feature/<chapter_num>/<sub_chapter_second_num>/<ex_num>_<task_name>** 
 
 Example: **feature/4/4/5_check_number**
