@@ -10,8 +10,9 @@ def fix_duplicates(text, pattern):
             deduplicated_word_list.append(word)
         else:
             word_duplicate_amount[word] = word_duplicate_amount.get(word, 0) + 1
-            deduplicated_word_list.append(pattern.replace(PATTERN_WORD_CHAR, word).\
-                                                  replace(PATTERN_NUM_CHAR, str(word_duplicate_amount[word])))
+            deduplicated_word = pattern.replace(PATTERN_WORD_CHAR, word).\
+                                                  replace(PATTERN_NUM_CHAR, str(word_duplicate_amount[word]))
+            deduplicated_word_list.append(deduplicated_word)
 
     deduplicated_text = ' '.join(deduplicated_word_list)
 
