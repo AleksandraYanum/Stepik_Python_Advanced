@@ -7,6 +7,7 @@ def fix_duplicates(text):
             deduplicated_word_list.append(word)
         else:
             word_duplicate_amount[word] = word_duplicate_amount.get(word, 0) + 1
+            # Task: to add pattern "c_n" to print result
             deduplicated_word_list.append(word + '_' + str(word_duplicate_amount[word]))
 
     deduplicated_text = ' '.join(deduplicated_word_list)
