@@ -3,9 +3,15 @@ NEGATIVE_OUTPUT = 'NO'
 
 
 def main():
-    
-    word_1, word_2 = sorted(input()), sorted(input())
-    is_anagram = word_1 == word_2
+    word_letter_amount = {}
+
+    for letter in input().lower():
+        word_letter_amount[letter] = word_letter_amount.get(letter, 0) + 1
+    for letter in input().lower():
+        word_letter_amount[letter] = word_letter_amount.get(letter, 0) - 1
+
+
+    is_anagram = set(word_letter_amount.values()) == {0}
 
     if is_anagram:
         output = POSITIVE_OUTPUT
