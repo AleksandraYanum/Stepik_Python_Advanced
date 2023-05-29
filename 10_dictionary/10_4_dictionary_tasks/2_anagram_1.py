@@ -13,9 +13,7 @@ def main():
             break
         else:
             word_letter_amount[letter] = word_letter_amount.get(letter) - 1
-            if word_letter_amount[letter] < 0:
-                break
-            elif word_letter_amount[letter] == 0:
+            if word_letter_amount[letter] == 0:
                 del word_letter_amount[letter]
     else:
         is_anagram = word_letter_amount == {}
