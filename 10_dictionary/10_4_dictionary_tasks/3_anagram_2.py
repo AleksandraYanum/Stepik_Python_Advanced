@@ -4,19 +4,19 @@ NEGATIVE_OUTPUT = 'NO'
 
 def is_anagram(string_1, string_2):
     result = False
-    word_letter_amount = {}
+    string_char_amount = {}
 
-    for letter in string_1:
-        word_letter_amount[letter] = word_letter_amount.get(letter, 0) + 1
-    for letter in string_2:
-        if letter not in word_letter_amount:
+    for char in string_1:
+        string_char_amount[char] = string_char_amount.get(char, 0) + 1
+    for char in string_2:
+        if char not in string_char_amount:
             break
         else:
-            word_letter_amount[letter] = word_letter_amount[letter] - 1
-            if word_letter_amount[letter] == 0:
-                del word_letter_amount[letter]
+            string_char_amount[char] = string_char_amount[char] - 1
+            if string_char_amount[char] == 0:
+                del string_char_amount[char]
     else:
-        result = word_letter_amount == {}
+        result = string_char_amount == {}
 
     return result
 
