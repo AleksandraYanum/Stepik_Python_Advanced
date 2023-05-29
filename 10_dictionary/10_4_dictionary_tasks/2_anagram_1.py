@@ -12,7 +12,7 @@ def main():
         if letter not in word_letter_amount:
             break
         else:
-            word_letter_amount[letter] = word_letter_amount.get(letter) - 1
+            word_letter_amount[letter] = word_letter_amount[letter] - 1
             if word_letter_amount[letter] == 0:
                 del word_letter_amount[letter]
     else:
