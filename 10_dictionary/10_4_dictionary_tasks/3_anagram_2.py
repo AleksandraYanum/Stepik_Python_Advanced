@@ -9,13 +9,11 @@ def main():
     for letter in ''.join(c.lower() for c in input() if c.isalpha()):
         word_letter_amount[letter] = word_letter_amount.get(letter, 0) + 1
     for letter in ''.join(c.lower() for c in input() if c.isalpha()):
-        if letter not in word_letter_amount.keys():
+        if letter not in word_letter_amount:
             break
         else:
-            word_letter_amount[letter] = word_letter_amount.get(letter) - 1
-            if word_letter_amount[letter] < 0:
-                break
-            elif word_letter_amount[letter] == 0:
+            word_letter_amount[letter] = word_letter_amount[letter] - 1
+            if word_letter_amount[letter] == 0:
                 del word_letter_amount[letter]
     else:
         is_anagram = word_letter_amount == {}
