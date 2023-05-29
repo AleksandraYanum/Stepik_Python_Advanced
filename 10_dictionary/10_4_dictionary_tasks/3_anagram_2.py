@@ -32,9 +32,4 @@ def main():
     print(output)
 
     
-
-
-
-
-
 main()
