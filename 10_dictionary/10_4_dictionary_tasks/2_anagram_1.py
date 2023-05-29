@@ -9,7 +9,7 @@ def main():
     for letter in input().lower():
         word_letter_amount[letter] = word_letter_amount.get(letter, 0) + 1
     for letter in input().lower():
-        if letter not in word_letter_amount.keys():
+        if letter not in word_letter_amount:
             break
         else:
             word_letter_amount[letter] = word_letter_amount.get(letter) - 1
