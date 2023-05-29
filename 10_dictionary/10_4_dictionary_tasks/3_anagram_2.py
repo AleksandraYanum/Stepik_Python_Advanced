@@ -25,7 +25,9 @@ def main():
     string_1, string_2 = ''.join(c.lower() for c in input() if c.isalpha()), \
                          ''.join(c.lower() for c in input() if c.isalpha())
 
-    output = POSITIVE_OUTPUT if is_anagram(string_1, string_2) else NEGATIVE_OUTPUT
+    is_anagram_found = is_anagram(string_1, string_2)
+    
+    output = POSITIVE_OUTPUT if is_anagram_found else NEGATIVE_OUTPUT
   
     print(output)
 
