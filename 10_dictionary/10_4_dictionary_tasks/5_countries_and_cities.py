@@ -1,10 +1,10 @@
 def main():
-    input_lists = [input().split() for _ in range(int(input()))]
+    country_cities_table = [input().split() for _ in range(int(input()))]
 
     city_country_dict = {}
-    for input_list in input_lists:
-        for city in input_list[1:]:
-            city_country_dict[city] = input_list[0]
+    for country_row in country_cities_table:
+        for city in country_row[1:]:
+            city_country_dict[city] = country_row[0]
 
     country_output_list = []
     for _ in range(int(input())):
