@@ -1,8 +1,8 @@
 def main():
-    country_cities_table = [input().split() for _ in range(int(input()))]
+    country_table = [input().split() for _ in range(int(input()))]
 
     city_country_dict = {}
-    for country_row in country_cities_table:
+    for country_row in country_table:
         for city in country_row[1:]:
             city_country_dict[city] = country_row[0]
 
