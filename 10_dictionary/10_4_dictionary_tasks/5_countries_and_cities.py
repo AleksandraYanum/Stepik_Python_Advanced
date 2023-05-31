@@ -4,15 +4,15 @@ def main():
     city_country_dict = {}
     for country_row in country_table:
         for city in country_row[1:]:
-            city_country_dict[city] = country_row[0]
-
+            city_country_dict.setdefault(city, []).append(country_row[0])
+            
     country_output_list = []
     for _ in range(int(input())):
         input_city = input()
         country_output_list.append(city_country_dict[input_city])
         
     for country in country_output_list:
-        print(country)
+        print(*country)
 
 
 main()
