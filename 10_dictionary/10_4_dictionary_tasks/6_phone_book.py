@@ -3,7 +3,7 @@ def main():
 
     for i in range(int(input())):
         phone_num, name = input().split()
-        phone_book.setdefault(name, []).append(phone_num)
+        phone_book.setdefault(name.lower(), []).append(phone_num)
 
     print(phone_book)
 
