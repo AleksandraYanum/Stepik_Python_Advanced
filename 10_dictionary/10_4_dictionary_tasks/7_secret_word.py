@@ -9,16 +9,16 @@ def main():
         letter_amount_dict[int(letter_amount)] = letter
     
     # {SECRET_CHAR: AMOUNT}
-    secret_chars_amount_dict = {}
-    for secret_char in secret_word_unique_chars:
-        secret_char_amount = secret_word.count(secret_char)
-        secret_chars_amount_dict[secret_char] = secret_char_amount
+    char_amount_dict = {}
+    for char in secret_word_unique_chars:
+        char_amount = secret_word.count(char)
+        char_amount_dict[char] = char_amount
 
     decoded_word = secret_word
-    for secret_char in secret_chars_amount_dict:
-        decoded_letter_amount = secret_chars_amount_dict[secret_char]
+    for char in char_amount_dict:
+        decoded_letter_amount = char_amount_dict[char]
         decoded_letter = letter_amount_dict[decoded_letter_amount]
-        decoded_word = decoded_word.replace(secret_char, decoded_letter)
+        decoded_word = decoded_word.replace(char, decoded_letter)
 
     print(decoded_word)
 
