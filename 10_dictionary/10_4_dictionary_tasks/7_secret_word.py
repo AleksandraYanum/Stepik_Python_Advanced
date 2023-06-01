@@ -1,6 +1,5 @@
 def main():
     secret_word = input()
-    secret_word_unique_chars = set(secret_word)
 
     # {AMOUNT: LETTER}
     letter_amount_dict = {}
@@ -10,9 +9,8 @@ def main():
     
     # {SECRET_CHAR: AMOUNT}
     char_amount_dict = {}
-    for char in secret_word_unique_chars:
-        char_amount = secret_word.count(char)
-        char_amount_dict[char] = char_amount
+    for char in secret_word:
+        char_amount_dict[char] = char_amount_dict.get(char, 0) + 1
 
     decoded_word = secret_word
     for char in char_amount_dict:
