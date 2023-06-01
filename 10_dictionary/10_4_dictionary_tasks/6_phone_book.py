@@ -6,7 +6,8 @@ def main():
 
     for _ in range(int(input())):
         found_phone_num, name = input().split()
-        phone_book.setdefault(name.lower(), []).append(found_phone_num)
+        phone_set = set()
+        phone_book.setdefault(name.lower(), phone_set).add(found_phone_num)
 
     found_phone_num_list = []
     for _ in range(int(input())):
