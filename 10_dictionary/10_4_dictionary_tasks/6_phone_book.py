@@ -1,4 +1,4 @@
-NAME_NOT_FOUND = ['абонент не найден']
+NAME_NOT_FOUND = 'абонент не найден'
 
 
 def main():
@@ -12,7 +12,7 @@ def main():
     found_phone_num_list = []
     for _ in range(int(input())):
         input_name = input().lower()
-        found_phone_num_list.append(phone_book.get(input_name, NAME_NOT_FOUND))
+        found_phone_num_list.append(phone_book.get(input_name, {NAME_NOT_FOUND}))
 
     for found_phone_num in found_phone_num_list:
         print(*found_phone_num)
