@@ -14,7 +14,7 @@ def main():
         result_list[0] += 1
         char_amount_dict[char] = result_list
   
-    # Third combined dict {SECRET_CHAR: [AMOUNT, LETTER]}
+    # Editing dict {SECRET_CHAR: [AMOUNT, LETTER]}
     for char in char_amount_dict:
         need_amount = char_amount_dict[char][0]
         need_letter = letter_amount_dict[need_amount]
