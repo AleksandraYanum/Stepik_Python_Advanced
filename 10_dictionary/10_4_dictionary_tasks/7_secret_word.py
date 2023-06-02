@@ -20,13 +20,6 @@ def main():
         need_letter = letter_amount_dict[need_amount]
         char_amount_dict[char].append(need_letter)
 
-    # decoded_word = secret_word
-    # for char in char_amount_dict:
-    #     decoded_letter_amount = char_amount_dict[char]
-    #     decoded_letter = letter_amount_dict[decoded_letter_amount]
-    #     decoded_word = decoded_word.replace(char, decoded_letter)
-
-    # Optimized version to reduce scan amount
     decoded_word = ''
     for char in secret_word:
         decoded_letter = char_amount_dict[char][1]
