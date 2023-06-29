@@ -3,13 +3,14 @@ from random import randint
 from random import choice
 
 
-LIVERIA_POSTAL_CODE_PATTERN = 'LetterLetterNumber_NumberLetterLetter'
+LATVERIA_POSTAL_CODE_PATTERN = 'LetterLetterNumber_NumberLetterLetter'
 
 UPPERCASE_LETTER_CODE = 'letter'    #uppercase letter
 NUM_CODE = 'number'   # from 0 to 99
 
 FIRST_POS_NUM = 0
 LAST_POS_NUM = 99
+
 
 def generate_postal_code(postal_code_mask):
     postal_code = ''
@@ -25,11 +26,9 @@ def generate_postal_code(postal_code_mask):
     
     return postal_code
 
-    
-
 
 def main():
-    liveria_postal_code = generate_postal_code(LIVERIA_POSTAL_CODE_PATTERN)
+    liveria_postal_code = generate_postal_code(LATVERIA_POSTAL_CODE_PATTERN)
     print(liveria_postal_code)
 
 
