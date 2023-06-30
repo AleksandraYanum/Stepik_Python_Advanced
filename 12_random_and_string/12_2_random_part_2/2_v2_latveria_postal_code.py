@@ -20,6 +20,19 @@ FIRST_POS_NUM = 0
 LAST_POS_NUM = 99
 
 
+def find_all(source, symb):
+    symbol_idx_list = []
+    start_idx = 0
+    symbol_idx = source.find(symb, start_idx)
+
+    while symbol_idx != -1:
+        symbol_idx_list.append(symbol_idx)
+        start_idx = symbol_idx + 1
+        symbol_idx = source.find(symb, start_idx)
+
+    return symbol_idx_list
+
+
 # func takes not normalized postal code pattern, brings it into normalized form 
 # (lowercase and single char coded) and calls enerate_postal_code_from_normalized_pattern func
 def generate_postal_code(postal_code_mask):
