@@ -41,7 +41,25 @@ def generate_postal_code(postal_code_mask):
 
     postal_uppercase_letter_idx_list = find_all(postal_code_mask_low, POSTAL_UPPERCASE_LETTER_WORD)
     postal_number_idx_list = find_all(postal_code_mask_low, POSTAL_NUM_WORD)
- 
+
+
+    first_idx = postal_uppercase_letter_idx_list[0]
+    last_idx = postal_uppercase_letter_idx_list[len(postal_uppercase_letter_idx_list) - 1]
+
+    postal_code_mask_normalized = postal_code_mask_low[:first_idx]
+
+    for i in range(len(postal_uppercase_letter_idx_list) - 1):
+        current_idx = postal_uppercase_letter_idx_list[i]
+        next_idx = postal_uppercase_letter_idx_list[i + 1]
+
+        postal_code_mask_normalized += POSTAL_UPPERCASE_LETTER_CHAR
+        postal_code_mask_normalized += postal_code_mask_low[current_idx + len(POSTAL_UPPERCASE_LETTER_WORD) : next_idx] 
+
+    postal_code_mask_normalized += POSTAL_UPPERCASE_LETTER_CHAR + postal_code_mask_low[last_idx + len(POSTAL_UPPERCASE_LETTER_WORD):]
+    
+    print(postal_code_mask_normalized)
+
+        
     postal_code = generate_postal_code_from_normalized_pattern(postal_code_mask_normalized)
 
     return postal_code
