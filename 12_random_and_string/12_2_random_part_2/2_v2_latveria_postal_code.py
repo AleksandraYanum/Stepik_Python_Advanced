@@ -37,10 +37,11 @@ def find_all(source, symb):
 # (lowercase and single char coded) and calls enerate_postal_code_from_normalized_pattern func
 def generate_postal_code(postal_code_mask):
     
-    postal_code_mask_normalized = postal_code_mask.lower().\
-        replace(POSTAL_UPPERCASE_LETTER_WORD, POSTAL_UPPERCASE_LETTER_CHAR).\
-        replace(POSTAL_NUM_WORD, POSTAL_NUM_CHAR)
+    postal_code_mask_low = postal_code_mask.lower()
 
+    postal_uppercase_letter_idx_list = find_all(postal_code_mask_low, POSTAL_UPPERCASE_LETTER_WORD)
+    postal_number_idx_list = find_all(postal_code_mask_low, POSTAL_NUM_WORD)
+ 
     postal_code = generate_postal_code_from_normalized_pattern(postal_code_mask_normalized)
 
     return postal_code
