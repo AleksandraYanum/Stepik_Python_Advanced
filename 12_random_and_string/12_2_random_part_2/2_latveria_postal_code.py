@@ -23,13 +23,14 @@ LAST_POS_NUM = 99
 def generate_postal_code(postal_code_mask):
     postal_code = ''
 
-    postal_code_mask_formatted = postal_code_mask.lower().\
+    # lowercase and single char coded
+    postal_code_mask_normalized = postal_code_mask.lower().\
         replace(POSTAL_UPPERCASE_LETTER_WORD, POSTAL_UPPERCASE_LETTER_CHAR).\
         replace(POSTAL_NUM_WORD, POSTAL_NUM_CHAR)
 
-    print(postal_code_mask_formatted)
+    print(postal_code_mask_normalized)
 
-    for c in postal_code_mask_formatted:
+    for c in postal_code_mask_normalized:
         if c == POSTAL_UPPERCASE_LETTER_CHAR:
             postal_code_char = choice(ascii_uppercase)
         elif c == POSTAL_NUM_CHAR:
