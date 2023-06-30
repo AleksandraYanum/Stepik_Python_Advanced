@@ -43,8 +43,8 @@ def generate_postal_code(postal_code_mask):
 
 
 def main():
-    liveria_postal_code = generate_postal_code(LATVERIA_POSTAL_CODE_PATTERN)
-    print(liveria_postal_code)
+    latveria_postal_code = generate_postal_code(LATVERIA_POSTAL_CODE_PATTERN)
+    print(latveria_postal_code)
 
 
 main()
