@@ -38,7 +38,7 @@ def find_all(source, symb):
 
 
 # func takes not normalized postal code pattern, brings it into normalized form 
-# (lowercase and single char coded) and calls enerate_postal_code_from_normalized_pattern func
+# (lowercase and single char coded) and calls generate_postal_code_from_normalized_pattern func
 
 def generate_postal_code(postal_code_mask, pattern_word_char_dic):
     
@@ -63,12 +63,12 @@ def generate_postal_code(postal_code_mask, pattern_word_char_dic):
         postal_code_mask_normalized += pattern_char + postal_code_mask[last_idx + len(pattern_word):]
         postal_code_mask = postal_code_mask_normalized
         
-    postal_code = generate_postal_code_from_normalized_pattern(postal_code_mask_normalized)
+    postal_code = generate_postal_code_value(postal_code_mask_normalized)
 
     return postal_code
 
 
-def generate_postal_code_from_normalized_pattern(postal_code_mask_normalized):
+def generate_postal_code_value(postal_code_mask_normalized):
 
     postal_code = ''
     for c in postal_code_mask_normalized:
