@@ -6,7 +6,7 @@ from random import randint
 from random import choice
 
 
-LATVERIA_POSTAL_CODE_PATTERN = 'ABCLetterDEFLetterNumber_NumberLetterLetter'
+LATVERIA_POSTAL_CODE_PATTERN = 'ABCLetterDEFLetterNumber_NumberLetterLetteraa'
 
 POSTAL_UPPERCASE_LETTER_WORD = 'letter'    #uppercase letter
 POSTAL_NUM_WORD = 'number'   # from 0 to 99
@@ -73,8 +73,8 @@ def generate_postal_code_v2(pattern, pattern_word_list):
 
     for pattern_word in pattern_word_list:
         pattern_word_len = len(pattern_word)
-
         pattern_word_idx_list = find_all(pattern, pattern_word)
+
         first_idx = pattern_word_idx_list[0]
         last_idx = pattern_word_idx_list[-1]
         postal_code = pattern[:first_idx]
@@ -107,10 +107,36 @@ def generate_postal_code_value(pattern_word):
 
 ##############################################################################
 
+# Version 3
+
+def generate_postal_code_v3(pattern, pattern_word_list):
+    postal_code = pattern.lower()
+
+    for pattern_word in pattern_word_list:
+        pattern_word_idx_list = find_all(postal_code, pattern_word)
+        first_idx = pattern_word_idx_list[0]
+        last_idx = pattern_word_idx_list[-1]
+        postfix_start_idx = last_idx + len(pattern_word)
+        pattern_to_code = postal_code[first_idx:postfix_start_idx]
+        pattern_prefix = postal_code[:first_idx]
+        pattern_postfix = postal_code[postfix_start_idx:]
+        pattern_word_amount = pattern_to_code.count(pattern_word)
+
+        for _ in range(pattern_word_amount):
+            postal_code_value = generate_postal_code_value(pattern_word)
+            pattern_to_code = pattern_to_code.\
+                              replace(pattern_word, postal_code_value, 1)
+
+        postal_code = pattern_prefix + pattern_to_code + pattern_postfix
+
+    return postal_code
+
+##############################################################################
+
 
 def main():
     
-    latveria_postal_code = generate_postal_code(LATVERIA_POSTAL_CODE_PATTERN, PATTERN_WORD_LIST)
+    latveria_postal_code = generate_postal_code_v3(LATVERIA_POSTAL_CODE_PATTERN, PATTERN_WORD_LIST)
     print(latveria_postal_code)
 
 
