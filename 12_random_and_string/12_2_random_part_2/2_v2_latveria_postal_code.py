@@ -38,7 +38,7 @@ def generate_postal_code(pattern, pattern_word_list):
 
         pattern_word_idx_list = find_all(pattern, pattern_word)
         first_idx = pattern_word_idx_list[0]
-        last_idx = pattern_word_idx_list[len(pattern_word_idx_list) - 1]
+        last_idx = pattern_word_idx_list[-1]
         postal_code = pattern[:first_idx]
 
         for i in range(len(pattern_word_idx_list) - 1):
