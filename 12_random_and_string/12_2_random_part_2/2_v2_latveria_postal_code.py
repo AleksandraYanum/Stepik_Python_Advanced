@@ -52,6 +52,7 @@ def generate_postal_code_from_normalized_pattern(postal_code_mask_normalized):
 
 ##############################################################################
 
+# Version 2
 
 def find_all(source, symb):
     symbol_idx_list = []
@@ -103,6 +104,8 @@ def generate_postal_code_value(pattern_word):
         value = str(randint(FIRST_POS_NUM, LAST_POS_NUM))
     
     return value
+
+##############################################################################
 
 
 def main():
