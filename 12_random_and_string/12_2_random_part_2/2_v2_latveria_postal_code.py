@@ -1,7 +1,4 @@
-# Implemented version formates LATVERIA_POSTAL_CODE_PATTERN from 
-# 'LetterLetterNumber_NumberLetterLetter' to 'lln_nll'. If postal code includes letters 'l', 'n'
-# that should be ignored, it's needed to introduced new chars for encoding which don't occurs 
-# in POSTAL_CODE_PATTERN
+# Implemented version irnores letters 'l', 'n' and encodes only words 'letter', 'number'
 
 
 from string import ascii_uppercase
@@ -37,50 +34,42 @@ def find_all(source, symb):
     return symbol_idx_list
 
 
-# func takes not normalized postal code pattern, brings it into normalized form 
-# (lowercase and single char coded) and calls generate_postal_code_from_normalized_pattern func
-
-def generate_postal_code(postal_code_mask, pattern_word_char_dic):
+def generate_postal_code(pattern, pattern_word_char_dic):
     
-    postal_code_mask = postal_code_mask.lower()
+    pattern = pattern.lower()
 
     for pattern_word, pattern_char in pattern_word_char_dic.items():
 
-        pattern_word_idx_list = find_all(postal_code_mask, pattern_word)
-
+        pattern_word_idx_list = find_all(pattern, pattern_word)
         first_idx = pattern_word_idx_list[0]
         last_idx = pattern_word_idx_list[len(pattern_word_idx_list) - 1]
-
-        postal_code_mask_normalized = postal_code_mask[:first_idx]
+        postal_code = pattern[:first_idx]
 
         for i in range(len(pattern_word_idx_list) - 1):
             current_idx = pattern_word_idx_list[i]
             next_idx = pattern_word_idx_list[i + 1]
 
-            postal_code_mask_normalized += pattern_char
-            postal_code_mask_normalized += postal_code_mask[current_idx + len(pattern_word) : next_idx] 
+            postal_code_value = generate_postal_code_value(pattern_char)
+            postal_code += postal_code_value
+            postal_code += pattern[current_idx + len(pattern_word) : next_idx] 
 
-        postal_code_mask_normalized += pattern_char + postal_code_mask[last_idx + len(pattern_word):]
-        postal_code_mask = postal_code_mask_normalized
+        postal_code += generate_postal_code_value(pattern_char) + \
+                                    pattern[last_idx + len(pattern_word):]
+
+        pattern = postal_code
         
-    postal_code = generate_postal_code_value(postal_code_mask_normalized)
-
     return postal_code
 
 
-def generate_postal_code_value(postal_code_mask_normalized):
-
-    postal_code = ''
-    for c in postal_code_mask_normalized:
-        if c == POSTAL_UPPERCASE_LETTER_CHAR:
-            postal_code_char = choice(ascii_uppercase)
-        elif c == POSTAL_NUM_CHAR:
-            postal_code_char = str(randint(FIRST_POS_NUM, LAST_POS_NUM))
-        else:
-            postal_code_char = c
-        postal_code += postal_code_char
+def generate_postal_code_value(pattern_char):
     
-    return postal_code
+    value = ''
+    if pattern_char == POSTAL_UPPERCASE_LETTER_CHAR:
+        value = choice(ascii_uppercase)
+    elif pattern_char == POSTAL_NUM_CHAR:
+        value = str(randint(FIRST_POS_NUM, LAST_POS_NUM))
+    
+    return value
 
 
 def main():
