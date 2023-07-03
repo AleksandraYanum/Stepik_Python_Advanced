@@ -11,10 +11,46 @@ LATVERIA_POSTAL_CODE_PATTERN = 'ABCLetterDEFLetterNumber_NumberLetterLetter'
 POSTAL_UPPERCASE_LETTER_WORD = 'letter'    #uppercase letter
 POSTAL_NUM_WORD = 'number'   # from 0 to 99
 
+POSTAL_UPPERCASE_LETTER_CHAR = 'l'
+POSTAL_NUM_CHAR = 'n'
+
 PATTERN_WORD_LIST = [POSTAL_UPPERCASE_LETTER_WORD, POSTAL_NUM_WORD]
 
 FIRST_POS_NUM = 0
 LAST_POS_NUM = 99
+
+##############################################################################
+
+# Version 1
+
+# func takes not normalized postal code pattern, brings it into normalized form 
+# (lowercase and single char coded) and calls enerate_postal_code_from_normalized_pattern func
+def generate_postal_code(postal_code_mask):
+
+    postal_code_mask_normalized = postal_code_mask.lower().\
+        replace(POSTAL_UPPERCASE_LETTER_WORD, POSTAL_UPPERCASE_LETTER_CHAR).\
+        replace(POSTAL_NUM_WORD, POSTAL_NUM_CHAR)
+
+    postal_code = generate_postal_code_from_normalized_pattern(postal_code_mask_normalized)
+
+    return postal_code
+
+
+def generate_postal_code_from_normalized_pattern(postal_code_mask_normalized):
+
+    postal_code = ''
+    for c in postal_code_mask_normalized:
+        if c == POSTAL_UPPERCASE_LETTER_CHAR:
+            postal_code_char = choice(ascii_uppercase)
+        elif c == POSTAL_NUM_CHAR:
+            postal_code_char = str(randint(FIRST_POS_NUM, LAST_POS_NUM))
+        else:
+            postal_code_char = c
+        postal_code += postal_code_char
+
+    return postal_code
+
+##############################################################################
 
 
 def find_all(source, symb):
