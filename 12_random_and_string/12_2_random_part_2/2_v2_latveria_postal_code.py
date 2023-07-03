@@ -6,7 +6,7 @@ from random import randint
 from random import choice
 
 
-LATVERIA_POSTAL_CODE_PATTERN = 'ABCLetterDEFLetterNumber_NumberLetterLetteraa'
+LATVERIA_POSTAL_CODE_PATTERN = 'ABCLetterDEFLetterNumber_NumberLetterLetterAA'
 
 POSTAL_UPPERCASE_LETTER_WORD = 'letter'    #uppercase letter
 POSTAL_NUM_WORD = 'number'   # from 0 to 99
@@ -136,7 +136,35 @@ def generate_postal_code_v3(pattern, pattern_word_list):
 # Version 4
 
 def generate_postal_code_v4(pattern, pattern_word_list):
-    pass
+    postal_code = ''
+    start_pattern_word_end_dic = {}
+    postal_code_low = pattern.lower()
+
+    for pattern_word in pattern_word_list:
+        pattern_word_len = len(pattern_word)
+        pattern_word_idx_list = find_all(postal_code_low, pattern_word)
+        for word_idx in pattern_word_idx_list:
+            start = word_idx
+            start_pattern_word_end_dic[start] = {pattern_word: start + pattern_word_len - 1}
+
+    start_pattern_word_end_dic_sorted = dict(sorted(start_pattern_word_end_dic.items()))
+
+    prev_end = -1
+    for start, word_end in start_pattern_word_end_dic_sorted.items():
+        for word, end in word_end.items():   # TO CHANGE!!!!!!!!!
+
+            postal_code_value = generate_postal_code_value(word)
+            postal_code += postal_code_low[prev_end + 1:start] 
+            postal_code += postal_code_value 
+            prev_end = end
+
+    postal_code += postal_code_low[prev_end + 1:]
+
+    return postal_code
+            
+
+
+
 
 ##############################################################################
 
