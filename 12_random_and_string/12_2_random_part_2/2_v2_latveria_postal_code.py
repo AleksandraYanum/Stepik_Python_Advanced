@@ -30,7 +30,7 @@ def find_all(source, symb):
     return symbol_idx_list
 
 
-def generate_postal_code(pattern, pattern_word_list):
+def generate_postal_code_v2(pattern, pattern_word_list):
     
     pattern = pattern.lower()
 
