@@ -133,10 +133,17 @@ def generate_postal_code_v3(pattern, pattern_word_list):
 
 ##############################################################################
 
+# Version 4
+
+def generate_postal_code_v4(pattern, pattern_word_list):
+    pass
+
+##############################################################################
+
 
 def main():
     
-    latveria_postal_code = generate_postal_code_v3(LATVERIA_POSTAL_CODE_PATTERN, PATTERN_WORD_LIST)
+    latveria_postal_code = generate_postal_code_v4(LATVERIA_POSTAL_CODE_PATTERN, PATTERN_WORD_LIST)
     print(latveria_postal_code)
 
 
