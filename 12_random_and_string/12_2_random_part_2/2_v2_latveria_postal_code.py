@@ -120,7 +120,7 @@ def generate_postal_code_v3(pattern, pattern_word_list):
         pattern_to_code = postal_code[first_idx:postfix_start_idx]
         pattern_prefix = postal_code[:first_idx]
         pattern_postfix = postal_code[postfix_start_idx:]
-        pattern_word_amount = pattern_to_code.count(pattern_word)
+        pattern_word_amount = len(pattern_word_idx_list)
 
         for _ in range(pattern_word_amount):
             postal_code_value = generate_postal_code_value(pattern_word)
