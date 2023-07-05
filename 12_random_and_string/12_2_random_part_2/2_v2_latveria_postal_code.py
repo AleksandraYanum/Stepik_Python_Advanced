@@ -139,7 +139,7 @@ def generate_postal_code_v3(pattern, pattern_word_list):
 
 def generate_postal_code_v4(pattern, pattern_word_list):
     postal_code = ''
-    pattern_match_dic = {}
+    pattern_matches = {}
     postal_code_low = pattern.lower()
 
     for pattern_word in pattern_word_list:
@@ -147,19 +147,19 @@ def generate_postal_code_v4(pattern, pattern_word_list):
         pattern_word_idx_list = find_all(postal_code_low, pattern_word)
         for word_idx in pattern_word_idx_list:
             start_idx = word_idx
-            pattern_match_dic[start_idx] = {PATTERN_TYPE: pattern_word,
+            pattern_matches[start_idx] = {PATTERN_TYPE: pattern_word,
                                             PATTERN_LAST_IDX: start_idx + pattern_word_len - 1}
             # {pattern_word: start_idx + pattern_word_len - 1}
 
-    start_pattern_word_end_dic_sorted = dict(sorted(pattern_match_dic.items()))
+    sorted_pattern_matches = dict(sorted(pattern_matches.items()))
 
     prev_end_idx = -1
-    for start_idx, word_end in start_pattern_word_end_dic_sorted.items():
+    for start_idx, description in sorted_pattern_matches.items():
 
-            postal_code_value = generate_postal_code_value(word_end[PATTERN_TYPE])
+            postal_code_value = generate_postal_code_value(description[PATTERN_TYPE])
             postal_code += postal_code_low[prev_end_idx + 1:start_idx] 
             postal_code += postal_code_value 
-            prev_end_idx = word_end[PATTERN_LAST_IDX]
+            prev_end_idx = description[PATTERN_LAST_IDX]
 
     postal_code += postal_code_low[prev_end_idx + 1:]
 
