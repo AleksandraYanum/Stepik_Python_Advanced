@@ -4,7 +4,7 @@ from random import sample
 
 
 EXCEPTION_CHARS = set('lI1oO0')
-PASSWORD_CHARS = ''.join(set(ascii_letters) | set(digits) - EXCEPTION_CHARS)
+PASSWORD_CHARS = ''.join((set(ascii_letters) | set(digits)) - EXCEPTION_CHARS)
 
 
 def generate_password_by_len(length, chars):
