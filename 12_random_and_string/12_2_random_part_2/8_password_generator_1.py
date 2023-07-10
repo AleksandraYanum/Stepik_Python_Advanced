@@ -13,7 +13,7 @@ def generate_password_by_len(length, chars):
 
 
 def generate_passwords(amount, length, chars):
-    password_list = [generate_password_by_len(length, PASSWORD_CHARS) for _ in range(amount)]
+    password_list = [generate_password_by_len(length, chars) for _ in range(amount)]
     return password_list
 
 
