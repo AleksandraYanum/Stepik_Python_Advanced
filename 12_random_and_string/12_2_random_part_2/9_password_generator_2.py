@@ -21,6 +21,7 @@ def generate_password_by_len(length, digits, lowercase, uppercase, all_chars):
                        sample(all_chars, length - MIN_PASSWORD_LENGTH)
     shuffle(password)
     password = ''.join(password)
+    
     return password
 
 
