@@ -1,3 +1,6 @@
+# If not for Stepic, it is necessary to check that the password is not less than 
+# the minimum password length
+
 from string import ascii_lowercase
 from string import ascii_uppercase
 from string import digits
@@ -8,23 +11,27 @@ EXCEPTION_CHARS = set('lI1oO0')
 PASSWORD_DIGITS = set(digits) - EXCEPTION_CHARS
 PASSWORD_LOWERCASE = set(ascii_lowercase) - EXCEPTION_CHARS
 PASSWORD_UPPERCASE = set(ascii_uppercase) - EXCEPTION_CHARS
-ALL_PASSWORD_CHARS = ''.join(PASSWORD_DIGITS | PASSWORD_LOWERCASE |PASSWORD_UPPERCASE)
+PASSWORD_ALL_CHARS = ''.join(PASSWORD_DIGITS | PASSWORD_LOWERCASE |PASSWORD_UPPERCASE)
+MIN_PASSWORD_LENGTH = 3
 
 
-def generate_password_by_len(length, chars):
-    password = ''.join(sample(chars, length))
+def generate_password_by_len(length, digits, lowercase, uppercase, all_chars):
+    password = ''.join(sample(digits, 1) + sample(lowercase, 1) + sample(uppercase, 1) + \
+                       sample(all_chars, length - MIN_PASSWORD_LENGTH) )
     return password
 
 
-def generate_passwords(amount, length, chars):
-    password_list = [generate_password_by_len(length, chars) for _ in range(amount)]
+def generate_passwords(amount, length, digits, lowercase, uppercase, all_chars):
+    password_list = [generate_password_by_len(length, digits, lowercase, uppercase, all_chars) \
+                     for _ in range(amount)]
     return password_list
 
 
 def main():
     password_amount = int(input())
     password_len = int(input())
-    passwords = generate_passwords(password_amount, password_len, ALL_PASSWORD_CHARS)
+    passwords = generate_passwords(password_amount, password_len, PASSWORD_DIGITS, \
+                                   PASSWORD_LOWERCASE, PASSWORD_UPPERCASE, PASSWORD_ALL_CHARS)
 
     print(*passwords, sep='\n')
 
