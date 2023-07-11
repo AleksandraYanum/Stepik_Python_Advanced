@@ -1,4 +1,4 @@
-# If not for Stepic, it is necessary to check that the password is not less than 
+# If not for Stepik, it is necessary to check that the password is not less than 
 # the minimum password length
 
 from string import ascii_lowercase
