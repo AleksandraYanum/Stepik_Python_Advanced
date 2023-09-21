@@ -19,14 +19,16 @@
 from collections import deque as de
 
 
-LINE_AMOUNT = 10
+REQUIRED_LINE_AMOUNT = 10
 
 file_tail = de([])
+line_amount = 0
 
 with open(r'C:\Users\Aleksandra\Downloads\text.txt',  encoding='utf-8') as file:
         for line in file:
-                if len(file_tail) == LINE_AMOUNT:
-                        file_tail.popleft()
                 file_tail.append(line.strip())
+                line_amount += 1
+                if line_amount > REQUIRED_LINE_AMOUNT:
+                        file_tail.popleft()
 
 print(*file_tail, sep='\n')
