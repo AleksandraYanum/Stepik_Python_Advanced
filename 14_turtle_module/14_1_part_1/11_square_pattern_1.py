@@ -1,4 +1,4 @@
-import turtle
+import turtle as t
 
 
 def square_pattern(smallest_side, square_amount, step):
@@ -10,8 +10,8 @@ def square_pattern(smallest_side, square_amount, step):
   
 def square(side):
   for _ in range(4):
-    turtle.left(90)
-    turtle.forward(side)
+    t.left(90)
+    t.forward(side)
     
 
 def main():
