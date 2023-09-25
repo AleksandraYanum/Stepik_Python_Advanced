@@ -2,6 +2,7 @@ import turtle as t
 
 
 def turtle_circle(ray_size, ray_amount=12):
+  t.Screen().bgcolor('lightblue')
   t.penup()
   t.shape('turtle')
   t.shapesize(1)
