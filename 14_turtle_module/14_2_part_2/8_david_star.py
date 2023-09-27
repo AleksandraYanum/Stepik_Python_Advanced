@@ -15,7 +15,7 @@ def david_star(triangle_side):
 
 def shape(side, angle_amount, is_up=1):
   turn_angle = 360 / angle_amount
-  for i in range(angle_amount):
+  for _ in range(angle_amount):
     t.forward(side)
     if is_up:
       t.left(turn_angle)
