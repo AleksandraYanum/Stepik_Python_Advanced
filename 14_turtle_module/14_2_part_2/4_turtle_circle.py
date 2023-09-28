@@ -9,7 +9,7 @@ def turtle_circle(ray_size, ray_amount=12):
   t.hideturtle()
 
   turn_angle = 360 / ray_amount
-  for i in range(ray_amount):
+  for _ in range(ray_amount):
       t.forward(ray_size)
       t.stamp()
       t.backward(ray_size)
