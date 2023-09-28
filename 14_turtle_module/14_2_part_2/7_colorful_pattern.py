@@ -15,7 +15,6 @@ def colorful_pattern(colors, line_amount):
     forward_len += 3
     
   
-
 def main():
   colors = ['blue', 'yellow', 'green', 'purple', 'orange',  'red']
   line_amount = 44
