@@ -6,7 +6,7 @@ def david_star(triangle_side):
   shape(triangle_side, angle_amount)
   
   t.penup()
-  t.goto(0, 60)
+  t.goto(0, triangle_side * 0.6)
   t.pendown()
 
   is_up = 0
@@ -24,7 +24,7 @@ def shape(side, angle_amount, is_up=1):
       
 
 def main():
-  triangle_side = 100
+  triangle_side = 200
   david_star(triangle_side)
   
 
