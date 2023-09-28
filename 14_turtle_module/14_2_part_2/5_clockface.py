@@ -13,7 +13,7 @@ def turtle_circle(ray_size, ray_amount=12):
   line_len = 20
   empty_line_len = 30
   bakward_len_dif = line_len + empty_line_len
-  for i in range(ray_amount):
+  for _ in range(ray_amount):
       t.forward(ray_size)
       t.pendown()
       t.forward(line_len)
