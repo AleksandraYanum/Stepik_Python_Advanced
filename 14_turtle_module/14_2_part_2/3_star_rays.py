@@ -3,6 +3,7 @@ import turtle as t
 
 def star_rays(ray_size, ray_amount=12):
   turn_angle = 360 / ray_amount
+  t.hideturtle()
   for _ in range(ray_amount):
       t.forward(ray_size)
       t.stamp()
