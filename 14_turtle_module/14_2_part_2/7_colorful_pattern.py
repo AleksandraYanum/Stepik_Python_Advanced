@@ -1,15 +1,14 @@
 import turtle as t
+from itertools import cycle
 
 
 def colorful_pattern(colors, line_amount):
-  color_amount = len(colors)
-
   pensize = 1
   forward_len = 5
   
-  for i in range(line_amount):
+  for _, color in zip(range(line_amount), cycle(colors)):
     t.left(45)
-    t.pencolor(colors[i % color_amount])
+    t.pencolor(color)
     t.pensize(pensize)
     t.forward(forward_len)
     pensize += 0.5
