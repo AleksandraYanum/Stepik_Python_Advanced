@@ -13,7 +13,7 @@ def colorful_pattern(colors, line_amount, pensize_inc=0.5, forward_len_inc=3):
     t.forward(forward_len)
     pensize += pensize_inc
     forward_len += forward_len_inc
-    
+  
   
 def main():
   colors = ['blue', 'yellow', 'green', 'purple', 'orange',  'red']
