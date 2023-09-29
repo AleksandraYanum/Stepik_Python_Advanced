@@ -15,14 +15,12 @@ def david_star(triangle_side):
 
 def shape(side, angle_amount, is_up=1):
   turn_angle = 360 / angle_amount
+  rotate = t.left if is_up else t.right
   for _ in range(angle_amount):
     t.forward(side)
-    if is_up:
-      t.left(turn_angle)
-    else:
-      t.right(turn_angle)
-      
+    rotate(turn_angle)
 
+      
 def main():
   triangle_side = 200
   david_star(triangle_side)
