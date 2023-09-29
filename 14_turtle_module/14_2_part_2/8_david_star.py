@@ -1,12 +1,12 @@
 import turtle as t
 
 
-def david_star(triangle_side):
+def david_star(triangle_side, compression_percent=0.6):
   angle_amount = 3
   shape(triangle_side, angle_amount)
   
   t.penup()
-  t.goto(0, triangle_side * 0.6)
+  t.goto(0, triangle_side * compression_percent)
   t.pendown()
 
   is_up = 0
