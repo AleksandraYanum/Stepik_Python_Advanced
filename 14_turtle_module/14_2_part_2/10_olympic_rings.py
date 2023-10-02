@@ -12,7 +12,7 @@ def circle_color_line(radius, amount, start_x, start_y, colors):
         t.pendown()
         t.pencolor(color)
         t.circle(radius)
-        x_cor = x_cor + diameter
+        x_cor += diameter
 
 
 def olympic_rings(radius, start_x, start_y):
