@@ -16,14 +16,17 @@ def circle_line(radius, amount, start_x, start_y):
 
 def olympic_rings(radius, start_x, start_y):
     diameter = 2 * radius
-    # t.speed(10)
+    t.speed(10)
     # colors = ['chartreuse', 'red', 'black', 'DeepSkyBlue', 'yellow']
 
+
     # green circle
+    circle_amount = 1
     x_cor, y_cor = start_x + radius, start_y - radius
-    circle_line(radius, 1,  x_cor, y_cor)
+    circle_line(radius, circle_amount,  x_cor, y_cor)
 
     # all top circles
+    circle_amount = 3
     x_cor, y_cor = x_cor - diameter - radius, y_cor + radius
     circle_line(radius, 3,  x_cor, y_cor)
 
