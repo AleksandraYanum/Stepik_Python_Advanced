@@ -39,10 +39,10 @@ def draw_simple_bear(start_x, start_y, head_radius):
     eye_x_cor_2 = start_x + face_radius
     eye_y_cor = start_y + head_radius
 
-    for eye_pos in [(eye_x_cor_1, eye_y_cor), (eye_x_cor_2, eye_y_cor)]:
+    for eye_x_cor in [eye_x_cor_1, eye_x_cor_2]:
         t.color('Black')
         t.penup()
-        t.setpos(eye_pos)
+        t.setpos(eye_x_cor, eye_y_cor)
         t.pendown()
         t.begin_fill()
         t.circle(eye_raduis)
@@ -53,10 +53,10 @@ def draw_simple_bear(start_x, start_y, head_radius):
     ear_x_cor_2 = start_x + head_radius
     ear_y_cor = start_y + head_radius * 1.5
 
-    for ear_pos in [(ear_x_cor_1, ear_y_cor), (ear_x_cor_2, ear_y_cor)]:
+    for ear_x_cor in [ear_x_cor_1, ear_x_cor_2]:
         t.fillcolor('LightPink')
         t.penup()
-        t.setpos(ear_pos)
+        t.setpos(ear_x_cor, ear_y_cor)
         t.pendown()
         t.begin_fill()
         t.circle(face_radius / 2)
