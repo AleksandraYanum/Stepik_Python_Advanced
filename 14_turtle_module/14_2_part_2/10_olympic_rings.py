@@ -2,7 +2,7 @@ import turtle as t
 from itertools import cycle
 
 
-def circle_line(radius, amount, start_x, start_y, colors):
+def circle_color_line(radius, amount, start_x, start_y, colors):
     x_cor, y_cor = start_x, start_y
     diameter = 2 * radius
     t.hideturtle()
@@ -27,20 +27,20 @@ def olympic_rings(radius, start_x, start_y):
     circle_amount = 1
     color_end_idx += circle_amount
     x_cor, y_cor = start_x + radius, start_y - radius
-    circle_line(radius, circle_amount,  x_cor, y_cor, colors[color_start_idx:color_end_idx])
+    circle_color_line(radius, circle_amount,  x_cor, y_cor, colors[color_start_idx:color_end_idx])
 
     # all top circles
     circle_amount = 3
     color_start_idx = color_end_idx
     color_end_idx += circle_amount
     x_cor, y_cor = x_cor - diameter - radius, y_cor + radius
-    circle_line(radius, 3,  x_cor, y_cor, colors[color_start_idx:color_end_idx])
+    circle_color_line(radius, 3,  x_cor, y_cor, colors[color_start_idx:color_end_idx])
 
     # yellow circle
     color_start_idx = color_end_idx
     color_end_idx += circle_amount
     x_cor, y_cor = x_cor + radius, y_cor - radius
-    circle_line(radius, 1,  x_cor, y_cor, colors[color_start_idx:color_end_idx])
+    circle_color_line(radius, 1,  x_cor, y_cor, colors[color_start_idx:color_end_idx])
 
 
 def main():
