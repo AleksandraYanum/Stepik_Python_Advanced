@@ -1,29 +1,37 @@
 import turtle as t
 
 
-def olympic_rings():
-
-    radius = 100
-    t.pensize(7)
-    t.speed(10)
-
-    colors = ['chartreuse', 'red', 'black', 'DeepSkyBlue', 'yellow']
-    positions = [(100, -115),
-                (202, 0),
-                (-3, 0),
-                (-208, 0),
-                (-106, -115)]
-                
-    for color, position in zip(colors, positions):
+def circle_line(radius, amount, start_x, start_y):
+    x_cor, y_cor = start_x, start_y
+    t.hideturtle()
+    for _ in range(amount):
         t.penup()
-        t.goto(position)
-        t.pencolor(color)
+        t.goto(x_cor, y_cor)
         t.pendown()
         t.circle(radius)
+        x_cor = x_cor + 2 * radius
+
+
+
+# def olympic_rings(radius, start_x, start_y):
+#     t.pensize(7)
+#     t.speed(10)
+
+#     colors = ['chartreuse', 'red', 'black', 'DeepSkyBlue', 'yellow']
+    
+#     for color, position in zip(colors, positions):
+#         t.penup()
+#         t.goto(position)
+#         t.pencolor(color)
+#         t.pendown()
+#         t.circle(radius)
 
 
 def main():
-    olympic_rings()
+    radius = 50
+    start_x, start_y = 0, 0
+    # olympic_rings(radius, start_x, start_y)
+    circle_line(radius, 4, start_x, start_y)
 
 
 main()
