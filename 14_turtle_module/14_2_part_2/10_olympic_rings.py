@@ -20,21 +20,28 @@ def olympic_rings(radius, start_x, start_y):
     diameter = 2 * radius
     t.speed(10)
     colors = ['chartreuse', 'DeepSkyBlue', 'black', 'red', 'yellow']
+    color_start_idx = 0
+    color_end_idx = 0
 
 
     # green circle
     circle_amount = 1
+    color_end_idx += circle_amount
     x_cor, y_cor = start_x + radius, start_y - radius
-    circle_line(radius, circle_amount,  x_cor, y_cor, colors[0:1])
+    circle_line(radius, circle_amount,  x_cor, y_cor, colors[color_start_idx:color_end_idx])
 
     # all top circles
     circle_amount = 3
+    color_start_idx = color_end_idx
+    color_end_idx += circle_amount
     x_cor, y_cor = x_cor - diameter - radius, y_cor + radius
-    circle_line(radius, 3,  x_cor, y_cor, colors[1:4])
+    circle_line(radius, 3,  x_cor, y_cor, colors[color_start_idx:color_end_idx])
 
     # yellow circle
+    color_start_idx = color_end_idx
+    color_end_idx += circle_amount
     x_cor, y_cor = x_cor + radius, y_cor - radius
-    circle_line(radius, 1,  x_cor, y_cor, colors[4:5])
+    circle_line(radius, 1,  x_cor, y_cor, colors[color_start_idx:color_end_idx])
 
 
 def main():
