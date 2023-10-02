@@ -1,5 +1,3 @@
-# TODO: make david star drawing with perfect positions
-
 import turtle as t
 from math import cos, pi
 
