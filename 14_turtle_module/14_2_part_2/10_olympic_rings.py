@@ -15,7 +15,6 @@ def circle_line(radius, amount, start_x, start_y, colors):
         x_cor = x_cor + diameter
 
 
-
 def olympic_rings(radius, start_x, start_y):
     diameter = 2 * radius
     t.speed(10)
@@ -23,7 +22,6 @@ def olympic_rings(radius, start_x, start_y):
     colors = ['chartreuse', 'DeepSkyBlue', 'black', 'red', 'yellow']
     color_start_idx = 0
     color_end_idx = 0
-
 
     # green circle
     circle_amount = 1
