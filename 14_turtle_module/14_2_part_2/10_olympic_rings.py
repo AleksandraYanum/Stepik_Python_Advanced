@@ -3,13 +3,14 @@ import turtle as t
 
 def circle_line(radius, amount, start_x, start_y):
     x_cor, y_cor = start_x, start_y
+    diameter = 2 * radius
     t.hideturtle()
     for _ in range(amount):
         t.penup()
         t.goto(x_cor, y_cor)
         t.pendown()
         t.circle(radius)
-        x_cor = x_cor + 2 * radius
+        x_cor = x_cor + diameter
 
 
 
