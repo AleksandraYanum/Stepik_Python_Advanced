@@ -1,7 +1,7 @@
 import turtle as t
 
 
-def snowflake(start_x, start_y, ray_amount, radius, leave_amount, snowflake_part):
+def snowflake(start_x, start_y, ray_amount, radius, ray_func):
     t.hideturtle()
     turn_angle = 360 / ray_amount
 
@@ -10,18 +10,19 @@ def snowflake(start_x, start_y, ray_amount, radius, leave_amount, snowflake_part
     t.pendown()
 
     for _ in range(ray_amount):
-        snowflake_part(start_x, start_y, radius, leave_amount)
+        ray_func(start_x, start_y, radius)
         t.right(turn_angle)
 
 
-def branch(start_x, start_y, branch_len, leave_amount):
+def branch_ray(start_x, start_y, branch_len):
     t.penup()
     t.goto(start_x, start_y)
     t.pendown()
 
-    leave_distance = branch_len // (leave_amount + 2)
+    leave_amount = 2
     leave_len = 50
     leave_angle = 45
+    leave_distance = branch_len // (leave_amount + 2)
 
     t.forward(branch_len)
 
@@ -48,7 +49,7 @@ def main():
     radius = 200
     leave_amount = 2
 
-    snowflake(start_x, start_y, ray_amount, radius, leave_amount, branch)
+    snowflake(start_x, start_y, ray_amount, radius, branch_ray)
     input()
 
  
