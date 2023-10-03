@@ -20,7 +20,7 @@ def branch_ray(start_x, start_y, ray_len):
     t.pendown()
 
     leave_amount = 2
-    leave_len = 50
+    leave_len = ray_len / 4
     leave_angle = 45
     leave_distance = ray_len // (leave_amount + 2)
 
