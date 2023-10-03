@@ -14,7 +14,7 @@ def snowflake(start_x, start_y, ray_amount, radius, ray_func):
         t.right(turn_angle)
 
 
-def branch_ray(start_x, start_y, branch_len):
+def branch_ray(start_x, start_y, ray_len):
     t.penup()
     t.goto(start_x, start_y)
     t.pendown()
@@ -22,9 +22,9 @@ def branch_ray(start_x, start_y, branch_len):
     leave_amount = 2
     leave_len = 50
     leave_angle = 45
-    leave_distance = branch_len // (leave_amount + 2)
+    leave_distance = ray_len // (leave_amount + 2)
 
-    t.forward(branch_len)
+    t.forward(ray_len)
 
     # Drawing branch leaves
     for _ in range(leave_amount):
