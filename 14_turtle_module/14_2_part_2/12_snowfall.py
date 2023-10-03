@@ -47,7 +47,6 @@ def main():
     start_x, start_y = 0, 0
     ray_amount = 8
     radius = 200
-    leave_amount = 2
 
     snowflake(start_x, start_y, ray_amount, radius, branch_ray)
     input()
