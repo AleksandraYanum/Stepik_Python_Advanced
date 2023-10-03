@@ -27,6 +27,7 @@ def branch_ray(start_x, start_y, ray_len):
     t.forward(ray_len)
 
     # Drawing branch leaves
+    # TODO: use goto
     for _ in range(leave_amount):
         t.penup()
         t.backward(leave_distance)
