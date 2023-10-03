@@ -35,9 +35,7 @@ def branch_ray_base(start_x, start_y, ray_len, leave_amount, leave_len, leave_an
     t.goto(start_x, start_y)
     t.pendown()
 
-    
     leave_distance = ray_len // (leave_amount + 2)
-
     t.forward(ray_len)
 
     # Drawing branch leaves
@@ -58,15 +56,32 @@ def branch_ray_base(start_x, start_y, ray_len, leave_amount, leave_len, leave_an
         t.left(leave_angle)
 
 
+def line_ray(start_x, start_y, ray_len):
+    t.penup()
+    t.goto(start_x, start_y)
+    t.pendown()
+
+    t.forward(ray_len)
+
+
+def circle_ray(start_x, start_y, ray_len):
+    radius = ray_len / 2
+
+    t.penup()
+    t.goto(start_x, start_y)
+    t.pendown()
+
+    t.circle(radius)
+
+
 def main():
     start_x, start_y = 0, 0
     ray_amount = 8
     radius = 100
 
-    snowflake(start_x, start_y, ray_amount, radius, branch_ray_two_leaves)
+    # snowflake(start_x, start_y, ray_amount, radius, branch_ray_two_leaves)
 
-    start_x, start_y = 300, 300
-    snowflake(start_x, start_y, ray_amount, radius, branch_ray_six_leaves)
+    snowflake(start_x, start_y, ray_amount, radius, circle_ray)
     input()
 
  
