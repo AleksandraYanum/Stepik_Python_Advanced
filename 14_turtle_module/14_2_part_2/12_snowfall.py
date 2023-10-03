@@ -78,18 +78,32 @@ def circle_ray(start_x, start_y, ray_len):
     t.circle(radius)
 
 
-def circle_core(start_x, start_y, radius):
+def five_circle_core(start_x, start_y, biggest_radius):
+    circle_amount = 5
+    circle_radius_delta = 10
+
+    circle_core(start_x, start_y, biggest_radius, circle_amount, circle_radius_delta)
+
+
+def circle_core(start_x, start_y, radius, circle_amount=1, circle_radius_delta=0):
     t.penup()
     t.goto(start_x, start_y)
     t.pendown()
 
-    t.circle(radius)
+    y_cor = start_y
+    for _ in range(circle_amount):
+        t.circle(radius)
+        radius -= circle_radius_delta
+        t.penup()
+        y_cor += circle_radius_delta
+        t.goto(start_x, y_cor)
+        t.pendown()
 
 
 def main():
     start_x, start_y = 0, 0
     ray_amount = 8
-    radius = 100
+    radius = 200
 
     snowflake(start_x, start_y, ray_amount, radius, branch_ray_two_leaves, circle_core)
 
