@@ -8,12 +8,9 @@ def shape(side, angle_amount):
     t.left(turn_angle)
 
 
-def house(square_side, triangle_side):
-  x = -50
-  y = - 200
-  
+def house(start_x, start_y, square_side, triangle_side):
   t.penup()
-  t.goto(x, y)
+  t.goto(start_x, start_y)
   t.pendown()
   
   t.fillcolor('DodgerBlue')
@@ -22,7 +19,7 @@ def house(square_side, triangle_side):
   t.end_fill()
   
   t.penup()
-  t.goto(x - (triangle_side - square_side) / 2, y + square_side)
+  t.goto(start_x - (triangle_side - square_side) / 2, start_y + square_side)
   t.pendown()
 
   t.fillcolor('Peru')
@@ -33,9 +30,10 @@ def house(square_side, triangle_side):
 
 
 def main():
-  triangle_side = 220
-  square_side = 140
-  house(square_side, triangle_side)
+  triangle_side = 200
+  square_side = 150
+  start_x, start_y = 0, - 100
+  house(start_x, start_y, square_side, triangle_side)
   
   
 main()
