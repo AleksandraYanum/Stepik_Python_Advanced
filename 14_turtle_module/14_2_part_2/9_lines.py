@@ -11,7 +11,7 @@ def lines(start_x, start_y, line_amount, height, dot_distance,
   dots_len = (line_amount - 1) * dot_distance
   x_cor = int(start_x - dots_len / 2)
   t.color(line_color)
-  
+
   for _ in range(line_amount):
     t.pendown()
     t.color(line_color)
@@ -21,7 +21,6 @@ def lines(start_x, start_y, line_amount, height, dot_distance,
     t.penup()
     t.goto(start_x, start_y)
     x_cor += dot_distance
-
 
   t.color(top_dot_color)
   t.dot()
