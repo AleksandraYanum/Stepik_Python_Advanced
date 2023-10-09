@@ -2,6 +2,8 @@ import turtle as t
 from math import ceil
 
 
+GEAR_INNER_RADIUS_PERCENTAGE = 0.7
+
 # def snowflake(start_x, start_y, ray_amount, radius, ray_func, core_func):
 #     t.hideturtle(), t.speed(20)
 #     turn_angle = 360 / ray_amount
@@ -117,42 +119,42 @@ from math import ceil
  
 # main()
 
+def gear_circle(start_x, start_y, ray_amount, radius, mid_radius=None):
 
-start_x, start_y = 0, 0
-ray_amount = 16
-radius = 200
-turn_angle = 360 // ray_amount
-mid_radius = radius // 2
-mid_turn_angle = turn_angle // 2
-point_list = []
+    mid_radius = mid_radius if mid_radius is not None else radius * GEAR_INNER_RADIUS_PERCENTAGE 
+    turn_angle = 360 // ray_amount // 2
+    point_list = []
 
-t.speed(20), t.hideturtle()
-t.penup()
-t.goto(start_x, start_y)
+    t.speed(20), t.hideturtle()
+    t.penup()
+    t.goto(start_x, start_y)
 
-lower_left_x = start_x + mid_radius
-lower_left_y = start_y
+    lower_left_x = start_x + mid_radius
+    lower_left_y = start_y
 
-for _ in range(ray_amount):
-    t.right(mid_turn_angle), t.forward(radius)
-    top_x, top_y = [ceil(i) for i in t.pos()]
+    for _ in range(ray_amount):
+        t.right(turn_angle), t.forward(radius)
+        top_x, top_y = [ceil(i) for i in t.pos()]
 
-    t.backward(radius), t.right(mid_turn_angle)
-    t.forward(mid_radius)
+        t.backward(radius), t.right(turn_angle)
+        t.forward(mid_radius)
 
-    lower_right_x, lower_right_y = [ceil(i) for i in t.pos()]
-    t.backward(mid_radius)
+        lower_right_x, lower_right_y = [ceil(i) for i in t.pos()]
+        t.backward(mid_radius)
 
-    point_list.extend([(lower_left_x, lower_left_y), (top_x, top_y), (lower_right_x, lower_right_y)])
-    
-    lower_left_x, lower_left_y = lower_right_x, lower_right_y
+        point_list.extend([(lower_left_x, lower_left_y), (top_x, top_y), (lower_right_x, lower_right_y)])
+        
+        lower_left_x, lower_left_y = lower_right_x, lower_right_y
 
-point_list[-1] = point_list[0]
+    point_list[-1] = point_list[0]
 
-t.penup()
-t.goto(point_list[0])
-t.pendown()
+    t.penup()
+    t.goto(point_list[0])
+    t.pendown()
 
-for x, y in point_list[1:]:
-    t.goto(x, y)
-input()
+    for x, y in point_list[1:]:
+        t.goto(x, y)
+    input()
+
+
+gear_circle(0, 0, 12, 200)
