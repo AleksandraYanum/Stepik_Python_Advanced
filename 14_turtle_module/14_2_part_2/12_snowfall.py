@@ -18,9 +18,11 @@ LEFT_X_BORDER = - RIGHT_X_BORDER
 UPPER_Y_BORDER = SCREEN_HEIGHT // 2
 LOWER_Y_BORDER = - UPPER_Y_BORDER
 
+SCREEN_COLOR = 'LightSkyBlue1'
+
 DRAWING_SPEED = 100
 
-POSSIBLE_COLORS = []
+POSSIBLE_COLORS = ['DarkMagenta', 'blue', 'purple', 'ForestGreen', 'firebrick1', 'yellow', 'black']
 
 
 #*******************************************************************************************************************
@@ -174,7 +176,7 @@ def is_within_screen(start_x, start_y, radius):
 
 
 def main():
-    t.Screen().setup(SCREEN_WIDTH, SCREEN_HEIGHT)
+    t.Screen().setup(SCREEN_WIDTH, SCREEN_HEIGHT), t.Screen().bgcolor(SCREEN_COLOR)
 
     random_snowflake_amount = randint(MIN_SNOWFLAKE_AMOUNT, MAX_SNOWFLAKE_AMOUNT)
     ray_amount = 8
@@ -186,6 +188,7 @@ def main():
         random_radius = randint(MIN_POSSIBLE_SNOWFLAKE_RADIUS, MAX_POSSIBLE_SNOWFLAKE_RADIUS)
         random_start_x = randint(LEFT_X_BORDER, RIGHT_X_BORDER)
         random_start_y = randint(LOWER_Y_BORDER, UPPER_Y_BORDER)
+        t.pencolor(choice(POSSIBLE_COLORS))
 
         if is_within_screen(random_start_x, random_start_y, random_radius):
             snowflake(random_start_x, random_start_y, ray_amount, random_radius, branch_ray_two_leaves, five_circle_core)
