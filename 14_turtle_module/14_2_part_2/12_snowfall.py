@@ -19,7 +19,7 @@ def snowflake(start_x, start_y, ray_amount, radius, ray_func, core_func):
 
     core_radius = radius // 4
     # core_start_y = start_y - core_radius
-    core_func(start_x, start_y, ray_amount, core_radius)
+    core_func(start_x, start_y, core_radius, ray_amount)
 
  
 def branch_ray_two_leaves(start_x, start_y, ray_len):
@@ -104,11 +104,11 @@ def circle_core(start_x, start_y, radius, circle_amount=1, circle_radius_delta=0
         t.pendown()
 
 
-def gear_circle(start_x, start_y, ray_amount, radius):
-    gear_circle_base(start_x, start_y, ray_amount, radius, mid_radius=None)
+def gear_circle(start_x, start_y, radius, ray_amount):
+    gear_circle_base(start_x, start_y, radius, ray_amount, mid_radius=None)
 
 
-def gear_circle_base(start_x, start_y, ray_amount, radius, mid_radius=None):
+def gear_circle_base(start_x, start_y, radius, ray_amount, mid_radius=None):
 
     mid_radius = mid_radius if mid_radius is not None else radius * GEAR_INNER_RADIUS_PERCENTAGE 
     turn_angle = 360 // ray_amount // 2
