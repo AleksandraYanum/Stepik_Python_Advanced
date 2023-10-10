@@ -1,5 +1,6 @@
 import turtle as t
 from math import ceil
+from random import randint, choice
 
 
 GEAR_INNER_RADIUS_PERCENTAGE = 0.7
@@ -7,12 +8,13 @@ GEAR_INNER_RADIUS_PERCENTAGE = 0.7
 MIN_POSSIBLE_SNOWFLAKE_RADIUS = 50
 MAX_POSSIBLE_SNOWFLAKE_RADIUS = 200
 
-MAX_SNOWFLAKE_AMOUNT = 7
+MIN_SNOWFLAKE_AMOUNT = 2
+MAX_SNOWFLAKE_AMOUNT = 15
 
-SCREEN_WIDTH = 1280
-SCREEN_HEIGHT = 768
+SCREEN_WIDTH = 700
+SCREEN_HEIGHT = 650
 
-DRAWING_SPEED = 20
+DRAWING_SPEED = 100
 
 POSSIBLE_COLORS = []
 
@@ -163,11 +165,16 @@ def gear_circle_base(start_x, start_y, radius, ray_amount, mid_radius=None):
 def main():
     t.Screen().setup(SCREEN_WIDTH, SCREEN_HEIGHT)
 
-    start_x, start_y = 0, 0
+    random_snowflake_amount = randint(MIN_SNOWFLAKE_AMOUNT, MAX_SNOWFLAKE_AMOUNT)
     ray_amount = 8
-    radius = 200
 
-    snowflake(start_x, start_y, ray_amount, radius, branch_ray_two_leaves, five_circle_core)
+    for _ in range(random_snowflake_amount):
+        random_radius = randint(MIN_POSSIBLE_SNOWFLAKE_RADIUS, MAX_POSSIBLE_SNOWFLAKE_RADIUS)
+        random_start_x = randint(0, SCREEN_WIDTH)
+        random_start_y = randint(0, SCREEN_HEIGHT)
+    
+      
+        snowflake(random_start_x, random_start_y, ray_amount, random_radius, branch_ray_two_leaves, five_circle_core)
     input()
 
  
