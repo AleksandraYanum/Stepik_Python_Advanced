@@ -152,12 +152,11 @@ def main():
     radius = 200
 
     snowflake(start_x, start_y, ray_amount, radius, branch_ray_two_leaves, five_circle_core)
-    # snowflake(start_x, start_y, ray_amount, radius, branch_ray_two_leaves, lambda start_x, start_y, biggest_radius: \
-    # circle_core(start_x, start_y, biggest_radius, circle_amount=5, circle_radius_delta=10))
-
-
-    # snowflake(start_x, start_y, ray_amount, radius, circle_ray, circle_core)
     input()
 
  
 main()
+
+    # snowflake(start_x, start_y, ray_amount, radius, branch_ray_two_leaves, lambda start_x, start_y, biggest_radius: \
+    # circle_core(start_x, start_y, biggest_radius, circle_amount=5, circle_radius_delta=10))
+    # snowflake(start_x, start_y, ray_amount, radius, circle_ray, circle_core)
