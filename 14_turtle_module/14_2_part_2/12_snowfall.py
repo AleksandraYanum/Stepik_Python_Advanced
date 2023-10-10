@@ -18,7 +18,6 @@ def snowflake(start_x, start_y, ray_amount, radius, ray_func, core_func):
         t.right(turn_angle)
 
     core_radius = radius // 4
-    # core_start_y = start_y - core_radius
     core_func(start_x, start_y, core_radius, ray_amount)
 
  
@@ -90,17 +89,18 @@ def five_circle_core(start_x, start_y, biggest_radius, ray_amount):
 
     
 def circle_core(start_x, start_y, radius, circle_amount=1, circle_radius_delta=0):
+    x, y = start_x, start_y - radius
     t.penup()
-    t.goto(start_x, start_y)
+    t.goto(x, y)
     t.pendown()
 
-    y_cor = start_y
+    y_cor = y
     for _ in range(circle_amount):
         t.circle(radius)
         radius -= circle_radius_delta
         t.penup()
         y_cor += circle_radius_delta
-        t.goto(start_x, y_cor)
+        t.goto(x, y_cor)
         t.pendown()
 
 
