@@ -7,8 +7,12 @@ GEAR_INNER_RADIUS_PERCENTAGE = 0.7
 MIN_POSSIBLE_SNOWFLAKE_RADIUS = 50
 MAX_POSSIBLE_SNOWFLAKE_RADIUS = 200
 
-SCREEN_WIDTH = 1024
+MAX_SNOWFLAKE_AMOUNT = 7
+
+SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 768
+
+DRAWING_SPEED = 20
 
 POSSIBLE_COLORS = []
 
@@ -17,7 +21,7 @@ POSSIBLE_COLORS = []
 
 
 def snowflake(start_x, start_y, ray_amount, radius, ray_func, core_func):
-    t.hideturtle(), t.speed(20)
+    t.hideturtle(), t.speed(DRAWING_SPEED)
     turn_angle = 360 / ray_amount
 
     t.penup()
@@ -120,12 +124,11 @@ def gear_circle(start_x, start_y, radius, ray_amount):
 
 
 def gear_circle_base(start_x, start_y, radius, ray_amount, mid_radius=None):
-
     mid_radius = mid_radius if mid_radius is not None else radius * GEAR_INNER_RADIUS_PERCENTAGE 
     turn_angle = 360 // ray_amount // 2
     point_list = []
 
-    t.speed(20), t.hideturtle()
+    t.hideturtle()
     t.penup()
     t.goto(start_x, start_y)
 
@@ -158,6 +161,8 @@ def gear_circle_base(start_x, start_y, radius, ray_amount, mid_radius=None):
 
 
 def main():
+    t.Screen().setup(SCREEN_WIDTH, SCREEN_HEIGHT)
+
     start_x, start_y = 0, 0
     ray_amount = 8
     radius = 200
