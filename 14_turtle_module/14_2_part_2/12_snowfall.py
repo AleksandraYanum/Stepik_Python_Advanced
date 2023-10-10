@@ -4,6 +4,17 @@ from math import ceil
 
 GEAR_INNER_RADIUS_PERCENTAGE = 0.7
 
+MIN_POSSIBLE_SNOWFLAKE_RADIUS = 50
+MAX_POSSIBLE_SNOWFLAKE_RADIUS = 200
+
+SCREEN_WIDTH = 1024
+SCREEN_HEIGHT = 768
+
+POSSIBLE_COLORS = []
+
+
+#*******************************************************************************************************************
+
 
 def snowflake(start_x, start_y, ray_amount, radius, ray_func, core_func):
     t.hideturtle(), t.speed(20)
