@@ -4,122 +4,111 @@ from math import ceil
 
 GEAR_INNER_RADIUS_PERCENTAGE = 0.7
 
-# def snowflake(start_x, start_y, ray_amount, radius, ray_func, core_func):
-#     t.hideturtle(), t.speed(20)
-#     turn_angle = 360 / ray_amount
 
-#     t.penup()
-#     t.goto(start_x, start_y)
-#     t.pendown()
+def snowflake(start_x, start_y, ray_amount, radius, ray_func, core_func):
+    t.hideturtle(), t.speed(20)
+    turn_angle = 360 / ray_amount
 
-#     for _ in range(ray_amount):
-#         ray_func(start_x, start_y, radius)
-#         t.right(turn_angle)
+    t.penup()
+    t.goto(start_x, start_y)
+    t.pendown()
 
-#     core_radius = radius // 4
-#     core_start_y = start_y - core_radius
-#     core_func(start_x, core_start_y, core_radius)
+    for _ in range(ray_amount):
+        ray_func(start_x, start_y, radius)
+        t.right(turn_angle)
 
- 
-# def branch_ray_two_leaves(start_x, start_y, ray_len):
-#     leave_amount = 2
-#     leave_len = ray_len / 4
-#     leave_angle = 45
-
-#     branch_ray_base(start_x, start_y, ray_len, leave_amount, leave_len, leave_angle)
-
-
-# def branch_ray_six_leaves(start_x, start_y, ray_len):
-#     leave_amount = 6
-#     leave_len = ray_len / 8
-#     leave_angle = 120
-
-#     branch_ray_base(start_x, start_y, ray_len, leave_amount, leave_len, leave_angle)
-    
-
-# def branch_ray_base(start_x, start_y, ray_len, leave_amount, leave_len, leave_angle):
-#     t.penup()
-#     t.goto(start_x, start_y)
-#     t.pendown()
-
-#     leave_distance = ray_len // (leave_amount + 2)
-#     t.forward(ray_len)
-
-#     # Drawing branch leaves
-#     # TODO: use goto
-#     for _ in range(leave_amount):
-#         t.penup()
-#         t.backward(leave_distance)
-#         t.left(leave_angle)
-#         t.pendown()
-#         t.forward(leave_len)
-#         t.penup()
-#         t.backward(leave_len)
-#         t.right(leave_angle * 2)
-#         t.pendown()
-#         t.forward(leave_len)
-#         t.penup()
-#         t.backward(leave_len)
-#         t.left(leave_angle)
-
-
-# def line_ray(start_x, start_y, ray_len):
-#     t.penup()
-#     t.goto(start_x, start_y)
-#     t.pendown()
-
-#     t.forward(ray_len)
-
-
-# def circle_ray(start_x, start_y, ray_len):
-#     radius = ray_len / 2
-
-#     t.penup()
-#     t.goto(start_x, start_y)
-#     t.pendown()
-
-#     t.circle(radius)
-
-
-# def five_circle_core(start_x, start_y, biggest_radius):
-#     circle_core(start_x, start_y, biggest_radius, circle_amount=5, circle_radius_delta=10)
-
-# # five_circle_core_lambda = lambda start_x, start_y, biggest_radius: \
-# # circle_core(start_x, start_y, biggest_radius, circle_amount=5, circle_radius_delta=10)
-
-    
-# def circle_core(start_x, start_y, radius, circle_amount=1, circle_radius_delta=0):
-#     t.penup()
-#     t.goto(start_x, start_y)
-#     t.pendown()
-
-#     y_cor = start_y
-#     for _ in range(circle_amount):
-#         t.circle(radius)
-#         radius -= circle_radius_delta
-#         t.penup()
-#         y_cor += circle_radius_delta
-#         t.goto(start_x, y_cor)
-#         t.pendown()
-
-
-# def main():
-#     start_x, start_y = 0, 0
-#     ray_amount = 8
-#     radius = 200
-
-#     snowflake(start_x, start_y, ray_amount, radius, branch_ray_two_leaves, five_circle_core)
-#     # snowflake(start_x, start_y, ray_amount, radius, branch_ray_two_leaves, lambda start_x, start_y, biggest_radius: \
-#     # circle_core(start_x, start_y, biggest_radius, circle_amount=5, circle_radius_delta=10))
-
-
-#     # snowflake(start_x, start_y, ray_amount, radius, circle_ray, circle_core)
-#     input()
+    core_radius = radius // 4
+    # core_start_y = start_y - core_radius
+    core_func(start_x, start_y, ray_amount, core_radius)
 
  
-# main()
+def branch_ray_two_leaves(start_x, start_y, ray_len):
+    leave_amount = 2
+    leave_len = ray_len / 4
+    leave_angle = 45
 
-def gear_circle(start_x, start_y, ray_amount, radius, mid_radius=None):
+    branch_ray_base(start_x, start_y, ray_len, leave_amount, leave_len, leave_angle)
+
+
+def branch_ray_six_leaves(start_x, start_y, ray_len):
+    leave_amount = 6
+    leave_len = ray_len / 8
+    leave_angle = 120
+
+    branch_ray_base(start_x, start_y, ray_len, leave_amount, leave_len, leave_angle)
+    
+
+def branch_ray_base(start_x, start_y, ray_len, leave_amount, leave_len, leave_angle):
+    t.penup()
+    t.goto(start_x, start_y)
+    t.pendown()
+
+    leave_distance = ray_len // (leave_amount + 2)
+    t.forward(ray_len)
+
+    # Drawing branch leaves
+    # TODO: use goto
+    for _ in range(leave_amount):
+        t.penup()
+        t.backward(leave_distance)
+        t.left(leave_angle)
+        t.pendown()
+        t.forward(leave_len)
+        t.penup()
+        t.backward(leave_len)
+        t.right(leave_angle * 2)
+        t.pendown()
+        t.forward(leave_len)
+        t.penup()
+        t.backward(leave_len)
+        t.left(leave_angle)
+
+
+def line_ray(start_x, start_y, ray_len):
+    t.penup()
+    t.goto(start_x, start_y)
+    t.pendown()
+
+    t.forward(ray_len)
+
+
+def circle_ray(start_x, start_y, ray_len):
+    radius = ray_len / 2
+
+    t.penup()
+    t.goto(start_x, start_y)
+    t.pendown()
+
+    t.circle(radius)
+
+
+def five_circle_core(start_x, start_y, biggest_radius):
+    circle_core(start_x, start_y, biggest_radius, circle_amount=5, circle_radius_delta=10)
+
+# five_circle_core_lambda = lambda start_x, start_y, biggest_radius: \
+# circle_core(start_x, start_y, biggest_radius, circle_amount=5, circle_radius_delta=10)
+
+    
+def circle_core(start_x, start_y, radius, circle_amount=1, circle_radius_delta=0):
+    t.penup()
+    t.goto(start_x, start_y)
+    t.pendown()
+
+    y_cor = start_y
+    for _ in range(circle_amount):
+        t.circle(radius)
+        radius -= circle_radius_delta
+        t.penup()
+        y_cor += circle_radius_delta
+        t.goto(start_x, y_cor)
+        t.pendown()
+
+
+def gear_circle(start_x, start_y, ray_amount, radius):
+    gear_circle_base(start_x, start_y, ray_amount, radius, mid_radius=None)
+
+
+def gear_circle_base(start_x, start_y, ray_amount, radius, mid_radius=None):
 
     mid_radius = mid_radius if mid_radius is not None else radius * GEAR_INNER_RADIUS_PERCENTAGE 
     turn_angle = 360 // ray_amount // 2
@@ -157,4 +146,18 @@ def gear_circle(start_x, start_y, ray_amount, radius, mid_radius=None):
     input()
 
 
-gear_circle(0, 0, 12, 200)
+def main():
+    start_x, start_y = 0, 0
+    ray_amount = 8
+    radius = 200
+
+    snowflake(start_x, start_y, ray_amount, radius, branch_ray_two_leaves, gear_circle)
+    # snowflake(start_x, start_y, ray_amount, radius, branch_ray_two_leaves, lambda start_x, start_y, biggest_radius: \
+    # circle_core(start_x, start_y, biggest_radius, circle_amount=5, circle_radius_delta=10))
+
+
+    # snowflake(start_x, start_y, ray_amount, radius, circle_ray, circle_core)
+    input()
+
+ 
+main()
