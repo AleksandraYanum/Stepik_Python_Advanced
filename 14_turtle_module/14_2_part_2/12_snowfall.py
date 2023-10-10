@@ -8,11 +8,15 @@ GEAR_INNER_RADIUS_PERCENTAGE = 0.7
 MIN_POSSIBLE_SNOWFLAKE_RADIUS = 50
 MAX_POSSIBLE_SNOWFLAKE_RADIUS = 200
 
-MIN_SNOWFLAKE_AMOUNT = 1
+MIN_SNOWFLAKE_AMOUNT = 1 
 MAX_SNOWFLAKE_AMOUNT = 10
 
 SCREEN_WIDTH = 700
 SCREEN_HEIGHT = 650
+RIGHT_X_BORDER = SCREEN_WIDTH // 2
+LEFT_X_BORDER = - RIGHT_X_BORDER
+UPPER_Y_BORDER = SCREEN_HEIGHT // 2
+LOWER_Y_BORDER = - UPPER_Y_BORDER
 
 DRAWING_SPEED = 100
 
@@ -163,8 +167,9 @@ def gear_circle_base(start_x, start_y, radius, ray_amount, mid_radius=None):
 
 
 def is_within_screen(start_x, start_y, radius):
-    result = (start_x + radius <= SCREEN_WIDTH and start_x - radius >= 0) and \
-             (start_y + radius <= SCREEN_HEIGHT and start_y - radius >= 0)
+
+    result = ((start_x + radius <= RIGHT_X_BORDER) and (start_x - radius >= LEFT_X_BORDER)) and \
+             ((start_y + radius <= UPPER_Y_BORDER) and (start_y - radius >= LOWER_Y_BORDER))
     return result
 
 
@@ -176,14 +181,16 @@ def main():
 
     drawn_snowflake_amount = 0
 
-    while drawn_snowflake_amount != random_snowflake_amount:
+    
+    while drawn_snowflake_amount < random_snowflake_amount:
         random_radius = randint(MIN_POSSIBLE_SNOWFLAKE_RADIUS, MAX_POSSIBLE_SNOWFLAKE_RADIUS)
-        random_start_x = randint(0, SCREEN_WIDTH)
-        random_start_y = randint(0, SCREEN_HEIGHT)
+        random_start_x = randint(LEFT_X_BORDER, RIGHT_X_BORDER)
+        random_start_y = randint(LOWER_Y_BORDER, UPPER_Y_BORDER)
 
         if is_within_screen(random_start_x, random_start_y, random_radius):
             snowflake(random_start_x, random_start_y, ray_amount, random_radius, branch_ray_two_leaves, five_circle_core)
             drawn_snowflake_amount += 1
+            
     input()
 
  
