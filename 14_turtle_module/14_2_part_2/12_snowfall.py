@@ -181,11 +181,28 @@ def is_within_screen(start_x, start_y, radius):
     return result
 
 
+def is_not_overlapping(curr_x, curr_y, curr_radius, drawn_snowflake_info):
+    result = True
+    for snoflake_info in drawn_snowflake_info:
+        prev_x, prev_y, prev_radius = snoflake_info
+        snowflake_min_distance = curr_radius + prev_radius
+
+        if abs(curr_x - prev_x) < snowflake_min_distance and \
+           abs(curr_y - prev_y) < snowflake_min_distance:
+            result = False
+            break
+
+    return result
+         
+
 def main():
     t.Screen().setup(SCREEN_WIDTH, SCREEN_HEIGHT), t.Screen().bgcolor(SCREEN_COLOR)
 
     random_snowflake_amount = randint(MIN_SNOWFLAKE_AMOUNT, MAX_SNOWFLAKE_AMOUNT)
     drawn_snowflake_amount = 0
+
+    # Every info set is a tuple with x, y coords and radius
+    drawn_snowflake_info = []
 
     possible_core_funcs = [five_circle_core, circle_core, gear_circle_core]
     possible_ray_funcs = [branch_ray_two_leaves, branch_ray_six_leaves, line_ray]
@@ -201,10 +218,14 @@ def main():
         random_ray_func = choice(possible_ray_funcs)
         random_core_func = choice(possible_core_funcs)
         random_ray_amount = randint(MIN_RAY_AMOUNT, MAX_RAY_AMOUNT)
-      
-        if is_within_screen(random_start_x, random_start_y, random_radius):
+              
+        if is_within_screen(random_start_x, random_start_y, random_radius) and \
+           is_not_overlapping(random_start_x, random_start_y, random_radius, drawn_snowflake_info):
+            
             snowflake(random_start_x, random_start_y, random_ray_amount, random_radius, random_ray_func, random_core_func)
+            drawn_snowflake_info.append((random_start_x, random_start_y, random_radius))
             drawn_snowflake_amount += 1
+
             
     input()  
 
