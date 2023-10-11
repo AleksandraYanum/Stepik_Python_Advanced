@@ -8,6 +8,9 @@ GEAR_INNER_RADIUS_PERCENTAGE = 0.7
 MIN_POSSIBLE_SNOWFLAKE_RADIUS = 20
 MAX_POSSIBLE_SNOWFLAKE_RADIUS = 200
 
+MIN_RAY_AMOUNT = 4
+MAX_RAY_AMOUNT = 16
+
 MIN_SNOWFLAKE_AMOUNT = 3 
 MAX_SNOWFLAKE_AMOUNT = 10
 
@@ -182,7 +185,6 @@ def main():
     t.Screen().setup(SCREEN_WIDTH, SCREEN_HEIGHT), t.Screen().bgcolor(SCREEN_COLOR)
 
     random_snowflake_amount = randint(MIN_SNOWFLAKE_AMOUNT, MAX_SNOWFLAKE_AMOUNT)
-    ray_amount = 8
     drawn_snowflake_amount = 0
 
     possible_core_funcs = [five_circle_core, circle_core, gear_circle_core]
@@ -198,9 +200,10 @@ def main():
         random_start_y = randint(LOWER_Y_BORDER, UPPER_Y_BORDER)
         random_ray_func = choice(possible_ray_funcs)
         random_core_func = choice(possible_core_funcs)
+        random_ray_amount = randint(MIN_RAY_AMOUNT, MAX_RAY_AMOUNT)
       
         if is_within_screen(random_start_x, random_start_y, random_radius):
-            snowflake(random_start_x, random_start_y, ray_amount, random_radius, random_ray_func, random_core_func)
+            snowflake(random_start_x, random_start_y, random_ray_amount, random_radius, random_ray_func, random_core_func)
             drawn_snowflake_amount += 1
             
     input()  
