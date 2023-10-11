@@ -188,6 +188,8 @@ def main():
 
     
     while drawn_snowflake_amount < random_snowflake_amount:
+
+        # Random values set up
         random_radius = randint(MIN_POSSIBLE_SNOWFLAKE_RADIUS, MAX_POSSIBLE_SNOWFLAKE_RADIUS)
         random_start_x = randint(LEFT_X_BORDER, RIGHT_X_BORDER)
         random_start_y = randint(LOWER_Y_BORDER, UPPER_Y_BORDER)
