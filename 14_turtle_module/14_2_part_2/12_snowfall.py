@@ -165,7 +165,6 @@ def gear_circle_base(start_x, start_y, radius, ray_amount, mid_radius=None):
 
     for x, y in point_list[1:]:
         t.goto(x, y)
-    input()
 
 
 def is_within_screen(start_x, start_y, radius):
@@ -191,7 +190,7 @@ def main():
         t.pencolor(choice(POSSIBLE_COLORS))
 
         if is_within_screen(random_start_x, random_start_y, random_radius):
-            snowflake(random_start_x, random_start_y, ray_amount, random_radius, branch_ray_two_leaves, five_circle_core)
+            snowflake(random_start_x, random_start_y, ray_amount, random_radius, branch_ray_two_leaves, gear_circle)
             drawn_snowflake_amount += 1
             
     input()
