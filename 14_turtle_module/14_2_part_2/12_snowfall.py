@@ -129,7 +129,7 @@ def circle_core(start_x, start_y, radius, circle_amount=1, circle_radius_delta=0
         t.pendown()
 
 
-def gear_circle(start_x, start_y, radius, ray_amount):
+def gear_circle_core(start_x, start_y, radius, ray_amount):
     gear_circle_base(start_x, start_y, radius, ray_amount, mid_radius=None)
 
 
@@ -183,24 +183,27 @@ def main():
 
     random_snowflake_amount = randint(MIN_SNOWFLAKE_AMOUNT, MAX_SNOWFLAKE_AMOUNT)
     ray_amount = 8
-
     drawn_snowflake_amount = 0
 
+    possible_core_funcs = [five_circle_core, circle_core, gear_circle_core]
+    possible_ray_funcs = [branch_ray_two_leaves, branch_ray_six_leaves, line_ray]
     
     while drawn_snowflake_amount < random_snowflake_amount:
 
         # Random values set up
+        t.pencolor(choice(POSSIBLE_COLORS))
+        t.pensize(randint(MIN_PEN_SIZE, MAX_PEN_SIZE))
         random_radius = randint(MIN_POSSIBLE_SNOWFLAKE_RADIUS, MAX_POSSIBLE_SNOWFLAKE_RADIUS)
         random_start_x = randint(LEFT_X_BORDER, RIGHT_X_BORDER)
         random_start_y = randint(LOWER_Y_BORDER, UPPER_Y_BORDER)
-        t.pencolor(choice(POSSIBLE_COLORS))
-        t.pensize(randint(MIN_PEN_SIZE, MAX_PEN_SIZE))
-
+        random_ray_func = choice(possible_ray_funcs)
+        random_core_func = choice(possible_core_funcs)
+      
         if is_within_screen(random_start_x, random_start_y, random_radius):
-            snowflake(random_start_x, random_start_y, ray_amount, random_radius, branch_ray_two_leaves, gear_circle)
+            snowflake(random_start_x, random_start_y, ray_amount, random_radius, random_ray_func, random_core_func)
             drawn_snowflake_amount += 1
             
-    input()
+    input()  
 
  
 main()
