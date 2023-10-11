@@ -202,7 +202,7 @@ def main():
     drawn_snowflake_amount = 0
 
     # Every info set is a tuple with x, y coords and radius
-    drawn_snowflake_info = []
+    drawn_snowflake_info_list = []
 
     possible_core_funcs = [five_circle_core, circle_core, gear_circle_core]
     possible_ray_funcs = [branch_ray_two_leaves, branch_ray_six_leaves, line_ray]
@@ -220,10 +220,10 @@ def main():
         random_ray_amount = randint(MIN_RAY_AMOUNT, MAX_RAY_AMOUNT)
               
         if is_within_screen(random_start_x, random_start_y, random_radius) and \
-           is_not_overlapped(random_start_x, random_start_y, random_radius, drawn_snowflake_info):
+           is_not_overlapped(random_start_x, random_start_y, random_radius, drawn_snowflake_info_list):
             
             snowflake(random_start_x, random_start_y, random_ray_amount, random_radius, random_ray_func, random_core_func)
-            drawn_snowflake_info.append((random_start_x, random_start_y, random_radius))
+            drawn_snowflake_info_list.append((random_start_x, random_start_y, random_radius))
             drawn_snowflake_amount += 1
 
             
