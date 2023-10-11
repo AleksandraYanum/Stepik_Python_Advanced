@@ -193,7 +193,7 @@ def main():
         random_radius = randint(MIN_POSSIBLE_SNOWFLAKE_RADIUS, MAX_POSSIBLE_SNOWFLAKE_RADIUS)
         random_start_x = randint(LEFT_X_BORDER, RIGHT_X_BORDER)
         random_start_y = randint(LOWER_Y_BORDER, UPPER_Y_BORDER)
-        t.pencolor(choice(POSSIBLE_COLORS)), 
+        t.pencolor(choice(POSSIBLE_COLORS))
         t.pensize(randint(MIN_PEN_SIZE, MAX_PEN_SIZE))
 
         if is_within_screen(random_start_x, random_start_y, random_radius):
