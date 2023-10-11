@@ -193,7 +193,22 @@ def is_not_overlapped(curr_x, curr_y, curr_radius, drawn_snowflake_info_list):
             break
 
     return result
-         
+
+
+def is_right_location(start_x, start_y, radius, drawn_snowflake_info_list):
+    result = is_within_screen(start_x, start_y, radius) and \
+             is_not_overlapped(start_x, start_y, radius, drawn_snowflake_info_list)
+    
+    return result
+
+# Generates random x, y coors and radius
+def generate_random_snowflake_values():
+    random_x = randint(LEFT_X_BORDER, RIGHT_X_BORDER)
+    random_y = randint(LOWER_Y_BORDER, UPPER_Y_BORDER)
+    random_radius = randint(MIN_POSSIBLE_SNOWFLAKE_RADIUS, MAX_POSSIBLE_SNOWFLAKE_RADIUS)
+
+    return random_x, random_y, random_radius
+
 
 def main():
     t.Screen().setup(SCREEN_WIDTH, SCREEN_HEIGHT), t.Screen().bgcolor(SCREEN_COLOR)
@@ -212,19 +227,19 @@ def main():
         # Random values set up
         t.pencolor(choice(POSSIBLE_COLORS))
         t.pensize(randint(MIN_PEN_SIZE, MAX_PEN_SIZE))
-        random_radius = randint(MIN_POSSIBLE_SNOWFLAKE_RADIUS, MAX_POSSIBLE_SNOWFLAKE_RADIUS)
-        random_start_x = randint(LEFT_X_BORDER, RIGHT_X_BORDER)
-        random_start_y = randint(LOWER_Y_BORDER, UPPER_Y_BORDER)
+        
         random_ray_func = choice(possible_ray_funcs)
         random_core_func = choice(possible_core_funcs)
+
+        random_start_x, random_start_y, random_radius = generate_random_snowflake_values()
         random_ray_amount = randint(MIN_RAY_AMOUNT, MAX_RAY_AMOUNT)
-              
-        if is_within_screen(random_start_x, random_start_y, random_radius) and \
-           is_not_overlapped(random_start_x, random_start_y, random_radius, drawn_snowflake_info_list):
-            
-            snowflake(random_start_x, random_start_y, random_ray_amount, random_radius, random_ray_func, random_core_func)
-            drawn_snowflake_info_list.append((random_start_x, random_start_y, random_radius))
-            drawn_snowflake_amount += 1
+                      
+        while not is_right_location(random_start_x, random_start_y, random_radius, drawn_snowflake_info_list):
+            random_start_x, random_start_y, random_radius = generate_random_snowflake_values()
+        
+        snowflake(random_start_x, random_start_y, random_ray_amount, random_radius, random_ray_func, random_core_func)
+        drawn_snowflake_info_list.append((random_start_x, random_start_y, random_radius))
+        drawn_snowflake_amount += 1
 
             
     input()  
