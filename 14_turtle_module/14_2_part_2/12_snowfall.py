@@ -1,5 +1,5 @@
 import turtle as t
-from math import ceil
+from math import ceil, sqrt
 from random import randint, choice
 
 
@@ -186,10 +186,10 @@ def is_not_overlapped(curr_x, curr_y, curr_radius, drawn_snowflake_info_list):
     for snowflake_info in drawn_snowflake_info_list:
         prev_x, prev_y, prev_radius = snowflake_info
         snowflake_min_distance = curr_radius + prev_radius
+        curr_distance = sqrt(abs(pow((curr_x - prev_x), 2) - pow((curr_y - prev_y), 2)))
 
-        if abs(curr_x - prev_x) < snowflake_min_distance and \
-           abs(curr_y - prev_y) < snowflake_min_distance:
-            result = False
+        result = curr_distance < snowflake_min_distance
+        if not result:
             break
 
     return result
