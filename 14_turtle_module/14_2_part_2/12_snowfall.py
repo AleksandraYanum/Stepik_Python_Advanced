@@ -8,7 +8,7 @@ GEAR_INNER_RADIUS_PERCENTAGE = 0.7
 MIN_POSSIBLE_SNOWFLAKE_RADIUS = 50
 MAX_POSSIBLE_SNOWFLAKE_RADIUS = 200
 
-MIN_SNOWFLAKE_AMOUNT = 1 
+MIN_SNOWFLAKE_AMOUNT = 3 
 MAX_SNOWFLAKE_AMOUNT = 10
 
 SCREEN_WIDTH = 700
@@ -19,6 +19,8 @@ UPPER_Y_BORDER = SCREEN_HEIGHT // 2
 LOWER_Y_BORDER = - UPPER_Y_BORDER
 
 SCREEN_COLOR = 'LightSkyBlue1'
+MIN_PEN_SIZE = 1
+MAX_PEN_SIZE = 4
 
 DRAWING_SPEED = 100
 
@@ -33,7 +35,7 @@ def snowflake(start_x, start_y, ray_amount, radius, ray_func, core_func):
     turn_angle = 360 / ray_amount
 
     t.penup()
-    t.goto(start_x, start_y)
+    t.goto(start_x, start_y), t.setheading(0)
     t.pendown()
 
     for _ in range(ray_amount):
@@ -138,7 +140,7 @@ def gear_circle_base(start_x, start_y, radius, ray_amount, mid_radius=None):
 
     t.hideturtle()
     t.penup()
-    t.goto(start_x, start_y)
+    t.goto(start_x, start_y), t.setheading(0)
 
     lower_left_x = start_x + mid_radius
     lower_left_y = start_y
@@ -189,10 +191,11 @@ def main():
         random_radius = randint(MIN_POSSIBLE_SNOWFLAKE_RADIUS, MAX_POSSIBLE_SNOWFLAKE_RADIUS)
         random_start_x = randint(LEFT_X_BORDER, RIGHT_X_BORDER)
         random_start_y = randint(LOWER_Y_BORDER, UPPER_Y_BORDER)
-        t.pencolor(choice(POSSIBLE_COLORS))
+        t.pencolor(choice(POSSIBLE_COLORS)), 
+        t.pensize(randint(MIN_PEN_SIZE, MAX_PEN_SIZE))
 
         if is_within_screen(random_start_x, random_start_y, random_radius):
-            snowflake(random_start_x, random_start_y, ray_amount, random_radius, branch_ray_two_leaves, five_circle_core)
+            snowflake(random_start_x, random_start_y, ray_amount, random_radius, branch_ray_two_leaves, gear_circle)
             drawn_snowflake_amount += 1
             
     input()
