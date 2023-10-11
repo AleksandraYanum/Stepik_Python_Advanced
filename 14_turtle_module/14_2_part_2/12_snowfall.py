@@ -181,10 +181,10 @@ def is_within_screen(start_x, start_y, radius):
     return result
 
 
-def is_not_overlapped(curr_x, curr_y, curr_radius, drawn_snowflake_info):
+def is_not_overlapped(curr_x, curr_y, curr_radius, drawn_snowflake_info_list):
     result = True
-    for snoflake_info in drawn_snowflake_info:
-        prev_x, prev_y, prev_radius = snoflake_info
+    for snowflake_info in drawn_snowflake_info_list:
+        prev_x, prev_y, prev_radius = snowflake_info
         snowflake_min_distance = curr_radius + prev_radius
 
         if abs(curr_x - prev_x) < snowflake_min_distance and \
