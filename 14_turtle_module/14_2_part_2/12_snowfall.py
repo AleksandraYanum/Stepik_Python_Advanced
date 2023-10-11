@@ -181,7 +181,7 @@ def is_within_screen(start_x, start_y, radius):
     return result
 
 
-def is_not_overlapping(curr_x, curr_y, curr_radius, drawn_snowflake_info):
+def is_not_overlapped(curr_x, curr_y, curr_radius, drawn_snowflake_info):
     result = True
     for snoflake_info in drawn_snowflake_info:
         prev_x, prev_y, prev_radius = snoflake_info
@@ -220,7 +220,7 @@ def main():
         random_ray_amount = randint(MIN_RAY_AMOUNT, MAX_RAY_AMOUNT)
               
         if is_within_screen(random_start_x, random_start_y, random_radius) and \
-           is_not_overlapping(random_start_x, random_start_y, random_radius, drawn_snowflake_info):
+           is_not_overlapped(random_start_x, random_start_y, random_radius, drawn_snowflake_info):
             
             snowflake(random_start_x, random_start_y, random_ray_amount, random_radius, random_ray_func, random_core_func)
             drawn_snowflake_info.append((random_start_x, random_start_y, random_radius))
