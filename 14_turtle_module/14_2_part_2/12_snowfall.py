@@ -169,8 +169,10 @@ def gear_circle_base(start_x, start_y, radius, ray_amount, mid_radius=None):
 
 def is_within_screen(start_x, start_y, radius):
 
-    result = ((start_x + radius <= RIGHT_X_BORDER) and (start_x - radius >= LEFT_X_BORDER)) and \
-             ((start_y + radius <= UPPER_Y_BORDER) and (start_y - radius >= LOWER_Y_BORDER))
+    result = ((start_x + radius <= RIGHT_X_BORDER) and 
+              (start_x - radius >= LEFT_X_BORDER)) and \
+             ((start_y + radius <= UPPER_Y_BORDER) and
+              (start_y - radius >= LOWER_Y_BORDER))
     return result
 
 
@@ -190,7 +192,7 @@ def main():
         t.pencolor(choice(POSSIBLE_COLORS))
 
         if is_within_screen(random_start_x, random_start_y, random_radius):
-            snowflake(random_start_x, random_start_y, ray_amount, random_radius, branch_ray_two_leaves, gear_circle)
+            snowflake(random_start_x, random_start_y, ray_amount, random_radius, branch_ray_two_leaves, five_circle_core)
             drawn_snowflake_amount += 1
             
     input()
