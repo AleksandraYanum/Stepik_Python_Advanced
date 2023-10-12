@@ -3,17 +3,17 @@ from itertools import cycle
 
 
 TRAFFIC_LIGHTS_COLORS = ['red', 'yellow', 'green']
+TRAFFIC_LIGHTS_RECTANGLE_COLOR = 'black'
 
 
 def traffic_lights(start_x, start_y, width, height, circle_amount=3):
-   rectangle_color = 'black'
    small_rectangle_height = height // circle_amount
 
-   # Distance from the rectangle border wich is round of the circle
+   # Distance from the rectangle border which is round of the circle
    circle_distance = small_rectangle_height // 2 // 3
    radius = small_rectangle_height // 2 - circle_distance
 
-   t.hideturtle(), t.fillcolor(rectangle_color)
+   t.hideturtle(), t.fillcolor(TRAFFIC_LIGHTS_RECTANGLE_COLOR)
    
    t.begin_fill()
    rectangle(start_x, start_y, width, height)
