@@ -5,6 +5,7 @@ from itertools import cycle
 TRAFFIC_LIGHTS_COLORS = ['red', 'yellow', 'green']
 TRAFFIC_LIGHTS_RECTANGLE_COLOR = 'black'
 
+DRAWING_SPEED = 10
 
 def traffic_lights(start_x, start_y, width, height, circle_amount=3):
    small_rectangle_height = height // circle_amount
@@ -22,12 +23,11 @@ def traffic_lights(start_x, start_y, width, height, circle_amount=3):
    x = start_x + width // 2
    y = start_y + small_rectangle_height * (circle_amount - 1) + circle_distance // 2
 
-   circle_color_line(x, y, radius, circle_amount, TRAFFIC_LIGHTS_COLORS, y_offset=-circle_distance)
+   circle_color_line(x, y, radius, circle_amount, TRAFFIC_LIGHTS_COLORS, y_offset=-(radius*2+circle_distance))
 
 
 def circle_color_line(start_x, start_y, radius, amount, colors, x_offset=0, y_offset=0):
     x_cor, y_cor = start_x, start_y
-    diameter = 2 * radius
     t.hideturtle()
     for _, color in zip(range(amount), cycle(colors)):
         t.fillcolor(color)
@@ -38,8 +38,8 @@ def circle_color_line(start_x, start_y, radius, amount, colors, x_offset=0, y_of
         t.circle(radius)
         t.end_fill()
         
-        # x_cor = diameter + x_offset
-        y_cor = y_cor - diameter + y_offset
+        x_cor += x_offset
+        y_cor += y_offset
 
 
 def rectangle(start_x, start_y, width, height):
@@ -55,6 +55,8 @@ def rectangle(start_x, start_y, width, height):
 
 
 def main():
+    t.speed(DRAWING_SPEED)
+
     start_x, start_y = -50, -150
     width = 200
     height = 400
