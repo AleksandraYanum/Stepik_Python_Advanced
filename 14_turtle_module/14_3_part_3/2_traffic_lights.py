@@ -23,7 +23,7 @@ def traffic_lights(start_x, start_y, width, height, circle_amount=3):
    x = start_x + width // 2
    y = start_y + small_rectangle_height * (circle_amount - 1) + circle_distance // 2
 
-   circle_color_line(x, y, radius, circle_amount, TRAFFIC_LIGHTS_COLORS, y_offset=-(radius*2+circle_distance))
+   circle_color_line(x, y, radius, circle_amount, TRAFFIC_LIGHTS_COLORS, y_offset=-(radius * 2 + circle_distance))
 
 
 def circle_color_line(start_x, start_y, radius, amount, colors, x_offset=0, y_offset=0):
