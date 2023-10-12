@@ -9,9 +9,9 @@ TRAFFIC_LIGHTS_RECTANGLE_COLOR = 'black'
 def traffic_lights(start_x, start_y, width, height, circle_amount=3):
    small_rectangle_height = height // circle_amount
 
-   # Distance from the rectangle border which is round of the circle
-   circle_distance = small_rectangle_height // 2 // 3
-   radius = small_rectangle_height // 2 - circle_distance
+   # Distance from the next circle
+   circle_distance = small_rectangle_height // 3
+   radius = small_rectangle_height // 2 - circle_distance // 2
 
    t.hideturtle(), t.fillcolor(TRAFFIC_LIGHTS_RECTANGLE_COLOR)
    
@@ -20,14 +20,14 @@ def traffic_lights(start_x, start_y, width, height, circle_amount=3):
    t.end_fill()
 
    x = start_x + width // 2
-   y = start_y + small_rectangle_height * (circle_amount - 1) + circle_distance
+   y = start_y + small_rectangle_height * (circle_amount - 1) + circle_distance // 2
 
-   circle_color_line(x, y, radius, circle_amount, TRAFFIC_LIGHTS_COLORS, circle_distance)
+   circle_color_line(x, y, radius, circle_amount, TRAFFIC_LIGHTS_COLORS, y_offset=-circle_distance)
 
 
-def circle_color_line(start_x, start_y, radius, amount, colors, distance=0):
+def circle_color_line(start_x, start_y, radius, amount, colors, x_offset=0, y_offset=0):
     x_cor, y_cor = start_x, start_y
-    diameter = 2 * radius + 2 * distance
+    diameter = 2 * radius
     t.hideturtle()
     for _, color in zip(range(amount), cycle(colors)):
         t.fillcolor(color)
@@ -37,7 +37,9 @@ def circle_color_line(start_x, start_y, radius, amount, colors, distance=0):
         t.begin_fill()
         t.circle(radius)
         t.end_fill()
-        y_cor -= diameter
+        
+        # x_cor = diameter + x_offset
+        y_cor = y_cor - diameter + y_offset
 
 
 def rectangle(start_x, start_y, width, height):
