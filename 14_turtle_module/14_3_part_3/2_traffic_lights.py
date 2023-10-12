@@ -14,7 +14,7 @@ def traffic_lights(start_x, start_y, width, height, circle_amount=3):
    circle_distance = small_rectangle_height // 3
    radius = small_rectangle_height // 2 - circle_distance // 2
 
-   t.hideturtle(), t.fillcolor(TRAFFIC_LIGHTS_RECTANGLE_COLOR)
+   t.fillcolor(TRAFFIC_LIGHTS_RECTANGLE_COLOR)
    
    t.begin_fill()
    rectangle(start_x, start_y, width, height)
@@ -55,7 +55,7 @@ def rectangle(start_x, start_y, width, height):
 
 
 def main():
-    t.speed(DRAWING_SPEED)
+    t.speed(DRAWING_SPEED), t.hideturtle()
 
     start_x, start_y = -50, -150
     width = 200
