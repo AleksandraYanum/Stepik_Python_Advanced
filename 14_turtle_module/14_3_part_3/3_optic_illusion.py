@@ -35,6 +35,7 @@ def david_star_with_circles(start_x, start_y, triangle_side, circle_radius):
   x, y = t.pos()
   triangle_by_circles(x, y, triangle_side, circle_radius)
   
+  # Second down triangle
   t.goto(x, y)
   t.pendown()
   t.pencolor(DOWN_TRIANGLE_COLOR), t.fillcolor(FILLING_TRIANGLE_COLOR)
