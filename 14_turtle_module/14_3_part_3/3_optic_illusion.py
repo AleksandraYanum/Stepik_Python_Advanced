@@ -11,7 +11,8 @@ PENSIZE = 3
 DRAWING_SPEED = 10
 
 
-def david_star_with_circles(start_x, start_y, triangle_side, circle_radius, angle_amount=6):
+def david_star_with_circles(start_x, start_y, triangle_side, circle_radius):
+  angle_amount = 6
   turn_angle = 360 / angle_amount
   radius = int(triangle_side / 2 / cos(turn_angle / 2 * pi / 180))
   
