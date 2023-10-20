@@ -22,13 +22,14 @@ def main():
     start_x, start_y = 0, -50
     crescent_radius = 120
     crescent_diameter = crescent_radius * 2
+    shadow_start_x = start_x + crescent_diameter
 
     while True:
         for i in range(0, crescent_radius * 4, SPEED_DELTA):
-            x = start_x + crescent_diameter - i
+            shadow_x = shadow_start_x - i
 
             moon(start_x, start_y, crescent_radius, CRESCENT_COLOR)
-            moon(x, start_y, crescent_radius, SKY_COLOR)
+            moon(shadow_x, start_y, crescent_radius, SKY_COLOR)
 
             t.update()
         
