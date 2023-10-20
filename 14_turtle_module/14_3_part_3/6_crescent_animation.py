@@ -6,22 +6,14 @@ SKY_COLOR = 'blue'
 SPEED_DELTA = 5
 
 
-def moon(start_x, start_y, radius):
+def moon(start_x, start_y, radius, color):
     t.penup()
     t.goto(start_x, start_y)
-    t.fillcolor(CRESCENT_COLOR)
+    t.fillcolor(color)
     t.begin_fill()
     t.circle(radius)
     t.end_fill()
- 
 
-def moon_shadow(start_x, start_y, radius, i): 
-    x = start_x + radius * 2
-    t.goto(x - i, start_y) 
-    t.fillcolor(SKY_COLOR)
-    t.begin_fill()
-    t.circle(radius)
-    t.end_fill()
 
 def main():
     t.hideturtle(), t.penup(), t.tracer(0)
@@ -29,11 +21,15 @@ def main():
 
     start_x, start_y = 0, -50
     crescent_radius = 120
+    crescent_diameter = crescent_radius * 2
 
     while True:
         for i in range(0, crescent_radius * 4, SPEED_DELTA):
-            moon(start_x, start_y, crescent_radius)
-            moon_shadow(start_x, start_y, crescent_radius, i)
+            x = start_x + crescent_diameter - i
+
+            moon(start_x, start_y, crescent_radius, CRESCENT_COLOR)
+            moon(x, start_y, crescent_radius, SKY_COLOR)
+
             t.update()
         
     
