@@ -1,16 +1,16 @@
 from collections import deque 
 
-solders = deque(range(1, int(input()) + 1))
+soldiers = deque(range(1, int(input()) + 1))
 step = int(input())
-solder_amount = len(solders)
+soldier_amount = len(soldiers)
 
-while solder_amount > 1:
+while soldier_amount > 1:
     for _ in range(step - 1):
-        solders.append(solders[0])
-        solders.popleft()
-    solders.popleft()
-    solder_amount -= 1
+        soldiers.append(soldiers[0])
+        soldiers.popleft()
+    soldiers.popleft()
+    soldier_amount -= 1
 
-remaining_solder = solders[0]
+remaining_soldier = soldiers[0]
 
-print(remaining_solder) 
+print(remaining_soldier) 
