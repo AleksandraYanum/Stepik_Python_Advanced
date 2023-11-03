@@ -11,8 +11,6 @@ while solder_amount > 1:
     solders.popleft()
     solder_amount -= 1
 
-
 remaining_solder = solders[0]
-
 
 print(remaining_solder) 
