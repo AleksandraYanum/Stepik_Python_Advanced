@@ -1,14 +1,16 @@
-solder_list = list(range(1, int(input()) + 1))
+from collections import deque 
+
+solders = deque(range(1, int(input()) + 1))
 step = int(input())
 
-while len(solder_list) > 1:
+while len(solders) > 1:
     for _ in range(step - 1):
-        solder_list.append(solder_list[0])
-        solder_list.pop(0)
-    solder_list.pop(0)
+        solders.append(solders[0])
+        solders.popleft()
+    solders.popleft()
 
 
-remaining_solder = solder_list[0]
+remaining_solder = solders[0]
 
 
-print(remaining_solder)
+print(remaining_solder) 
