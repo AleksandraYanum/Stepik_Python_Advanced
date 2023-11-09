@@ -23,7 +23,7 @@ for row in range(min(row_count, col_count)):
     for left_col in range(row):
         curr_row.append(mult_table[left_col][row])
     for right_col in range(row, col_count):
-        curr_row.append(curr_elem)
+        curr_row.append(str(curr_elem).ljust(ALIGNMENT_LENGTH))
         curr_elem += row
     mult_table.append(curr_row)
 
@@ -33,7 +33,7 @@ if col_count < row_count:
         curr_elem = 0
         curr_row = []
         for col in range(col_count):
-            curr_row.append(curr_elem)
+            curr_row.append(str(curr_elem).ljust(ALIGNMENT_LENGTH))
             curr_elem += row
         mult_table.append(curr_row)
 
