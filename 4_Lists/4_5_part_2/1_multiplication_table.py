@@ -19,10 +19,12 @@ mult_table = []
 
 for row in range(min(row_count, col_count)):
     curr_row = []
+    curr_elem = row
     for left_col in range(row):
         curr_row.append(mult_table[left_col][row])
     for right_col in range(row, col_count):
-        curr_row.append(row * right_col)
+        curr_row.append(curr_elem)
+        curr_elem += row
     mult_table.append(curr_row)
 
 if col_count < row_count:
