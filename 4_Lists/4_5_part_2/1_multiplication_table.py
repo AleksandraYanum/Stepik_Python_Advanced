@@ -1,7 +1,7 @@
 ALIGNMENT_LENGTH = 3
 
 # row_count, col_count = int(input()), int(input())
-row_count, col_count = 5, 4
+row_count, col_count = 4, 5
 
 mult_table = []
 
@@ -19,7 +19,7 @@ mult_table = []
 
 for row in range(min(row_count, col_count)):
     curr_row = []
-    curr_elem = row
+    curr_elem = pow(row, 2)
     for left_col in range(row):
         curr_row.append(mult_table[left_col][row])
     for right_col in range(row, col_count):
@@ -28,8 +28,14 @@ for row in range(min(row_count, col_count)):
     mult_table.append(curr_row)
 
 if col_count < row_count:
-    for i in range(col_count, row_count):
-        mult_table.append([(n * i) for n in range(col_count)])
+    curr_elem = 0
+    for row in range(col_count, row_count):
+        curr_elem = 0
+        curr_row = []
+        for col in range(col_count):
+            curr_row.append(curr_elem)
+            curr_elem += row
+        mult_table.append(curr_row)
 
 for row in mult_table:
     print(*row)
