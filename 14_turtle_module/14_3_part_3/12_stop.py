@@ -28,7 +28,7 @@ def main():
 
     side_len = STOP_SIDE_LEN
     for color in range(len(COLORS)):
-        radius = int(side_len / (2 * sin(180 / 8 * pi / 180)))
+        radius = int(side_len / (2 * sin(180 / STOP_SIGH_ANGLE_AMOUNT * pi / 180)))
         mid_height = sqrt(pow(radius, 2) - pow(side_len / 2, 2))
 
         t.up(), t.goto(start_x - side_len // 2, start_y + mid_height), t.down()
@@ -36,7 +36,7 @@ def main():
         
         t.fillcolor(COLORS[color])
         t.begin_fill()
-        shape(side_len, 8)
+        shape(side_len, STOP_SIGH_ANGLE_AMOUNT)
         t.end_fill() 
 
         side_len -= STOP_SIZE_DIF
@@ -45,8 +45,7 @@ def main():
     side_len += STOP_SIZE_DIF
 
     t.up()
-    # t.goto(start_x - mid_height, start_y - side_len // 2)
-    # t.dot(10, 'yellow')
+
     t.goto(start_x - mid_height + STOP_SIZE_DIF // 2, start_y - side_len // 2)
     t.pencolor(TEXT_COLOR)
     t.write(STOP_TEXT, move=True, font=('Arial', radius // 2, 'normal'))
