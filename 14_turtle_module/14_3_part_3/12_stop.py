@@ -1,4 +1,5 @@
 import turtle as t
+from math import sin, pi, sqrt
 
 EXTERNAL_BORDER_COLOR = 'black'
 INTERNAL_BORDER_COLOR = 'white'
@@ -7,7 +8,7 @@ TEXT_COLOR = 'white'
 COLORS = [EXTERNAL_BORDER_COLOR, INTERNAL_BORDER_COLOR, STOP_COLOR]
 
 STOP_SIDE_LEN = 150
-STOP_SIZE_DIF = 10
+STOP_SIZE_DIF = 30
 
 
 def shape(side, angle_count=6):
@@ -20,13 +21,14 @@ def shape(side, angle_count=6):
 def main():
 
     t.speed(10), t.hideturtle(), t.up()
+    start_x, start_y = 0, 0
 
     side_len = STOP_SIDE_LEN
-    start_x, start_y = -STOP_SIDE_LEN // 2, STOP_SIDE_LEN
-
-    x, y = start_x, start_y
     for color in range(len(COLORS)):
-        t.up(), t.goto(x, y), t.down()
+        radius = int(side_len / (2 * sin(180 / 8 * pi / 180)))
+        mid_height = sqrt(pow(radius, 2) - pow(side_len / 2, 2))
+
+        t.up(), t.goto(start_x - side_len // 2, start_y + mid_height), t.down()
         t.pencolor(COLORS[color])
         
         t.fillcolor(COLORS[color])
@@ -35,13 +37,14 @@ def main():
         t.end_fill() 
 
         side_len -= STOP_SIZE_DIF
-        x += STOP_SIZE_DIF // 2
-        y -= STOP_SIZE_DIF
+      
+
+    side_len += STOP_SIZE_DIF
 
     t.up()
-    t.goto(start_x + STOP_SIDE_LEN // 2, start_y - STOP_SIDE_LEN * 1.5)
+    t.goto(start_x - mid_height, start_y - side_len // 2)
     t.pencolor('white')
-    t.write('STOP', align='center', font=('Arial', STOP_SIDE_LEN // 2, 'normal'))
+    t.write('STOP', align='center', font=('Arial', 16, 'normal'))
 
     input()
 
