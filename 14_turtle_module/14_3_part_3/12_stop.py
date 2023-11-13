@@ -7,8 +7,11 @@ STOP_COLOR = 'red'
 TEXT_COLOR = 'white'
 COLORS = [EXTERNAL_BORDER_COLOR, INTERNAL_BORDER_COLOR, STOP_COLOR]
 
-STOP_SIDE_LEN = 150
-STOP_SIZE_DIF = 30
+STOP_TEXT = 'STOP'
+
+STOP_SIDE_LEN = 200
+STOP_SIZE_DIF = 10
+STOP_SIGH_ANGLE_AMOUNT = 8
 
 
 def shape(side, angle_count=6):
@@ -42,9 +45,11 @@ def main():
     side_len += STOP_SIZE_DIF
 
     t.up()
-    t.goto(start_x - mid_height, start_y - side_len // 2)
-    t.pencolor('white')
-    t.write('STOP', align='center', font=('Arial', 16, 'normal'))
+    # t.goto(start_x - mid_height, start_y - side_len // 2)
+    # t.dot(10, 'yellow')
+    t.goto(start_x - mid_height + STOP_SIZE_DIF // 2, start_y - side_len // 2)
+    t.pencolor(TEXT_COLOR)
+    t.write(STOP_TEXT, move=True, font=('Arial', radius // 2, 'normal'))
 
     input()
 
