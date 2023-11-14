@@ -9,7 +9,7 @@ COLORS = [EXTERNAL_BORDER_COLOR, INTERNAL_BORDER_COLOR, STOP_COLOR]
 
 STOP_TEXT = 'STOP'
 
-STOP_SIDE_LEN = 200
+STOP_SIDE_LEN = 150
 STOP_SIZE_DIF = 10
 STOP_SIGH_ANGLE_AMOUNT = 8
 
@@ -45,10 +45,11 @@ def main():
     side_len += STOP_SIZE_DIF
 
     t.up()
+    text_size = int(mid_height * 2 / len(STOP_TEXT))
+    t.goto(start_x, start_y - mid_height // 3)
 
-    t.goto(start_x - mid_height + STOP_SIZE_DIF // 2, start_y - side_len // 2)
     t.pencolor(TEXT_COLOR)
-    t.write(STOP_TEXT, move=True, font=('Arial', radius // 2, 'normal'))
+    t.write(STOP_TEXT, align='center', font=('Arial', text_size, 'normal'))
 
     input()
 
