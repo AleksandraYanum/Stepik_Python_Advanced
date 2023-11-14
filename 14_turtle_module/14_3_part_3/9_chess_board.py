@@ -2,7 +2,7 @@ import turtle as t
 from itertools import cycle
 
 CHESS_BOARD_SIZE = 300
-SIZE_SQUARE_AMOUNT = 8
+SIZE_SQUARE_AMOUNT = 6
 SQUARE_SIZE = CHESS_BOARD_SIZE // SIZE_SQUARE_AMOUNT
 
 CHESS_COLORS = ['black', 'white']
@@ -22,9 +22,10 @@ def main():
     t.speed(100), t.hideturtle()
 
     x, y = start_x, start_y
-    colors = CHESS_COLORS
+    even_colors = CHESS_COLORS
+    odd_colors = CHESS_COLORS[::-1]
 
-    for _ in range(SIZE_SQUARE_AMOUNT):
+    for colors, _ in zip(cycle([even_colors, odd_colors]), range(SIZE_SQUARE_AMOUNT)):
         for color, _ in zip(cycle(colors), range(SIZE_SQUARE_AMOUNT)):
             t.penup(), t.goto(x, y), t.pendown()
             t.fillcolor(color)
@@ -34,7 +35,6 @@ def main():
             x += SQUARE_SIZE
         x = start_x
         y -= SQUARE_SIZE
-        colors = colors[::-1]
 
     input()
 
