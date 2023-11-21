@@ -45,7 +45,10 @@ MAX_PEN_SIZE = 4
 
 #*******************************************************************************************************************
 
-def draw_random_snowflake(x, y, min_radius, max_radius, min_ray_amount, max_ray_amount, colors, min_pen_size, max_pen_size):
+def draw_random_snowflake(x, y, min_radius=MIN_SNOWFLAKE_RADIUS, max_radius=MAX_SNOWFLAKE_RADIUS, \
+    min_ray_amount=MIN_RAY_AMOUNT, max_ray_amount=MAX_RAY_AMOUNT, colors=POSSIBLE_COLORS, \
+    min_pen_size=MIN_PEN_SIZE, max_pen_size=MAX_PEN_SIZE):
+    
     possible_core_funcs = [five_circle_core, circle_core, gear_circle_core]
     possible_ray_funcs = [branch_ray_two_leaves, branch_ray_six_leaves, line_ray]
 
