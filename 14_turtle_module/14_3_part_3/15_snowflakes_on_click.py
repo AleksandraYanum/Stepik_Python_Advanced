@@ -6,49 +6,41 @@ from random import randint, choice
 
 # Developer consts
 
-GEAR_INNER_RADIUS_PERCENTAGE = 0.7
-
-SCREEN_WIDTH = 700
-SCREEN_HEIGHT = 650
-RIGHT_X_BORDER = SCREEN_WIDTH // 2
-LEFT_X_BORDER = - RIGHT_X_BORDER
-UPPER_Y_BORDER = SCREEN_HEIGHT // 2
-LOWER_Y_BORDER = - UPPER_Y_BORDER
-
-SCREEN_COLOR = 'black'
-
-DRAWING_SPEED = 100
-
-#*******************************************************************************************************************
-
-def left_mouse_click(x, y):
-    draw_random_snowflake(x, y, \
-    MIN_SNOWFLAKE_RADIUS, MAX_SNOWFLAKE_RADIUS, MIN_RAY_AMOUNT, MAX_RAY_AMOUNT, POSSIBLE_COLORS, MIN_PEN_SIZE, MAX_PEN_SIZE)
-
-#*******************************************************************************************************************
-
-# Code consumer consts
-
 MIN_SNOWFLAKE_RADIUS = 20
 MAX_SNOWFLAKE_RADIUS = 200
 
 MIN_RAY_AMOUNT = 4
 MAX_RAY_AMOUNT = 16
 
-MIN_SNOWFLAKE_AMOUNT = 10 
-MAX_SNOWFLAKE_AMOUNT = 20
+GEAR_INNER_RADIUS_PERCENTAGE = 0.7
+
+SCREEN_WIDTH = 700
+SCREEN_HEIGHT = 650
+SCREEN_COLOR = 'black'
 
 POSSIBLE_COLORS = ['DarkMagenta', 'blue', 'purple', 'ForestGreen', 'firebrick1', 'yellow', 'white']
 
 MIN_PEN_SIZE = 1
 MAX_PEN_SIZE = 4
 
+DRAWING_SPEED = 100
+
 #*******************************************************************************************************************
+
+# User consts
+
+USER_MAX_RAY_AMOUNT = 20
+
+#*******************************************************************************************************************
+
+def left_mouse_click(x, y):
+    draw_random_snowflake(x, y, max_ray_amount=USER_MAX_RAY_AMOUNT)
+
 
 def draw_random_snowflake(x, y, min_radius=MIN_SNOWFLAKE_RADIUS, max_radius=MAX_SNOWFLAKE_RADIUS, \
     min_ray_amount=MIN_RAY_AMOUNT, max_ray_amount=MAX_RAY_AMOUNT, colors=POSSIBLE_COLORS, \
     min_pen_size=MIN_PEN_SIZE, max_pen_size=MAX_PEN_SIZE):
-    
+
     possible_core_funcs = [five_circle_core, circle_core, gear_circle_core]
     possible_ray_funcs = [branch_ray_two_leaves, branch_ray_six_leaves, line_ray]
 
