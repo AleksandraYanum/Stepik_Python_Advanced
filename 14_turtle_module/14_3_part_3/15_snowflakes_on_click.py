@@ -14,22 +14,20 @@ MAX_RAY_AMOUNT = 16
 
 GEAR_INNER_RADIUS_PERCENTAGE = 0.7
 
-SCREEN_WIDTH = 700
-SCREEN_HEIGHT = 650
-SCREEN_COLOR = 'black'
-
 POSSIBLE_COLORS = ['DarkMagenta', 'blue', 'purple', 'ForestGreen', 'firebrick1', 'yellow', 'white']
 
 MIN_PEN_SIZE = 1
 MAX_PEN_SIZE = 4
-
-DRAWING_SPEED = 100
 
 #*******************************************************************************************************************
 
 # User consts
 
 USER_MAX_RAY_AMOUNT = 20
+
+SCREEN_WIDTH = 700
+SCREEN_HEIGHT = 650
+SCREEN_COLOR = 'black'
 
 #*******************************************************************************************************************
 
@@ -58,7 +56,6 @@ def draw_random_snowflake(x, y, min_radius=MIN_SNOWFLAKE_RADIUS, max_radius=MAX_
 
 
 def snowflake(start_x, start_y, ray_amount, radius, ray_func, core_func):
-    t.hideturtle(), t.speed(DRAWING_SPEED)
     turn_angle = 360 / ray_amount
 
     t.penup()
