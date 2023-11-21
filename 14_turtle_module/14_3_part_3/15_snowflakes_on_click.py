@@ -2,8 +2,32 @@ import turtle as t
 from math import ceil
 from random import randint, choice
 
+#*******************************************************************************************************************
+
+# Developer consts
 
 GEAR_INNER_RADIUS_PERCENTAGE = 0.7
+
+SCREEN_WIDTH = 700
+SCREEN_HEIGHT = 650
+RIGHT_X_BORDER = SCREEN_WIDTH // 2
+LEFT_X_BORDER = - RIGHT_X_BORDER
+UPPER_Y_BORDER = SCREEN_HEIGHT // 2
+LOWER_Y_BORDER = - UPPER_Y_BORDER
+
+SCREEN_COLOR = 'black'
+
+DRAWING_SPEED = 100
+
+#*******************************************************************************************************************
+
+def left_mouse_click(x, y):
+    draw_random_snowflake(x, y, \
+    MIN_SNOWFLAKE_RADIUS, MAX_SNOWFLAKE_RADIUS, MIN_RAY_AMOUNT, MAX_RAY_AMOUNT, POSSIBLE_COLORS, MIN_PEN_SIZE, MAX_PEN_SIZE)
+
+#*******************************************************************************************************************
+
+# Code consumer consts
 
 MIN_SNOWFLAKE_RADIUS = 20
 MAX_SNOWFLAKE_RADIUS = 200
@@ -14,27 +38,12 @@ MAX_RAY_AMOUNT = 16
 MIN_SNOWFLAKE_AMOUNT = 10 
 MAX_SNOWFLAKE_AMOUNT = 20
 
-SCREEN_WIDTH = 700
-SCREEN_HEIGHT = 650
-RIGHT_X_BORDER = SCREEN_WIDTH // 2
-LEFT_X_BORDER = - RIGHT_X_BORDER
-UPPER_Y_BORDER = SCREEN_HEIGHT // 2
-LOWER_Y_BORDER = - UPPER_Y_BORDER
+POSSIBLE_COLORS = ['DarkMagenta', 'blue', 'purple', 'ForestGreen', 'firebrick1', 'yellow', 'white']
 
-SCREEN_COLOR = 'black'
 MIN_PEN_SIZE = 1
 MAX_PEN_SIZE = 4
 
-DRAWING_SPEED = 100
-
-POSSIBLE_COLORS = ['DarkMagenta', 'blue', 'purple', 'ForestGreen', 'firebrick1', 'yellow', 'white']
-
-
 #*******************************************************************************************************************
-def left_mouse_click(x, y):
-    draw_random_snowflake(x, y, \
-    MIN_SNOWFLAKE_RADIUS, MAX_SNOWFLAKE_RADIUS, MIN_RAY_AMOUNT, MAX_RAY_AMOUNT, POSSIBLE_COLORS, MIN_PEN_SIZE, MAX_PEN_SIZE)
-
 
 def draw_random_snowflake(x, y, min_radius, max_radius, min_ray_amount, max_ray_amount, colors, min_pen_size, max_pen_size):
     possible_core_funcs = [five_circle_core, circle_core, gear_circle_core]
