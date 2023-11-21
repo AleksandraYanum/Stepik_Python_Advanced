@@ -5,8 +5,8 @@ from random import randint, choice
 
 GEAR_INNER_RADIUS_PERCENTAGE = 0.7
 
-MIN_POSSIBLE_SNOWFLAKE_RADIUS = 20
-MAX_POSSIBLE_SNOWFLAKE_RADIUS = 200
+MIN_SNOWFLAKE_RADIUS = 20
+MAX_SNOWFLAKE_RADIUS = 200
 
 MIN_RAY_AMOUNT = 4
 MAX_RAY_AMOUNT = 16
@@ -32,22 +32,23 @@ POSSIBLE_COLORS = ['DarkMagenta', 'blue', 'purple', 'ForestGreen', 'firebrick1',
 
 #*******************************************************************************************************************
 def left_mouse_click(x, y):
-    draw_random_snowflake(x, y)
+    draw_random_snowflake(x, y, \
+    MIN_SNOWFLAKE_RADIUS, MAX_SNOWFLAKE_RADIUS, MIN_RAY_AMOUNT, MAX_RAY_AMOUNT, POSSIBLE_COLORS, MIN_PEN_SIZE, MAX_PEN_SIZE)
 
 
-def draw_random_snowflake(x, y):
+def draw_random_snowflake(x, y, min_radius, max_radius, min_ray_amount, max_ray_amount, colors, min_pen_size, max_pen_size):
     possible_core_funcs = [five_circle_core, circle_core, gear_circle_core]
     possible_ray_funcs = [branch_ray_two_leaves, branch_ray_six_leaves, line_ray]
 
     # Random values set up
-    t.pencolor(choice(POSSIBLE_COLORS))
-    t.pensize(randint(MIN_PEN_SIZE, MAX_PEN_SIZE))
+    t.pencolor(choice(colors))
+    t.pensize(randint(min_pen_size, max_pen_size))
 
     random_ray_func = choice(possible_ray_funcs)
     random_core_func = choice(possible_core_funcs)
 
-    random_radius = randint(MIN_POSSIBLE_SNOWFLAKE_RADIUS, MAX_POSSIBLE_SNOWFLAKE_RADIUS)
-    random_ray_amount = randint(MIN_RAY_AMOUNT, MAX_RAY_AMOUNT)
+    random_radius = randint(min_radius, max_radius)
+    random_ray_amount = randint(min_ray_amount, max_ray_amount)
 
     snowflake(x, y, random_ray_amount, random_radius, random_ray_func, random_core_func)
 
