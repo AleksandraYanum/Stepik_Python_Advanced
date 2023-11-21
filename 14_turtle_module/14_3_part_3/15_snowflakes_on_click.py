@@ -32,10 +32,10 @@ SCREEN_COLOR = 'black'
 #*******************************************************************************************************************
 
 def left_mouse_click(x, y):
-    draw_random_snowflake(x, y, max_ray_amount=USER_MAX_RAY_AMOUNT)
+    draw_random_snowflake(x, y, USER_MAX_RAY_AMOUNT)
 
 
-def draw_random_snowflake(x, y, min_radius=MIN_SNOWFLAKE_RADIUS, max_radius=MAX_SNOWFLAKE_RADIUS, \
+def draw_random_snowflake(x, y, *, min_radius=MIN_SNOWFLAKE_RADIUS, max_radius=MAX_SNOWFLAKE_RADIUS, \
     min_ray_amount=MIN_RAY_AMOUNT, max_ray_amount=MAX_RAY_AMOUNT, colors=POSSIBLE_COLORS, \
     min_pen_size=MIN_PEN_SIZE, max_pen_size=MAX_PEN_SIZE):
 
