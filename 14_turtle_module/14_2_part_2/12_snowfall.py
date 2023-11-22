@@ -5,8 +5,8 @@ from random import randint, choice
 
 GEAR_INNER_RADIUS_PERCENTAGE = 0.7
 
-MIN_POSSIBLE_SNOWFLAKE_RADIUS = 20
-MAX_POSSIBLE_SNOWFLAKE_RADIUS = 200
+MIN_SNOWFLAKE_RADIUS = 20
+MAX_SNOWFLAKE_RADIUS = 200
 
 MIN_RAY_AMOUNT = 4
 MAX_RAY_AMOUNT = 16
@@ -32,6 +32,24 @@ POSSIBLE_COLORS = ['DarkMagenta', 'blue', 'purple', 'ForestGreen', 'firebrick1',
 
 #*******************************************************************************************************************
 
+def draw_random_snowflake(x, y, *, min_radius=MIN_SNOWFLAKE_RADIUS, max_radius=MAX_SNOWFLAKE_RADIUS, \
+    min_ray_amount=MIN_RAY_AMOUNT, max_ray_amount=MAX_RAY_AMOUNT, colors=POSSIBLE_COLORS, \
+    min_pen_size=MIN_PEN_SIZE, max_pen_size=MAX_PEN_SIZE):
+
+    possible_core_funcs = [five_circle_core, circle_core, gear_circle_core]
+    possible_ray_funcs = [branch_ray_two_leaves, branch_ray_six_leaves, line_ray]
+
+    # Random values set up
+    t.pencolor(choice(colors))
+    t.pensize(randint(min_pen_size, max_pen_size))
+
+    random_ray_func = choice(possible_ray_funcs)
+    random_core_func = choice(possible_core_funcs)
+
+    random_radius = randint(min_radius, max_radius)
+    random_ray_amount = randint(min_ray_amount, max_ray_amount)
+
+    snowflake(x, y, random_ray_amount, random_radius, random_ray_func, random_core_func)
 
 def snowflake(start_x, start_y, ray_amount, radius, ray_func, core_func):
     t.hideturtle(), t.speed(DRAWING_SPEED)
@@ -205,7 +223,7 @@ def is_right_location(start_x, start_y, radius, drawn_snowflake_info_list):
 def generate_random_snowflake_values():
     random_x = randint(LEFT_X_BORDER, RIGHT_X_BORDER)
     random_y = randint(LOWER_Y_BORDER, UPPER_Y_BORDER)
-    random_radius = randint(MIN_POSSIBLE_SNOWFLAKE_RADIUS, MAX_POSSIBLE_SNOWFLAKE_RADIUS)
+    random_radius = randint(MIN_SNOWFLAKE_RADIUS, MAX_SNOWFLAKE_RADIUS)
 
     return random_x, random_y, random_radius
 
