@@ -23,7 +23,7 @@ MAX_PEN_SIZE = 4
 
 # User consts
 
-USER_MAX_RAY_AMOUNT = 20
+USER_MAX_RAY_AMOUNT = 100
 
 SCREEN_WIDTH = 700
 SCREEN_HEIGHT = 650
@@ -32,7 +32,7 @@ SCREEN_COLOR = 'black'
 #*******************************************************************************************************************
 
 def left_mouse_click(x, y):
-    draw_random_snowflake(x, y, USER_MAX_RAY_AMOUNT)
+    draw_random_snowflake(x, y, max_radius=USER_MAX_RAY_AMOUNT)
 
 
 def draw_random_snowflake(x, y, *, min_radius=MIN_SNOWFLAKE_RADIUS, max_radius=MAX_SNOWFLAKE_RADIUS, \
@@ -53,6 +53,8 @@ def draw_random_snowflake(x, y, *, min_radius=MIN_SNOWFLAKE_RADIUS, max_radius=M
     random_ray_amount = randint(min_ray_amount, max_ray_amount)
 
     snowflake(x, y, random_ray_amount, random_radius, random_ray_func, random_core_func)
+
+    return random_radius
 
 
 def snowflake(start_x, start_y, ray_amount, radius, ray_func, core_func):
