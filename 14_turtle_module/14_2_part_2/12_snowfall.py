@@ -194,10 +194,10 @@ def gear_circle_base(start_x, start_y, radius, ray_amount, mid_radius=None):
 
 
 def generate_max_within_screen_radius(start_x, start_y):
-    max_possible_radius_list = [RIGHT_X_BORDER - start_x, start_x - LEFT_X_BORDER, UPPER_Y_BORDER - start_y, start_y - LOWER_Y_BORDER]
-    appropriate_radius = min(max_possible_radius_list)
+    max_valid_radius_list = [RIGHT_X_BORDER - start_x, start_x - LEFT_X_BORDER, UPPER_Y_BORDER - start_y, start_y - LOWER_Y_BORDER]
+    max_valid_radius = min(max_valid_radius_list)
 
-    return appropriate_radius
+    return max_valid_radius
 
 
 def generate_max_not_overlapping_radius(curr_x, curr_y, drawn_snowflake_info_list):
@@ -206,21 +206,21 @@ def generate_max_not_overlapping_radius(curr_x, curr_y, drawn_snowflake_info_lis
     for snowflake_info in drawn_snowflake_info_list:
         prev_x, prev_y, prev_radius = snowflake_info
         curr_distance = sqrt(pow((curr_x - prev_x), 2) + pow((curr_y - prev_y), 2))
-        max_possible_radius = int(curr_distance - prev_radius)
-        max_possible_radius_list.append(max_possible_radius)
+        possible_radius = int(curr_distance - prev_radius)
+        max_possible_radius_list.append(possible_radius)
 
-    appropriate_radius = MAX_SNOWFLAKE_RADIUS if not max_possible_radius_list else min(max_possible_radius_list)
+    max_valid_radius = MAX_SNOWFLAKE_RADIUS if not max_possible_radius_list else min(max_possible_radius_list)
 
-    return appropriate_radius
+    return max_valid_radius
 
 
-def generate_max_right_radius(start_x, start_y, drawn_snowflake_info_list):
+def generate_max_valid_radius(start_x, start_y, drawn_snowflake_info_list):
     max_within_screen_radius = generate_max_within_screen_radius(start_x, start_y)
     max_not_overlapping_radius = generate_max_not_overlapping_radius(start_x, start_y, drawn_snowflake_info_list)
 
-    appropriate_radius = min(max_within_screen_radius, max_not_overlapping_radius)
+    max_valid_radius = min(max_within_screen_radius, max_not_overlapping_radius)
    
-    return appropriate_radius
+    return max_valid_radius
 
 # Generates random x, y coors and radius
 def generate_random_snowflake_coords():
@@ -240,14 +240,14 @@ def main():
     drawn_snowflake_info_list = []
   
     while drawn_snowflake_amount < random_snowflake_amount:
-        max_possible_radius = 0
+        max_valid_radius = 0
 
-        while max_possible_radius < MIN_SNOWFLAKE_RADIUS:
+        while max_valid_radius < MIN_SNOWFLAKE_RADIUS:
 
             random_start_x, random_start_y = generate_random_snowflake_coords()
-            max_possible_radius = generate_max_right_radius(random_start_x, random_start_y, drawn_snowflake_info_list)
+            max_valid_radius = generate_max_valid_radius(random_start_x, random_start_y, drawn_snowflake_info_list)
 
-        random_radius = draw_random_snowflake(random_start_x, random_start_y, max_radius=max_possible_radius)
+        random_radius = draw_random_snowflake(random_start_x, random_start_y, max_radius=max_valid_radius)
                       
         drawn_snowflake_info_list.append((random_start_x, random_start_y, random_radius))
         drawn_snowflake_amount += 1
