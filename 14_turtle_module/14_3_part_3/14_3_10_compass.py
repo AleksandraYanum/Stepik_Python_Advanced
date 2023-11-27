@@ -46,8 +46,7 @@ def add_compass_text(start_x, start_y, radius, size, font, *cardinal_direction_t
                                     ], 
                                     COMPASS_TEXT_ALIGNMENT)))
    
-   for text, (coords, alignment) in text_params_dict.items():
-        x, y = coords
+   for text, ((x, y), alignment) in text_params_dict.items():
         t.penup()
         t.goto(x, y)
         t.pendown()
