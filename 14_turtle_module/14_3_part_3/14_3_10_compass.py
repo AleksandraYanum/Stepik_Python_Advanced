@@ -35,17 +35,18 @@ def snowflake(start_x, start_y, ray_amount, radius, ray_func, core_func):
     core_func(start_x, start_y, core_radius, ray_amount)
 
 
-def add_compass_text(start_x, start_y, radius, size, font, north_title, east_title, south_title, west_title):
+def add_compass_text(start_x, start_y, radius, size, font, *cardinal_direction_titles):
 
-    text_dict = {
-            north_title: (start_x, start_y + (radius + size)),
-            east_title: (start_x + (radius + 1.5 * size), start_y - (size // 1.5)),
-            south_title: (start_x, start_y - (radius + 2.5 * size)),
-            west_title: (start_x - (radius + size), start_y - (size // 1.5))
-            }
+    text_coords = [
+                (start_x, start_y + (radius + size)),
+                (start_x + (radius + 1.5 * size), start_y - (size // 1.5)),
+                (start_x, start_y - (radius + 2.5 * size)),
+                (start_x - (radius + size), start_y - (size // 1.5))
+                ]
+    text_params_dict = dict(zip(cardinal_direction_titles, zip(text_coords, COMPASS_TEXT_ALIGNMENT)))
     
-    for (text, value), alignment in zip(text_dict.items(), COMPASS_TEXT_ALIGNMENT):
-        x, y = value
+    for text, (coords, alignment) in text_params_dict.items():
+        x, y = coords
         t.penup()
         t.goto(x, y)
         t.pendown()
