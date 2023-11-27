@@ -1,22 +1,26 @@
 import turtle as t
 
 DRAWING_SPEED = 10
-START_X, START_Y = 0, 0
 
 COMPASS_RAY_AMOUNT = 4
-COMPASS_RAY_LEN = 200
+COMPASS_RADIUS = 200
 
 COMPASS_TEXT_SIZE = 10
 COMPASS_TEXT_FONT = 'Arial'
+COMPASS_TEXT_ALIGNMENT = ['center', 'left', 'center', 'right']
 
-COMPASS_TEXT_DISTANCE = 10
-TOTAL_TEXT_DISTANCE = COMPASS_RAY_LEN + COMPASS_TEXT_DISTANCE
-COMPASS_TEXT_ALIGNMENT_DIC = {
-                          'Север': (0, TOTAL_TEXT_DISTANCE, 'center'), 
-                          'Восток': (TOTAL_TEXT_DISTANCE + COMPASS_TEXT_SIZE // 2, - COMPASS_TEXT_SIZE // 1.5, 'left'), 
-                          'Юг': (0, -(TOTAL_TEXT_DISTANCE + 2 * COMPASS_TEXT_SIZE), 'center'), 
-                          'Запад': (-(TOTAL_TEXT_DISTANCE + COMPASS_TEXT_SIZE // 3), - COMPASS_TEXT_SIZE // 1.5, 'right')
-                          }
+
+def draw_compass(start_x, start_y, radius, *, text_size=COMPASS_TEXT_SIZE, text_font=COMPASS_TEXT_FONT, 
+                 north_title='Север', east_title='Восток', south_title='Юг', west_title='Запад'):
+    
+    text = [north_title, east_title, south_title, west_title]
+    text_shift = [(0, radius + text_size),
+                  (radius + 1.5 * text_size, - text_size // 1.5),
+                  (0, -(radius + 2.5 * text_size)),
+                  (-(radius + text_size), - text_size // 1.5)]
+    
+    snowflake(start_x, start_y, COMPASS_RAY_AMOUNT, radius, line_ray, circle_core)
+    add_compass_text(start_x, start_y, text, text_size, text_font, text_shift)
 
 
 def snowflake(start_x, start_y, ray_amount, radius, ray_func, core_func):
@@ -35,14 +39,14 @@ def snowflake(start_x, start_y, ray_amount, radius, ray_func, core_func):
     core_func(start_x, start_y, core_radius, ray_amount)
 
 
-def add_compass_text(start_x, start_y, COMPASS_TEXT_ALIGNMENT_DIC):
+def add_compass_text(start_x, start_y, text, size, font, shift):
      
-     for text, text_params in COMPASS_TEXT_ALIGNMENT_DIC.items():
-        x_shift, y_shift, alignment = text_params
+     for text, text_shift, alignment in zip(text, shift, COMPASS_TEXT_ALIGNMENT):
+        x_shift, y_shift = text_shift
         t.penup()
         t.goto(start_x + x_shift, start_y + y_shift)
         t.pendown()
-        t.write(text, align=alignment, font=(COMPASS_TEXT_FONT, COMPASS_TEXT_SIZE))
+        t.write(text, align=alignment, font=(font, size))
 
 
 def circle_core(start_x, start_y, radius, circle_amount=1, circle_radius_delta=0):
@@ -69,12 +73,12 @@ def line_ray(start_x, start_y, ray_len):
 
 
 def main():
-    
+
     t.tracer(0)
     start_x, start_y = 0, 0
 
-    snowflake(start_x, start_y, COMPASS_RAY_AMOUNT, COMPASS_RAY_LEN, line_ray, circle_core)
-    add_compass_text(start_x, start_y, COMPASS_TEXT_ALIGNMENT_DIC)
+    draw_compass(start_x, start_y, COMPASS_RADIUS)
+
 
  
     input()
