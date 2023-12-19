@@ -7,12 +7,12 @@ TEXT = 'text'
 IS_RING = 'is_ring'
 
 SOLAR_SYSTEM_OBJECTS = {'sun': {RELATIVE_RADIUS: 1, COLOR: 'yellow', TEXT: 'Солнце'},
-                        'mercury': {RELATIVE_RADIUS: 0.3, COLOR: 'peru', TEXT: 'Меркурий'},
+                        'mercury': {RELATIVE_RADIUS: 0.3, COLOR: 'sandy brown', TEXT: 'Меркурий'},
                         'venus': {RELATIVE_RADIUS: 0.4, COLOR: 'peru', TEXT: 'Венера'},
                         'earth': {RELATIVE_RADIUS: 0.3, COLOR: 'spring green', TEXT: 'Земля'},
                         'mars': {RELATIVE_RADIUS: 0.2, COLOR: 'dark orange', TEXT: 'Марс'},
-                        'jupiter': {RELATIVE_RADIUS: 0.6, COLOR: 'peru', TEXT: 'Юпитер'},
-                        'saturn': {RELATIVE_RADIUS: 0.6, COLOR: 'peru', IS_RING: True, TEXT: 'Сатурн'},
+                        'jupiter': {RELATIVE_RADIUS: 0.6, COLOR: 'burlywood', TEXT: 'Юпитер'},
+                        'saturn': {RELATIVE_RADIUS: 0.6, COLOR: 'navajo white', IS_RING: True, TEXT: 'Сатурн'},
                         'uranus': {RELATIVE_RADIUS: 0.5, COLOR: 'sky blue', TEXT: 'Уран'},
                         'neptune': {RELATIVE_RADIUS: 0.5, COLOR: 'blue', TEXT: 'Нептун'},
                         'pluto': {RELATIVE_RADIUS: 0.1, COLOR: 'peru', TEXT: 'Плутон'}
