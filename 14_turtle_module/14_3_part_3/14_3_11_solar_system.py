@@ -23,19 +23,21 @@ TEXT_DISTANCE = 20
 SCREEN_WIDTH = 1500
 SCREEN_HEIGHT = 650
 
+
 def main():
     t.Screen().colormode(255)
     t.Screen().setup(SCREEN_WIDTH, SCREEN_HEIGHT)
-    t.hideturtle(), t.penup(), t.tracer(0)
+    t.hideturtle(), t.tracer(0)
 
+    # can be inputted by user
     sun_radius = 100
 
-    # left central coords
+    # left central coords of current planet
     x = -SCREEN_WIDTH // 2 + PLANET_DISTANCE
     y = 0
 
-
     for planet_info in SOLAR_SYSTEM_OBJECTS.values():
+
         planet_radius = sun_radius * planet_info[RELATIVE_RADIUS]
         planet_color = planet_info[COLOR]
         planet_name = planet_info[TEXT]
@@ -44,27 +46,34 @@ def main():
         start_x = x + planet_radius
         start_y = y - planet_radius
 
-        t.goto(start_x, start_y)
-        t.pendown()
-        t.fillcolor(planet_color)
-        t.begin_fill()
-        t.circle(planet_radius)
-        t.end_fill()
+        draw_planet(start_x, start_y, planet_color, planet_radius, is_ring, planet_name)
 
-        if is_ring is not None:
-            el_x = start_x
-            el_y = start_y + planet_radius // 2
-            horizontal_radius = planet_radius * 1.5
-            vertical_radius = planet_radius // 2
-            ellipse(el_x, el_y, horizontal_radius, vertical_radius)
-        
-        t.penup()
-        t.goto(start_x, start_y - TEXT_DISTANCE)
-        t.write(planet_name, align='center', font=('Arial', 10, 'normal'))
         x = start_x + planet_radius + PLANET_DISTANCE
 
-
     input()
+
+
+def draw_planet(start_x, start_y, color, radius, is_ring, name=''):
+    t.penup()
+    t.goto(start_x, start_y)
+    t.pendown()
+    t.fillcolor(color)
+    t.begin_fill()
+    t.circle(radius)
+    t.end_fill()
+
+    if is_ring is not None:
+        el_x = start_x
+        el_y = start_y + radius // 2
+        horizontal_radius = radius * 1.5
+        vertical_radius = radius // 2
+        ellipse(el_x, el_y, horizontal_radius, vertical_radius)
+
+    if name:
+        t.penup()
+        t.goto(start_x, start_y - TEXT_DISTANCE)
+        t.write(name, align='center', font=('Arial', 10, 'normal'))
+    
 
 def ellipse(x, y, horizontal_radius, vertical_radius, color='black', fill=''):
     t.penup()
