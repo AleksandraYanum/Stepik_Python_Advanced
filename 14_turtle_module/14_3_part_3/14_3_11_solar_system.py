@@ -1,4 +1,5 @@
 import turtle as t
+from math import radians, sin, cos
 
 RELATIVE_RADIUS = 'relative_radius'
 COLOR = 'color'
@@ -17,15 +18,15 @@ SOLAR_SYSTEM_OBJECTS = {'sun': {RELATIVE_RADIUS: 1, COLOR: 'yellow', TEXT: 'Со
                         'pluto': {RELATIVE_RADIUS: 0.1, COLOR: 'peru', TEXT: 'Плутон'}
                         }
 
-PLANET_DISTANCE = 30
+PLANET_DISTANCE = 50
 TEXT_DISTANCE = 20
-SCREEN_WIDTH = 1000
+SCREEN_WIDTH = 1500
 SCREEN_HEIGHT = 650
 
 def main():
     t.Screen().colormode(255)
     t.Screen().setup(SCREEN_WIDTH, SCREEN_HEIGHT)
-    t.hideturtle(), t.penup()
+    t.hideturtle(), t.penup(), t.tracer(0)
 
     sun_radius = 100
 
@@ -38,6 +39,7 @@ def main():
         planet_radius = sun_radius * planet_info[RELATIVE_RADIUS]
         planet_color = planet_info[COLOR]
         planet_name = planet_info[TEXT]
+        is_ring = planet_info.get(IS_RING)
 
         start_x = x + planet_radius
         start_y = y - planet_radius
@@ -48,6 +50,14 @@ def main():
         t.begin_fill()
         t.circle(planet_radius)
         t.end_fill()
+
+        if is_ring is not None:
+            el_x = start_x
+            el_y = start_y + planet_radius // 2
+            horizontal_radius = planet_radius * 1.5
+            vertical_radius = planet_radius // 2
+            ellipse(el_x, el_y, horizontal_radius, vertical_radius)
+        
         t.penup()
         t.goto(start_x, start_y - TEXT_DISTANCE)
         t.write(planet_name, align='center', font=('Arial', 10, 'normal'))
@@ -55,5 +65,19 @@ def main():
 
 
     input()
+
+def ellipse(x, y, horizontal_radius, vertical_radius, color='black', fill=''):
+    t.penup()
+    t.goto(x, y)
+    t.color(color, fill)
+    t.begin_fill()
+    t.pendown()
+    for deg in range(361):
+        rad = radians(deg)
+        curr_x = horizontal_radius * sin(rad) + x
+        curr_y = -vertical_radius * cos(rad) + vertical_radius + y
+        t.goto(curr_x, curr_y)
+    t.end_fill()
+ 
 
 main() 
