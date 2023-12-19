@@ -1,16 +1,20 @@
 import turtle as t
 
+RELATIVE_RADIUS = 'relative_radius'
+COLOR = 'color'
+TEXT = 'text'
+IS_RING = 'is_ring'
 
-SOLAR_SYSTEM_OBJECTS = {'sun': {'relative_radius': 1, 'color': 'yellow', 'text': 'Солнце'},
-                        'mercury': {'relative_radius': 0.3, 'color': 'peru', 'text': 'Меркурий'},
-                        'venus': {'relative_radius': 0.4, 'color': 'peru', 'text': 'Венера'},
-                        'earth': {'relative_radius': 0.3, 'color': 'spring green', 'text': 'Земля'},
-                        'mars': {'relative_radius': 0.2, 'color': 'dark orange', 'text': 'Марс'},
-                        'jupiter': {'relative_radius': 0.6, 'color': 'peru', 'text': 'Юпитер'},
-                        'saturn': {'relative_radius': 0.6, 'color': 'peru', 'is_ring': True, 'text': 'Сатурн'},
-                        'uranus': {'relative_radius': 0.5, 'color': 'sky blue', 'text': 'Уран'},
-                        'neptune': {'relative_radius': 0.5, 'color': 'blue', 'text': 'Нептун'},
-                        'pluto': {'relative_radius': 0.1, 'color': 'peru', 'text': 'Плутон'}
+SOLAR_SYSTEM_OBJECTS = {'sun': {RELATIVE_RADIUS: 1, COLOR: 'yellow', TEXT: 'Солнце'},
+                        'mercury': {RELATIVE_RADIUS: 0.3, COLOR: 'peru', TEXT: 'Меркурий'},
+                        'venus': {RELATIVE_RADIUS: 0.4, COLOR: 'peru', TEXT: 'Венера'},
+                        'earth': {RELATIVE_RADIUS: 0.3, COLOR: 'spring green', TEXT: 'Земля'},
+                        'mars': {RELATIVE_RADIUS: 0.2, COLOR: 'dark orange', TEXT: 'Марс'},
+                        'jupiter': {RELATIVE_RADIUS: 0.6, COLOR: 'peru', TEXT: 'Юпитер'},
+                        'saturn': {RELATIVE_RADIUS: 0.6, COLOR: 'peru', IS_RING: True, TEXT: 'Сатурн'},
+                        'uranus': {RELATIVE_RADIUS: 0.5, COLOR: 'sky blue', TEXT: 'Уран'},
+                        'neptune': {RELATIVE_RADIUS: 0.5, COLOR: 'blue', TEXT: 'Нептун'},
+                        'pluto': {RELATIVE_RADIUS: 0.1, COLOR: 'peru', TEXT: 'Плутон'}
                         }
 
 PLANET_DISTANCE = 30
@@ -31,9 +35,9 @@ def main():
 
 
     for planet_info in SOLAR_SYSTEM_OBJECTS.values():
-        planet_radius = sun_radius * planet_info['relative_radius']
-        planet_color = planet_info['color']
-        planet_name = planet_info['text']
+        planet_radius = sun_radius * planet_info[RELATIVE_RADIUS]
+        planet_color = planet_info[COLOR]
+        planet_name = planet_info[TEXT]
 
         start_x = x + planet_radius
         start_y = y - planet_radius
