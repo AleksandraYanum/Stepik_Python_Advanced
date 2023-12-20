@@ -62,7 +62,7 @@ def draw_planet(start_x, start_y, color, radius, is_ring, name=''):
     t.circle(radius)
     t.end_fill()
 
-    if is_ring is not None:
+    if is_ring:
         el_x = start_x
         el_y = start_y + radius // 2
         horizontal_radius = radius * 1.5
