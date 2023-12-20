@@ -99,19 +99,19 @@ def main():
         planet_radius = sun_radius * planet_info[RELATIVE_RADIUS]
         planet_color = planet_info[COLOR]
         planet_name = planet_info[TEXT]
-        is_ring = planet_info.get(RING)
+        ring_info = planet_info.get(RING)
 
         start_x = x + planet_radius
         start_y = y - planet_radius
 
-        draw_planet(start_x, start_y, planet_color, planet_radius, is_ring, planet_name)
+        draw_planet(start_x, start_y, planet_color, planet_radius, ring_info, planet_name)
 
         x = start_x + planet_radius + PLANET_DISTANCE
 
     input()
 
 
-def draw_planet(start_x, start_y, color, radius, is_ring, name=''):
+def draw_planet(start_x, start_y, color, radius, ring_info, name=''):
     t.penup()
     t.goto(start_x, start_y)
     t.pendown()
@@ -120,11 +120,11 @@ def draw_planet(start_x, start_y, color, radius, is_ring, name=''):
     t.circle(radius)
     t.end_fill()
 
-    if is_ring:
+    if ring_info:
+        horizontal_radius = radius * ring_info[HORIZONTAL_RADIUS]
+        vertical_radius = radius * ring_info[VERTICAL_RADIUS]
         el_x = start_x
         el_y = start_y + radius // 2
-        horizontal_radius = radius * 1.5
-        vertical_radius = radius // 2
         ellipse(el_x, el_y, horizontal_radius, vertical_radius)
 
     if name:
