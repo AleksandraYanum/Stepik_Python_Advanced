@@ -4,7 +4,7 @@ from math import radians, sin, cos
 RELATIVE_RADIUS = 'relative_radius'
 COLOR = 'color'
 TEXT = 'text'
-RING = 'is_ring'
+RING = 'ring'
 HORIZONTAL_RADIUS = 'horizontal_radius'
 VERTICAL_RADIUS = 'vertical_radius'
 
