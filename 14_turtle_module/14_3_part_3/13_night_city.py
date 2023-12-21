@@ -37,7 +37,7 @@ def main():
     t.hideturtle(), t.tracer(0)
     
     house_start_x = - SCREEN_WIDTH // 2
-    house_start_y = - SCREEN_HEIGHT // 2
+    house_start_y = - SCREEN_HEIGHT // 2 
 
     house_amount = 5
     # randint(MIN_HOUSE_AMOUNT, MAX_HOUSE_AMOUNT)
@@ -72,10 +72,9 @@ def main():
 
                 window_color = choice([LIGHT_WINDOW_COLOR, NO_LIGHT_WINDOW_COLOR])
                 square(WINDOW_SIZE, window_color)
-                curr_window_start_x += WINDOW_DISTANCE * 2
+                curr_window_start_x += WINDOW_SIZE + WINDOW_DISTANCE * 2
             
             curr_window_start_y += WINDOW_SIZE + WINDOW_DISTANCE * 2
-
 
         drawn_house_width += curr_house_width
         house_start_x += curr_house_width
