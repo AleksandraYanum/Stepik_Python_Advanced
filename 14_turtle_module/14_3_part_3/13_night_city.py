@@ -40,8 +40,8 @@ def main():
     building_start_x = - SCREEN_WIDTH // 2
     building_start_y = - SCREEN_HEIGHT // 2 
 
-    building_amount = 5
-    # randint(MIN_BUILDING_AMOUNT, MAX_BUILDING_AMOUNT)
+    # building_amount = 5
+    building_amount = randint(MIN_BUILDING_AMOUNT, MAX_BUILDING_AMOUNT)
 
     drawn_building_width = 0
     window_possible_colors = [LIGHT_WINDOW_COLOR, NO_LIGHT_WINDOW_COLOR]
