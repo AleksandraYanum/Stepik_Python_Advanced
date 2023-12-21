@@ -41,7 +41,6 @@ def main():
 
     house_amount = 5
     # randint(MIN_HOUSE_AMOUNT, MAX_HOUSE_AMOUNT)
-    house_height = SCREEN_HEIGHT - 2 * ALL_ONE_WINDOW_SPACE
     drawn_house_width = 0
 
 
