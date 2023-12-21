@@ -43,7 +43,6 @@ def main():
     # randint(MIN_HOUSE_AMOUNT, MAX_HOUSE_AMOUNT)
     drawn_house_width = 0
 
-
     for i in range(house_amount - 1):
         max_curr_house_width = SCREEN_WIDTH - drawn_house_width - (house_amount - i - 1) * MIN_HOUSE_WIDTH
         curr_house_width = randrange(MIN_HOUSE_WIDTH, max_curr_house_width + 1, ALL_ONE_WINDOW_SPACE)
@@ -65,6 +64,7 @@ def main():
     curr_house_height = randrange(MIN_HOUSE_HEIGHT, MAX_HOUSE_HEIGHT, ALL_ONE_WINDOW_SPACE)
 
     rectangle(curr_house_width, curr_house_height, color=HOUSE_COLOR)
+
 
 
     input()
