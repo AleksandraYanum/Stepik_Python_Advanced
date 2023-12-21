@@ -43,6 +43,7 @@ def main():
     # randint(MIN_BUILDING_AMOUNT, MAX_BUILDING_AMOUNT)
 
     drawn_building_width = 0
+    window_possible_colors = [LIGHT_WINDOW_COLOR, NO_LIGHT_WINDOW_COLOR]
 
 # BUILDINGS DRAWING
     for i in range(building_amount - 1):
@@ -59,8 +60,6 @@ def main():
         window_start_x = building_start_x + WINDOW_DISTANCE
         curr_window_start_y = building_start_y + WINDOW_DISTANCE
 
-        window_possible_colors = [LIGHT_WINDOW_COLOR, NO_LIGHT_WINDOW_COLOR]
-
         draw_building_windows(window_start_x, curr_window_start_y, window_amount_in_height, window_amount_in_width,
                               WINDOW_SIZE, WINDOW_DISTANCE, window_possible_colors)
 
@@ -70,8 +69,16 @@ def main():
 # LAST BUILDING DRAWING
     curr_building_width = SCREEN_WIDTH - drawn_building_width
     curr_building_height = randrange(MIN_BUILDING_HEIGHT, MAX_BUILDING_HEIGHT, ALL_ONE_WINDOW_SPACE)
-    draw_building(building_start_x, building_start_y, curr_building_width, curr_building_height, BUILDING_COLOR)
 
+    draw_building(building_start_x, building_start_y, curr_building_width, curr_building_height, BUILDING_COLOR)
+    
+    window_amount_in_height = curr_building_height // ALL_ONE_WINDOW_SPACE
+    window_amount_in_width = curr_building_width // ALL_ONE_WINDOW_SPACE
+    window_start_x = building_start_x + WINDOW_DISTANCE
+    curr_window_start_y = building_start_y + WINDOW_DISTANCE
+
+    draw_building_windows(window_start_x, curr_window_start_y, window_amount_in_height, window_amount_in_width,
+                              WINDOW_SIZE, WINDOW_DISTANCE, window_possible_colors)
 
     input()
 
