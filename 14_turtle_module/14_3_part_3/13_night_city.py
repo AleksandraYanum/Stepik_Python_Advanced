@@ -6,7 +6,8 @@ from itertools import cycle
 
 SKY_COLOR = 'midnight blue'
 STAR_COLOR = 'gold'
-BUILDING_COLOR = 'RoyalBlue4'
+# BUILDING_COLOR = 'RoyalBlue4'
+BUILDING_POSSIBLE_COLORS = ['RoyalBlue4', 'SlateBlue4', 'SlateGray', 'DarkOliveGreen', 'salmon4']
 LIGHT_WINDOW_COLOR = 'gold'
 NO_LIGHT_WINDOW_COLOR = 'medium blue'
 
@@ -44,6 +45,7 @@ def main():
 
     drawn_building_width = 0
     window_possible_colors = [LIGHT_WINDOW_COLOR, NO_LIGHT_WINDOW_COLOR]
+    building_possible_colors = cycle(BUILDING_POSSIBLE_COLORS)
 
 # BUILDINGS DRAWING
     for i in range(building_amount - 1):
@@ -51,7 +53,7 @@ def main():
 
         curr_building_width, curr_building_height = \
             draw_random_building(building_start_x, building_start_y, MIN_BUILDING_WIDTH, max_curr_building_width, ALL_ONE_WINDOW_SPACE,
-                                 MIN_BUILDING_HEIGHT, MAX_BUILDING_HEIGHT, ALL_ONE_WINDOW_SPACE, BUILDING_COLOR)
+                                 MIN_BUILDING_HEIGHT, MAX_BUILDING_HEIGHT, ALL_ONE_WINDOW_SPACE, next(building_possible_colors))
 
 # WINDOWS DRAWING
         window_amount_in_height = curr_building_height // ALL_ONE_WINDOW_SPACE
@@ -70,8 +72,8 @@ def main():
     curr_building_width = SCREEN_WIDTH - drawn_building_width
     curr_building_height = randrange(MIN_BUILDING_HEIGHT, MAX_BUILDING_HEIGHT, ALL_ONE_WINDOW_SPACE)
 
-    draw_building(building_start_x, building_start_y, curr_building_width, curr_building_height, BUILDING_COLOR)
-    
+    draw_building(building_start_x, building_start_y, curr_building_width, curr_building_height, next(building_possible_colors))
+
     window_amount_in_height = curr_building_height // ALL_ONE_WINDOW_SPACE
     window_amount_in_width = curr_building_width // ALL_ONE_WINDOW_SPACE
     window_start_x = building_start_x + WINDOW_DISTANCE
