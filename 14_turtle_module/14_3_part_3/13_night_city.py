@@ -1,5 +1,5 @@
 import turtle as t
-from random import randint, randrange
+from random import randint, randrange, choice
 from itertools import cycle
 
 #*******************************************************************************************************************
@@ -36,8 +36,8 @@ def main():
     t.Screen().bgcolor(SKY_COLOR)
     t.hideturtle(), t.tracer(0)
     
-    start_x = - SCREEN_WIDTH // 2
-    start_y = - SCREEN_HEIGHT // 2
+    house_start_x = - SCREEN_WIDTH // 2
+    house_start_y = - SCREEN_HEIGHT // 2
 
     house_amount = 5
     # randint(MIN_HOUSE_AMOUNT, MAX_HOUSE_AMOUNT)
@@ -49,34 +49,63 @@ def main():
         curr_house_height = randrange(MIN_HOUSE_HEIGHT, MAX_HOUSE_HEIGHT, ALL_ONE_WINDOW_SPACE)
 
         t.penup()
-        t.goto(start_x, start_y)
+        t.goto(house_start_x, house_start_y)
         t.pendown()
         rectangle(curr_house_width, curr_house_height, HOUSE_COLOR)
 
+#*******************************************************************************************************************
+
+        window_amount_in_height = curr_house_height // ALL_ONE_WINDOW_SPACE
+        window_amount_in_width = curr_house_width // ALL_ONE_WINDOW_SPACE
+
+        window_start_x = house_start_x + WINDOW_DISTANCE
+        curr_window_start_y = house_start_y + WINDOW_DISTANCE
+
+
+        for _ in range(window_amount_in_height):
+            curr_window_start_x = window_start_x
+
+            for _ in range(window_amount_in_width):
+                t.penup()
+                t.goto(curr_window_start_x, curr_window_start_y)
+                t.pendown()
+
+                window_color = choice([LIGHT_WINDOW_COLOR, NO_LIGHT_WINDOW_COLOR])
+                square(WINDOW_SIZE, window_color)
+                curr_window_start_x += WINDOW_DISTANCE * 2
+            
+            curr_window_start_y += WINDOW_SIZE + WINDOW_DISTANCE * 2
+
+
         drawn_house_width += curr_house_width
-        start_x += curr_house_width
+        house_start_x += curr_house_width
 
     t.penup()
-    t.goto(start_x, start_y)
+    t.goto(house_start_x, house_start_y)
     t.pendown()
     
     curr_house_width = SCREEN_WIDTH - drawn_house_width
     curr_house_height = randrange(MIN_HOUSE_HEIGHT, MAX_HOUSE_HEIGHT, ALL_ONE_WINDOW_SPACE)
 
-    rectangle(curr_house_width, curr_house_height, color=HOUSE_COLOR)
+    rectangle(curr_house_width, curr_house_height, fill_color=HOUSE_COLOR)
 
 
 
     input()
 
 
-def rectangle(width, height, color='black'):
-    t.color(color)
+def rectangle(width, height, fill_color='black'):
+    t.color(fill_color)
     t.begin_fill()
     for step, _ in zip(cycle([width, height]), range(4)):
         t.forward(step)
         t.left(90)
     t.end_fill()
+
+
+def square(width, fill_color='black'):
+    height = width
+    rectangle(width, height, fill_color)
 
 
 main()
