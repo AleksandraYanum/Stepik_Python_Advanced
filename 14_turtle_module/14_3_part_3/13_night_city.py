@@ -1,3 +1,5 @@
+# BUILDINGS ARE DRAWN FROM ONE SCREEN SIDE TO OTHER AND ON THE LOWER Y SCREEN BORDER
+
 import turtle as t
 from random import randint, randrange, choice
 from itertools import cycle
@@ -11,8 +13,9 @@ BUILDING_POSSIBLE_COLORS = ['RoyalBlue4', 'SlateBlue4', 'SlateGray', 'DarkOliveG
 LIGHT_WINDOW_COLOR = 'gold'
 NO_LIGHT_WINDOW_COLOR = 'medium blue'
 
-MIN_STAR_SIZE = 2
-MAX_STAR_SIZE = 7
+MIN_STAR_DIAMETER = 2
+MAX_STAR_DIAMETER = 7
+STAR_AMOUNT = 20
 
 WINDOW_SIZE = 30
 WINDOW_DISTANCE = WINDOW_SIZE // 2
@@ -37,8 +40,8 @@ def main():
     t.Screen().bgcolor(SKY_COLOR)
     t.hideturtle(), t.tracer(0)
     
-    building_start_x = - SCREEN_WIDTH // 2
-    building_start_y = - SCREEN_HEIGHT // 2 
+    curr_building_start_x = - SCREEN_WIDTH // 2
+    curr_building_start_y = - SCREEN_HEIGHT // 2 
 
     # building_amount = 5
     building_amount = randint(MIN_BUILDING_AMOUNT, MAX_BUILDING_AMOUNT)
@@ -46,38 +49,45 @@ def main():
     drawn_building_width = 0
     window_possible_colors = [LIGHT_WINDOW_COLOR, NO_LIGHT_WINDOW_COLOR]
     building_possible_colors = cycle(BUILDING_POSSIBLE_COLORS)
+    drawn_building_info = []      # upper x1, x2 y coords
 
 # BUILDINGS DRAWING
     for i in range(building_amount - 1):
         max_curr_building_width = SCREEN_WIDTH - drawn_building_width - (building_amount - i - 1) * MIN_BUILDING_WIDTH
 
         curr_building_width, curr_building_height = \
-            draw_random_building(building_start_x, building_start_y, MIN_BUILDING_WIDTH, max_curr_building_width, ALL_ONE_WINDOW_SPACE,
+            draw_random_building(curr_building_start_x, curr_building_start_y, MIN_BUILDING_WIDTH, max_curr_building_width, ALL_ONE_WINDOW_SPACE,
                                  MIN_BUILDING_HEIGHT, MAX_BUILDING_HEIGHT, ALL_ONE_WINDOW_SPACE, next(building_possible_colors))
+        
+        # upper x1, x2 y coords
+        curr_building_info = (curr_building_start_x, curr_building_start_x + curr_building_width, curr_building_start_y + curr_building_height)
+        drawn_building_info.append(curr_building_info)
 
 # WINDOWS DRAWING
         window_amount_in_height = curr_building_height // ALL_ONE_WINDOW_SPACE
         window_amount_in_width = curr_building_width // ALL_ONE_WINDOW_SPACE
 
-        window_start_x = building_start_x + WINDOW_DISTANCE
-        curr_window_start_y = building_start_y + WINDOW_DISTANCE
+        window_start_x = curr_building_start_x + WINDOW_DISTANCE
+        curr_window_start_y = curr_building_start_y + WINDOW_DISTANCE
 
         draw_building_windows(window_start_x, curr_window_start_y, window_amount_in_height, window_amount_in_width,
                               WINDOW_SIZE, WINDOW_DISTANCE, window_possible_colors)
 
         drawn_building_width += curr_building_width
-        building_start_x += curr_building_width
+        curr_building_start_x += curr_building_width
 
 # LAST BUILDING DRAWING
     curr_building_width = SCREEN_WIDTH - drawn_building_width
     curr_building_height = randrange(MIN_BUILDING_HEIGHT, MAX_BUILDING_HEIGHT, ALL_ONE_WINDOW_SPACE)
 
-    draw_building(building_start_x, building_start_y, curr_building_width, curr_building_height, next(building_possible_colors))
+    draw_building(curr_building_start_x, curr_building_start_y, curr_building_width, curr_building_height, next(building_possible_colors))
+    curr_building_info = (curr_building_start_x, curr_building_start_x + curr_building_width, curr_building_start_y + curr_building_height)
+    drawn_building_info.append(curr_building_info)
 
     window_amount_in_height = curr_building_height // ALL_ONE_WINDOW_SPACE
     window_amount_in_width = curr_building_width // ALL_ONE_WINDOW_SPACE
-    window_start_x = building_start_x + WINDOW_DISTANCE
-    curr_window_start_y = building_start_y + WINDOW_DISTANCE
+    window_start_x = curr_building_start_x + WINDOW_DISTANCE
+    curr_window_start_y = curr_building_start_y + WINDOW_DISTANCE
 
     draw_building_windows(window_start_x, curr_window_start_y, window_amount_in_height, window_amount_in_width,
                               WINDOW_SIZE, WINDOW_DISTANCE, window_possible_colors)
