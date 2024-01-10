@@ -8,7 +8,6 @@ from itertools import cycle
 
 SKY_COLOR = 'midnight blue'
 STAR_COLOR = 'gold'
-# BUILDING_COLOR = 'RoyalBlue4'
 BUILDING_POSSIBLE_COLORS = ['RoyalBlue4', 'SlateBlue4', 'SlateGray', 'DarkOliveGreen', 'salmon4']
 LIGHT_WINDOW_COLOR = 'gold'
 NO_LIGHT_WINDOW_COLOR = 'medium blue'
@@ -19,14 +18,14 @@ STAR_AMOUNT = 100
 
 WINDOW_SIZE = 30
 WINDOW_DISTANCE = WINDOW_SIZE // 2
-ALL_ONE_WINDOW_SPACE = WINDOW_SIZE + WINDOW_DISTANCE * 2
+WINDOW_BLOCK_SIZE = WINDOW_SIZE + WINDOW_DISTANCE * 2
 
-SCREEN_WIDTH = 15 * ALL_ONE_WINDOW_SPACE
-SCREEN_HEIGHT = 10 * ALL_ONE_WINDOW_SPACE
+SCREEN_WIDTH = 15 * WINDOW_BLOCK_SIZE
+SCREEN_HEIGHT = 10 * WINDOW_BLOCK_SIZE
 
-MIN_BUILDING_WIDTH = 1 * ALL_ONE_WINDOW_SPACE
-MIN_BUILDING_HEIGHT = 1 * ALL_ONE_WINDOW_SPACE
-MAX_BUILDING_HEIGHT = SCREEN_HEIGHT - ALL_ONE_WINDOW_SPACE
+MIN_BUILDING_WIDTH = 1 * WINDOW_BLOCK_SIZE
+MIN_BUILDING_HEIGHT = 1 * WINDOW_BLOCK_SIZE
+MAX_BUILDING_HEIGHT = SCREEN_HEIGHT - WINDOW_BLOCK_SIZE
 
 MIN_BUILDING_AMOUNT = 5
 MAX_BUILDING_AMOUNT = 15
@@ -59,12 +58,12 @@ def main():
         max_curr_building_width = SCREEN_WIDTH - drawn_building_width - (building_amount - i - 1) * MIN_BUILDING_WIDTH
 
         curr_building_width, curr_building_height = \
-            draw_random_building(curr_building_start_x, curr_building_start_y, MIN_BUILDING_WIDTH, max_curr_building_width, ALL_ONE_WINDOW_SPACE,
-                                 MIN_BUILDING_HEIGHT, MAX_BUILDING_HEIGHT, ALL_ONE_WINDOW_SPACE, next(building_possible_colors))
+            draw_random_building(curr_building_start_x, curr_building_start_y, MIN_BUILDING_WIDTH, max_curr_building_width, WINDOW_BLOCK_SIZE,
+                                 MIN_BUILDING_HEIGHT, MAX_BUILDING_HEIGHT, WINDOW_BLOCK_SIZE, next(building_possible_colors))
         
 # WINDOWS DRAWING
-        window_amount_in_height = curr_building_height // ALL_ONE_WINDOW_SPACE
-        window_amount_in_width = curr_building_width // ALL_ONE_WINDOW_SPACE
+        window_amount_in_height = curr_building_height // WINDOW_BLOCK_SIZE
+        window_amount_in_width = curr_building_width // WINDOW_BLOCK_SIZE
 
         window_start_x = curr_building_start_x + WINDOW_DISTANCE
         curr_window_start_y = curr_building_start_y + WINDOW_DISTANCE
@@ -77,12 +76,12 @@ def main():
 
 # LAST BUILDING DRAWING
     curr_building_width = SCREEN_WIDTH - drawn_building_width
-    curr_building_height = randrange(MIN_BUILDING_HEIGHT, MAX_BUILDING_HEIGHT, ALL_ONE_WINDOW_SPACE)
+    curr_building_height = randrange(MIN_BUILDING_HEIGHT, MAX_BUILDING_HEIGHT, WINDOW_BLOCK_SIZE)
 
     draw_building(curr_building_start_x, curr_building_start_y, curr_building_width, curr_building_height, next(building_possible_colors))
   
-    window_amount_in_height = curr_building_height // ALL_ONE_WINDOW_SPACE
-    window_amount_in_width = curr_building_width // ALL_ONE_WINDOW_SPACE
+    window_amount_in_height = curr_building_height // WINDOW_BLOCK_SIZE
+    window_amount_in_width = curr_building_width // WINDOW_BLOCK_SIZE
     window_start_x = curr_building_start_x + WINDOW_DISTANCE
     curr_window_start_y = curr_building_start_y + WINDOW_DISTANCE
 
