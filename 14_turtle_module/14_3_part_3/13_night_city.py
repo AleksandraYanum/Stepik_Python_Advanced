@@ -97,18 +97,18 @@ def main():
 def draw_random_stars(amount, min_diameter, max_diameter, color, left_x_border, right_x_border, lower_y_border, upper_y_border):
     for _ in range(amount):
         random_diameter = randint(min_diameter, max_diameter)
-        x, y = generate_random_within_screen_coords(left_x_border, right_x_border, lower_y_border, upper_y_border)
+        x, y = generate_random_coords_within_screen(left_x_border, right_x_border, lower_y_border, upper_y_border)
         t.up()
         t.goto(x, y)
         t.dot(random_diameter, color)
 
 
-def generate_random_within_screen_coords(left_x_border, right_x_border, lower_y_border, upper_y_border):
+def generate_random_coords_within_screen(left_x_border, right_x_border, lower_y_border, upper_y_border):
     x = randint(left_x_border, right_x_border)
     y = randint(lower_y_border, upper_y_border)
     return x, y
 
-
+# amount_in_height, distance
 def draw_building_windows(start_x, start_y, amount_in_height, amount_in_width, size, distance, possible_colors):
 
     curr_start_y = start_y
