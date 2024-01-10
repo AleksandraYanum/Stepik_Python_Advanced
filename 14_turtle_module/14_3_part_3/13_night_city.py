@@ -18,14 +18,15 @@ STAR_AMOUNT = 100
 
 WINDOW_SIZE = 30
 WINDOW_DISTANCE = WINDOW_SIZE // 2
-WINDOW_BLOCK_SIZE = WINDOW_SIZE + WINDOW_DISTANCE * 2
+WINDOW_BLOCK_HEIGHT = WINDOW_SIZE + WINDOW_DISTANCE * 2
+WINDOW_BLOCK_WIDTH = WINDOW_SIZE + WINDOW_DISTANCE * 2
 
-SCREEN_WIDTH = 15 * WINDOW_BLOCK_SIZE
-SCREEN_HEIGHT = 10 * WINDOW_BLOCK_SIZE
+SCREEN_WIDTH = 15 * WINDOW_BLOCK_WIDTH
+SCREEN_HEIGHT = 10 * WINDOW_BLOCK_HEIGHT
 
-MIN_BUILDING_WIDTH = 1 * WINDOW_BLOCK_SIZE
-MIN_BUILDING_HEIGHT = 1 * WINDOW_BLOCK_SIZE
-MAX_BUILDING_HEIGHT = SCREEN_HEIGHT - WINDOW_BLOCK_SIZE
+MIN_BUILDING_WIDTH = 1 * WINDOW_BLOCK_WIDTH
+MIN_BUILDING_HEIGHT = 1 * WINDOW_BLOCK_HEIGHT
+MAX_BUILDING_HEIGHT = SCREEN_HEIGHT - WINDOW_BLOCK_HEIGHT
 
 MIN_BUILDING_AMOUNT = 5
 MAX_BUILDING_AMOUNT = 15
@@ -46,6 +47,8 @@ def main():
     building_amount = randint(MIN_BUILDING_AMOUNT, MAX_BUILDING_AMOUNT)
 
     drawn_building_width = 0
+
+    # extract to consts!
     window_possible_colors = [LIGHT_WINDOW_COLOR, NO_LIGHT_WINDOW_COLOR]
     building_possible_colors = cycle(BUILDING_POSSIBLE_COLORS)
     curr_building_start_x, curr_building_start_y = building_start_x, building_start_y
@@ -58,12 +61,12 @@ def main():
         max_curr_building_width = SCREEN_WIDTH - drawn_building_width - (building_amount - i - 1) * MIN_BUILDING_WIDTH
 
         curr_building_width, curr_building_height = \
-            draw_random_building(curr_building_start_x, curr_building_start_y, MIN_BUILDING_WIDTH, max_curr_building_width, WINDOW_BLOCK_SIZE,
-                                 MIN_BUILDING_HEIGHT, MAX_BUILDING_HEIGHT, WINDOW_BLOCK_SIZE, next(building_possible_colors))
+            draw_random_building(curr_building_start_x, curr_building_start_y, MIN_BUILDING_WIDTH, max_curr_building_width, WINDOW_BLOCK_WIDTH,
+                                 MIN_BUILDING_HEIGHT, MAX_BUILDING_HEIGHT, WINDOW_BLOCK_HEIGHT, next(building_possible_colors))
         
 # WINDOWS DRAWING
-        window_amount_in_height = curr_building_height // WINDOW_BLOCK_SIZE
-        window_amount_in_width = curr_building_width // WINDOW_BLOCK_SIZE
+        window_amount_in_height = curr_building_height // WINDOW_BLOCK_HEIGHT
+        window_amount_in_width = curr_building_width // WINDOW_BLOCK_WIDTH
 
         window_start_x = curr_building_start_x + WINDOW_DISTANCE
         curr_window_start_y = curr_building_start_y + WINDOW_DISTANCE
@@ -76,12 +79,12 @@ def main():
 
 # LAST BUILDING DRAWING
     curr_building_width = SCREEN_WIDTH - drawn_building_width
-    curr_building_height = randrange(MIN_BUILDING_HEIGHT, MAX_BUILDING_HEIGHT, WINDOW_BLOCK_SIZE)
+    curr_building_height = randrange(MIN_BUILDING_HEIGHT, MAX_BUILDING_HEIGHT, WINDOW_BLOCK_HEIGHT)
 
     draw_building(curr_building_start_x, curr_building_start_y, curr_building_width, curr_building_height, next(building_possible_colors))
   
-    window_amount_in_height = curr_building_height // WINDOW_BLOCK_SIZE
-    window_amount_in_width = curr_building_width // WINDOW_BLOCK_SIZE
+    window_amount_in_height = curr_building_height // WINDOW_BLOCK_HEIGHT
+    window_amount_in_width = curr_building_width // WINDOW_BLOCK_WIDTH
     window_start_x = curr_building_start_x + WINDOW_DISTANCE
     curr_window_start_y = curr_building_start_y + WINDOW_DISTANCE
 
@@ -123,10 +126,10 @@ def draw_building_windows(start_x, start_y, amount_in_height, amount_in_width, s
             curr_start_y += size + distance * 2
 
 
-def draw_random_building(start_x, start_y, min_width, max_width, step_width, min_height, max_height, step_height, color):
+def draw_random_building(start_x, start_y, min_width, max_width, window_block_width, min_height, max_height, window_block_height, color):
 
-    random_width = randrange(min_width, max_width + 1, step_width)
-    random_height = randrange(min_height, max_height, step_height)
+    random_width = randrange(min_width, max_width + 1, window_block_width)
+    random_height = randrange(min_height, max_height + 1, window_block_height)
     draw_building(start_x, start_y, random_width, random_height, color)
 
     return random_width, random_height
