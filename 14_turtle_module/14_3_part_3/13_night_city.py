@@ -65,14 +65,14 @@ def main():
                                  MIN_BUILDING_HEIGHT, MAX_BUILDING_HEIGHT, WINDOW_BLOCK_HEIGHT, next(building_possible_colors))
         
 # WINDOWS DRAWING
-        window_amount_in_height = curr_building_height // WINDOW_BLOCK_HEIGHT
-        window_amount_in_width = curr_building_width // WINDOW_BLOCK_WIDTH
+        window_vertical_amount = curr_building_height // WINDOW_BLOCK_HEIGHT
+        window_horizontal_amount = curr_building_width // WINDOW_BLOCK_WIDTH
 
         window_start_x = curr_building_start_x + WINDOW_DISTANCE
         curr_window_start_y = curr_building_start_y + WINDOW_DISTANCE
 
-        draw_building_windows(window_start_x, curr_window_start_y, window_amount_in_height, window_amount_in_width,
-                              WINDOW_SIZE, WINDOW_DISTANCE, window_possible_colors)
+        draw_building_windows(window_start_x, curr_window_start_y, window_vertical_amount, window_horizontal_amount,
+                              WINDOW_SIZE, WINDOW_BLOCK_HEIGHT, WINDOW_BLOCK_WIDTH, window_possible_colors)
 
         drawn_building_width += curr_building_width
         curr_building_start_x += curr_building_width
@@ -83,13 +83,13 @@ def main():
 
     draw_building(curr_building_start_x, curr_building_start_y, curr_building_width, curr_building_height, next(building_possible_colors))
   
-    window_amount_in_height = curr_building_height // WINDOW_BLOCK_HEIGHT
-    window_amount_in_width = curr_building_width // WINDOW_BLOCK_WIDTH
+    window_vertical_amount = curr_building_height // WINDOW_BLOCK_HEIGHT
+    window_horizontal_amount = curr_building_width // WINDOW_BLOCK_WIDTH
     window_start_x = curr_building_start_x + WINDOW_DISTANCE
     curr_window_start_y = curr_building_start_y + WINDOW_DISTANCE
 
-    draw_building_windows(window_start_x, curr_window_start_y, window_amount_in_height, window_amount_in_width,
-                              WINDOW_SIZE, WINDOW_DISTANCE, window_possible_colors)
+    draw_building_windows(window_start_x, curr_window_start_y, window_vertical_amount, window_horizontal_amount,
+                              WINDOW_SIZE, WINDOW_BLOCK_HEIGHT, WINDOW_BLOCK_WIDTH, window_possible_colors)
 
     input()
 
@@ -109,21 +109,21 @@ def generate_random_coords_within_screen(left_x_border, right_x_border, lower_y_
     return x, y
 
 # amount_in_height, distance
-def draw_building_windows(start_x, start_y, amount_in_height, amount_in_width, size, distance, possible_colors):
+def draw_building_windows(start_x, start_y, vertical_amount, horizontal_amount, size, block_height, bloch_width, possible_colors):
 
     curr_start_y = start_y
-    for _ in range(amount_in_height):
+    for _ in range(vertical_amount):
             curr_start_x = start_x
 
-            for _ in range(amount_in_width):
+            for _ in range(horizontal_amount):
                 t.penup()
                 t.goto(curr_start_x, curr_start_y)
                 t.pendown()
                 color = choice(possible_colors)
                 square(size, color)
-                curr_start_x += size + distance * 2
+                curr_start_x += bloch_width
 
-            curr_start_y += size + distance * 2
+            curr_start_y += block_height
 
 
 def draw_random_building(start_x, start_y, min_width, max_width, window_block_width, min_height, max_height, window_block_height, color):
