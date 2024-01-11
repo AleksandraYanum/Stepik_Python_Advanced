@@ -106,8 +106,8 @@ def generate_random_coords_within_screen(left_x_border, right_x_border, lower_y_
     y = randint(lower_y_border, upper_y_border)
     return x, y
 
-# amount_in_height, distance
-def draw_building_windows(start_x, start_y, vertical_amount, horizontal_amount, size, block_height, bloch_width, possible_colors):
+
+def draw_building_windows(start_x, start_y, vertical_amount, horizontal_amount, size, block_height, block_width, possible_colors):
 
     curr_start_y = start_y
     for _ in range(vertical_amount):
@@ -119,7 +119,7 @@ def draw_building_windows(start_x, start_y, vertical_amount, horizontal_amount, 
                 t.pendown()
                 color = choice(possible_colors)
                 square(size, color)
-                curr_start_x += bloch_width
+                curr_start_x += block_width
 
             curr_start_y += block_height
 
