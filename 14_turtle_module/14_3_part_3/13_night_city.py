@@ -54,11 +54,6 @@ def main():
     drawn_building_width, curr_building_start_x = \
         draw_random_buildings(building_amount, curr_building_start_x, curr_building_start_y, drawn_building_width)
 
-    # curr_building_width = SCREEN_WIDTH - drawn_building_width
-    # curr_building_height = randrange(MIN_BUILDING_HEIGHT, MAX_BUILDING_HEIGHT, WINDOW_BLOCK_HEIGHT)
-
-    # draw_building(curr_building_start_x, building_start_y, curr_building_width, curr_building_height, color=next(BUILDING_POSSIBLE_COLORS))
-    
     draw_last_building(curr_building_start_x, building_start_y, drawn_building_width, color=next(BUILDING_POSSIBLE_COLORS))
 
     input()
