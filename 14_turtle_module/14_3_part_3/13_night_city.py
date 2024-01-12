@@ -60,8 +60,7 @@ def main():
     curr_building_width = SCREEN_WIDTH - drawn_building_width
     curr_building_height = randrange(MIN_BUILDING_HEIGHT, MAX_BUILDING_HEIGHT, WINDOW_BLOCK_HEIGHT)
 
-    draw_building(curr_building_start_x, building_start_y, curr_building_width, curr_building_height, WINDOW_BLOCK_WIDTH, 
-                  WINDOW_BLOCK_HEIGHT, next(BUILDING_POSSIBLE_COLORS), WINDOW_SIZE, WINDOW_DISTANCE, WINDOW_POSSIBLE_COLORS)
+    draw_building(curr_building_start_x, building_start_y, curr_building_width, curr_building_height)
     
     input()
 
@@ -116,19 +115,23 @@ def draw_random_buildings(amount, curr_start_x, curr_start_y, drawn_width,
         curr_random_width = randrange(min_width, max_curr_width + 1, window_block_width)
         curr_random_height = randrange(min_height, max_height + 1, window_block_height)
 
-        draw_building(curr_start_x, curr_start_y, curr_random_width, curr_random_height, 
-                                window_block_width, window_block_height, next(possible_colors), 
-                                window_size, window_distance, window_possible_colors)
-
+        draw_building(curr_start_x, curr_start_y, curr_random_width, curr_random_height)
+        
         drawn_width += curr_random_width
         curr_start_x += curr_random_width
 
     return drawn_width, curr_start_x
 
 
-def draw_building(start_x, start_y, width, height, window_block_width, window_block_height, color,
-                         window_size, window_distance, window_possible_colors):
-
+def draw_building(start_x, start_y, width, height, 
+                    window_block_width=WINDOW_BLOCK_WIDTH,
+                    window_block_height=WINDOW_BLOCK_HEIGHT, 
+                    color=next(BUILDING_POSSIBLE_COLORS),
+                    window_size=WINDOW_SIZE,
+                    window_distance=WINDOW_DISTANCE,
+                    window_possible_colors=WINDOW_POSSIBLE_COLORS
+                    ):     
+    
     draw_building_frame(start_x, start_y, width, height, color)
 
     window_vertical_amount = height // window_block_height
