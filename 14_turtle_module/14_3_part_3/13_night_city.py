@@ -49,21 +49,46 @@ def main():
     building_start_y = - SCREEN_HEIGHT // 2 
     curr_building_start_x, curr_building_start_y = building_start_x, building_start_y
 
-# STARS DRAWING
     draw_random_stars(STAR_AMOUNT, MIN_STAR_DIAMETER, MAX_STAR_DIAMETER, STAR_COLOR, building_start_x, -building_start_x, building_start_y, -building_start_y)
 
-# BUILDINGS WITH WINDOWS DRAWING
     drawn_building_width, curr_building_start_x = \
         draw_random_buildings(building_amount, curr_building_start_x, curr_building_start_y, drawn_building_width)
 
-# LAST BUILDING WITH WINDOWS DRAWING
-    curr_building_width = SCREEN_WIDTH - drawn_building_width
-    curr_building_height = randrange(MIN_BUILDING_HEIGHT, MAX_BUILDING_HEIGHT, WINDOW_BLOCK_HEIGHT)
+    # curr_building_width = SCREEN_WIDTH - drawn_building_width
+    # curr_building_height = randrange(MIN_BUILDING_HEIGHT, MAX_BUILDING_HEIGHT, WINDOW_BLOCK_HEIGHT)
 
-    draw_building(curr_building_start_x, building_start_y, curr_building_width, curr_building_height, color=next(BUILDING_POSSIBLE_COLORS))
+    # draw_building(curr_building_start_x, building_start_y, curr_building_width, curr_building_height, color=next(BUILDING_POSSIBLE_COLORS))
     
+    draw_last_building(curr_building_start_x, building_start_y, drawn_building_width, color=next(BUILDING_POSSIBLE_COLORS))
+
     input()
 
+
+def draw_last_building(start_x, start_y, drawn_width, color,
+                       screen_width=SCREEN_WIDTH,
+                       min_height=MIN_BUILDING_HEIGHT, 
+                       max_height=MAX_BUILDING_HEIGHT,
+                       window_block_width=WINDOW_BLOCK_WIDTH,
+                       window_block_height=WINDOW_BLOCK_HEIGHT,
+                       window_size=WINDOW_SIZE,
+                       window_distance=WINDOW_DISTANCE,
+                       window_possible_colors=WINDOW_POSSIBLE_COLORS):
+    
+    width = screen_width - drawn_width
+    height = randrange(min_height, max_height, window_block_height)
+
+    draw_building(start_x=start_x, 
+                  start_y=start_y, 
+                  width=width, 
+                  height=height, 
+                  color=color, 
+                  window_block_width=window_block_width,
+                  window_block_height=window_block_height, 
+                  window_size=window_size,
+                  window_distance=window_distance,
+                  window_possible_colors=window_possible_colors
+                  )
+    
 
 def draw_random_stars(amount, min_diameter, max_diameter, color, left_x_border, right_x_border, lower_y_border, upper_y_border):
     for _ in range(amount):
