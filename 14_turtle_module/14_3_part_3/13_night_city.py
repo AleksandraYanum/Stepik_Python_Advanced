@@ -53,7 +53,7 @@ def main():
     draw_random_stars(STAR_AMOUNT, MIN_STAR_DIAMETER, MAX_STAR_DIAMETER, STAR_COLOR, building_start_x, -building_start_x, building_start_y, -building_start_y)
 
 # BUILDINGS WITH WINDOWS DRAWING
-    curr_building_width, curr_building_start_x = draw_random_buildings(amount=building_amount, 
+    drawn_building_width, curr_building_start_x = draw_random_buildings(amount=building_amount, 
                                                                         curr_start_x=curr_building_start_x, 
                                                                         curr_start_y=curr_building_start_y, 
                                                                         screen_width=SCREEN_WIDTH,
@@ -74,16 +74,9 @@ def main():
     curr_building_width = SCREEN_WIDTH - drawn_building_width
     curr_building_height = randrange(MIN_BUILDING_HEIGHT, MAX_BUILDING_HEIGHT, WINDOW_BLOCK_HEIGHT)
 
-    draw_building_frame(curr_building_start_x, curr_building_start_y, curr_building_width, curr_building_height, next(BUILDING_POSSIBLE_COLORS))
-  
-    window_vertical_amount = curr_building_height // WINDOW_BLOCK_HEIGHT
-    window_horizontal_amount = curr_building_width // WINDOW_BLOCK_WIDTH
-    window_start_x = curr_building_start_x + WINDOW_DISTANCE
-    curr_window_start_y = curr_building_start_y + WINDOW_DISTANCE
-
-    draw_building_windows(window_start_x, curr_window_start_y, window_vertical_amount, window_horizontal_amount,
-                              WINDOW_SIZE, WINDOW_BLOCK_HEIGHT, WINDOW_BLOCK_WIDTH, WINDOW_POSSIBLE_COLORS)
-
+    draw_building(curr_building_start_x, building_start_y, curr_building_width, curr_building_height, WINDOW_BLOCK_WIDTH, 
+                  WINDOW_BLOCK_HEIGHT, next(BUILDING_POSSIBLE_COLORS), WINDOW_SIZE, WINDOW_DISTANCE, WINDOW_POSSIBLE_COLORS)
+    
     input()
 
 
@@ -134,7 +127,7 @@ def draw_random_buildings(amount, curr_start_x, curr_start_y, screen_width, min_
         drawn_width += curr_random_width
         curr_start_x += curr_random_width
 
-    return curr_random_width, curr_start_x
+    return drawn_width, curr_start_x
 
 
 def draw_building(start_x, start_y, width, height, window_block_width, window_block_height, color,
