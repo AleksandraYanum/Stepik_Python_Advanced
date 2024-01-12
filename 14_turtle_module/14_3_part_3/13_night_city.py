@@ -120,8 +120,18 @@ def draw_random_buildings(amount, curr_start_x, curr_start_y, drawn_width,
         curr_random_width = randrange(min_width, max_curr_width + 1, window_block_width)
         curr_random_height = randrange(min_height, max_height + 1, window_block_height)
 
-        draw_building(curr_start_x, curr_start_y, curr_random_width, curr_random_height, color=next(possible_colors))
-        
+        draw_building(start_x=curr_start_x, 
+                      start_y=curr_start_y, 
+                      width=curr_random_width, 
+                      height=curr_random_height, 
+                      color=next(possible_colors), 
+                      window_block_width=window_block_width,
+                      window_block_height=window_block_height, 
+                      window_size=window_size,
+                      window_distance=window_distance,
+                      window_possible_colors=window_possible_colors
+                       ) 
+                 
         drawn_width += curr_random_width
         curr_start_x += curr_random_width
 
@@ -143,7 +153,15 @@ def draw_building(start_x, start_y, width, height, color,
     window_start_x = start_x + window_distance
     curr_window_start_y = start_y + window_distance
 
-    draw_building_windows(window_start_x, curr_window_start_y, window_vertical_amount, window_horizontal_amount)
+    draw_building_windows(start_x=window_start_x, 
+                          start_y=curr_window_start_y, 
+                          vertical_amount=window_vertical_amount, 
+                          horizontal_amount=window_horizontal_amount, 
+                          size=window_size,
+                          block_height=window_block_height, 
+                          block_width=window_block_width,
+                          possible_colors=window_possible_colors
+                          )
 
 
 def draw_building_frame(start_x, start_y, width, height, color):
