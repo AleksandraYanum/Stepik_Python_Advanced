@@ -65,9 +65,16 @@ def main():
             curr_polygon_center_y = first_polygon_center_y - polygon_center_distance * polygon_in_row
             
             curr_start_x,  curr_start_y, curr_polygon_side, curr_start_turn_angle = \
-            get_polygon_info_by_side_amount(curr_polygon_center_x, curr_polygon_center_y, curr_polygon_side_amount, POLYGON_HEIGHT)
-                       
-            draw_polygon(curr_start_x, curr_start_y, curr_start_turn_angle, curr_polygon_side_amount, curr_polygon_side, curr_polygon_color)
+            get_polygon_info_by_side_amount(center_x=curr_polygon_center_x, 
+                                            center_y=curr_polygon_center_y, 
+                                            side_amount=curr_polygon_side_amount, 
+                                            height=POLYGON_HEIGHT)
+            draw_polygon(start_x=curr_start_x, 
+                         start_y=curr_start_y, 
+                         start_turn_angle=curr_start_turn_angle, 
+                         side_amount=curr_polygon_side_amount, 
+                         side=curr_polygon_side, 
+                         color=curr_polygon_color)
 
     hideturtle()
     input()
