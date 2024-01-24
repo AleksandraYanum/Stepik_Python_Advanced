@@ -43,8 +43,8 @@ def main():
                 curr_сircumcircle_radius = polygon_height / (cos(pi / curr_polygon_side_amount) + 1) # радиус описанной окружности
                 curr_polygon_side = 2 * curr_сircumcircle_radius * sin(pi / curr_polygon_side_amount) 
                 curr_start_x, curr_start_y = curr_polygon_center_x, curr_polygon_center_y - polygon_height / 2  # drawing sratrting coordinate
-                curr_drawing_turn_angle = 180 - curr_polygon_turn_angle / 2
-                setheading(curr_drawing_turn_angle)
+                curr_start_turn_angle = 180 - curr_polygon_turn_angle / 2
+                setheading(curr_start_turn_angle)
             else:
                 curr_polygon_side = 2 * (polygon_height / 2) * tan(pi / curr_polygon_side_amount)
                 curr_start_x, curr_start_y = curr_polygon_center_x - curr_polygon_side / 2, curr_polygon_center_y + polygon_height / 2
