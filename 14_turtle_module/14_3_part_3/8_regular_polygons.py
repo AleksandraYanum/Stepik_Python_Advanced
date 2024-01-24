@@ -5,14 +5,15 @@ from math import sin, cos, tan, pi
 
 SCREEN_WIDTH, SCREEN_HEIGHT = 500, 500
 
+POLYGON_HEIGHT = 70
 POLYGON_POSSIBLE_COLORS = ['yellow', 'lightblue', 'violet', 'orange', 'red', 'blue', 'green']
 BORDER_DISTANCE = 50
 POLYGON_DISTANCE = 30
+POLYGON_CENTER_DISTANCE = POLYGON_HEIGHT + POLYGON_DISTANCE
 POLYGON_AMOUNT_IN_ROW = 5
 POLYGON_AMOUNT_IN_COL = 5
 POLYGON_MIN_POSSIBLE_SIDE_AMOUNT = 3
 POLYGON_MAX_POSSIBLE_SIDE_AMOUNT = 7
-POLYGON_HEIGHT = 70
 
 
 def draw_polygon(start_x, start_y, start_turn_angle, side_amount, side, color):
@@ -52,7 +53,6 @@ def main():
     Screen().setup(SCREEN_WIDTH, SCREEN_HEIGHT)
     speed(0) 
 
-    polygon_center_distance = POLYGON_HEIGHT + POLYGON_DISTANCE
     first_polygon_center_x = - (SCREEN_WIDTH // 2 - BORDER_DISTANCE)  #center
     first_polygon_center_y = SCREEN_HEIGHT // 2 - BORDER_DISTANCE   #center
 
@@ -61,8 +61,8 @@ def main():
         for polygon_in_col in range(POLYGON_AMOUNT_IN_COL): 
             curr_polygon_side_amount = randint(POLYGON_MIN_POSSIBLE_SIDE_AMOUNT, POLYGON_MAX_POSSIBLE_SIDE_AMOUNT)
             curr_polygon_color = POLYGON_POSSIBLE_COLORS[polygon_in_col]
-            curr_polygon_center_x = first_polygon_center_x + polygon_center_distance * polygon_in_col 
-            curr_polygon_center_y = first_polygon_center_y - polygon_center_distance * polygon_in_row
+            curr_polygon_center_x = first_polygon_center_x + POLYGON_CENTER_DISTANCE * polygon_in_col 
+            curr_polygon_center_y = first_polygon_center_y - POLYGON_CENTER_DISTANCE * polygon_in_row
             
             curr_start_x,  curr_start_y, curr_polygon_side, curr_start_turn_angle = \
             get_polygon_info_by_side_amount(center_x=curr_polygon_center_x, 
