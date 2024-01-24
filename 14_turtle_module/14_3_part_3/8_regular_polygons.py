@@ -14,6 +14,19 @@ POLYGON_MIN_POSSIBLE_SIDE_AMOUNT = 3
 POLYGON_MAX_POSSIBLE_SIDE_AMOUNT = 7
 
 
+def draw_polygon(start_x, start_y, side_amount, side, color):
+    turn_angle = 360 / side_amount
+    penup() 
+    setposition(start_x, start_y)
+    fillcolor(color)
+    pendown()
+    begin_fill()
+    for _ in range(side_amount): 
+        forward(side)
+        right(turn_angle)
+    end_fill()
+
+
 def main():
     Screen().setup(SCREEN_WIDTH, SCREEN_HEIGHT)
     speed(0) 
@@ -23,7 +36,6 @@ def main():
     first_polygon_center_x = - (SCREEN_WIDTH // 2 - BORDER_DISTANCE)  #center
     first_polygon_center_y = SCREEN_HEIGHT // 2 - BORDER_DISTANCE   #center
 
-    penup() 
     for polygon_in_row in range(POLYGON_AMOUNT_IN_ROW):
         shuffle(POLYGON_POSSIBLE_COLORS)
         for polygon_in_col in range(POLYGON_AMOUNT_IN_COL): 
@@ -34,7 +46,6 @@ def main():
             curr_polygon_center_y = first_polygon_center_y - polygon_center_distance * polygon_in_row
             curr_polygon_turn_angle = 360 / curr_polygon_side_amount
             
-            fillcolor(curr_polygon_color)
 
             # For polygons with an odd number of sides (3, 5, 7), the starting point is the center of the bottom border
             # For polygons with an even number of sides (4, 6) - the leftmost point lying on the upper boundary
@@ -51,24 +62,10 @@ def main():
                 setheading(0)
             
             # DRAWING 
-            setposition(curr_start_x, curr_start_y)
-            pendown()
-            begin_fill()
-            for _ in range(curr_polygon_side_amount): 
-                forward(curr_polygon_side)
-                right(curr_polygon_turn_angle)
-            end_fill()
-            penup()
-
+            draw_polygon(curr_start_x, curr_start_y, curr_polygon_side_amount, curr_polygon_side, curr_polygon_color)
 
     hideturtle()
     input()
-
-
-
-
-
-
 
 
 main()
