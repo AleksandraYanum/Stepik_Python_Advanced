@@ -1,5 +1,5 @@
 from turtle import *
-from random import shuffle, randint
+from random import choice, randint
 from math import sin, cos, tan, pi
 
 
@@ -30,12 +30,12 @@ def draw_polygon(start_x, start_y, start_turn_angle, side_amount, side, color):
     end_fill()
 
 
-def get_polygon_info_by_side_amount(center_x, center_y, side_amount, height):
+def calculate_polygon_dimensions(center_x, center_y, side_amount, height):
+
     # For polygons with an odd number of sides (3, 5, 7), the starting point is the center of the bottom border
     # For polygons with an even number of sides (4, 6) - the leftmost point lying on the upper boundary
     
     turn_angle = 360 / side_amount
-
     if side_amount % 2 == 1:
         сircumcircle_radius = height / (cos(pi / side_amount) + 1) # радиус описанной окружности
         side = 2 * сircumcircle_radius * sin(pi / side_amount) 
@@ -48,6 +48,20 @@ def get_polygon_info_by_side_amount(center_x, center_y, side_amount, height):
 
     return start_x, start_y, side, start_turn_angle
 
+  
+def draw_random_polygon(center_x, center_y, height, min_possible_side_amount, max_possible_side_amount, colors):
+    color = choice(colors)
+    side_amount = randint(min_possible_side_amount, max_possible_side_amount)
+    start_x, start_y, side, start_turn_angle = calculate_polygon_dimensions(center_x, center_y, side_amount, height)
+    draw_polygon(start_x=start_x, 
+                 start_y=start_y, 
+                 start_turn_angle=start_turn_angle, 
+                 side_amount=side_amount, 
+                 side=side, 
+                 color=color)
+
+    return side
+
 
 def main():
     Screen().setup(SCREEN_WIDTH, SCREEN_HEIGHT)
@@ -55,26 +69,19 @@ def main():
 
     first_polygon_center_x = - (SCREEN_WIDTH // 2 - BORDER_DISTANCE)  #center
     first_polygon_center_y = SCREEN_HEIGHT // 2 - BORDER_DISTANCE   #center
-
-    for polygon_in_row in range(POLYGON_AMOUNT_IN_ROW):
-        shuffle(POLYGON_POSSIBLE_COLORS)
-        for polygon_in_col in range(POLYGON_AMOUNT_IN_COL): 
-            curr_polygon_side_amount = randint(POLYGON_MIN_POSSIBLE_SIDE_AMOUNT, POLYGON_MAX_POSSIBLE_SIDE_AMOUNT)
-            curr_polygon_color = POLYGON_POSSIBLE_COLORS[polygon_in_col]
-            curr_polygon_center_x = first_polygon_center_x + POLYGON_CENTER_DISTANCE * polygon_in_col 
-            curr_polygon_center_y = first_polygon_center_y - POLYGON_CENTER_DISTANCE * polygon_in_row
-            
-            curr_start_x,  curr_start_y, curr_polygon_side, curr_start_turn_angle = \
-            get_polygon_info_by_side_amount(center_x=curr_polygon_center_x, 
-                                            center_y=curr_polygon_center_y, 
-                                            side_amount=curr_polygon_side_amount, 
-                                            height=POLYGON_HEIGHT)
-            draw_polygon(start_x=curr_start_x, 
-                         start_y=curr_start_y, 
-                         start_turn_angle=curr_start_turn_angle, 
-                         side_amount=curr_polygon_side_amount, 
-                         side=curr_polygon_side, 
-                         color=curr_polygon_color)
+    curr_center_x, curr_center_y = first_polygon_center_x, first_polygon_center_y
+   
+    for _  in range(POLYGON_AMOUNT_IN_ROW):
+        for _ in range(POLYGON_AMOUNT_IN_COL): 
+            draw_random_polygon(center_x=curr_center_x, 
+                                center_y=curr_center_y, 
+                                height=POLYGON_HEIGHT, 
+                                min_possible_side_amount=POLYGON_MIN_POSSIBLE_SIDE_AMOUNT, 
+                                max_possible_side_amount=POLYGON_MAX_POSSIBLE_SIDE_AMOUNT, 
+                                colors=POLYGON_POSSIBLE_COLORS)
+            curr_center_x += POLYGON_CENTER_DISTANCE
+        curr_center_x = first_polygon_center_x
+        curr_center_y -= POLYGON_CENTER_DISTANCE
 
     hideturtle()
     input()
