@@ -1,12 +1,15 @@
 from turtle import *
-from random import choice, randint
+from random import shuffle, randint
 from math import sin, cos, tan, pi
 
 
 SCREEN_WIDTH, SCREEN_HEIGHT = 500, 500
 
 POLYGON_HEIGHT = 70
+
+# The amount of colors is not less than the amount of polygons in a row
 POLYGON_POSSIBLE_COLORS = ['yellow', 'lightblue', 'violet', 'orange', 'red', 'blue', 'green']
+
 BORDER_DISTANCE = 50
 POLYGON_DISTANCE = 30
 POLYGON_CENTER_DISTANCE = POLYGON_HEIGHT + POLYGON_DISTANCE
@@ -49,8 +52,7 @@ def calculate_polygon_dimensions(center_x, center_y, side_amount, height):
     return start_x, start_y, side, start_turn_angle
 
   
-def draw_random_polygon(center_x, center_y, height, min_possible_side_amount, max_possible_side_amount, colors):
-    color = choice(colors)
+def draw_random_polygon(center_x, center_y, height, min_possible_side_amount, max_possible_side_amount, color):
     side_amount = randint(min_possible_side_amount, max_possible_side_amount)
     start_x, start_y, side, start_turn_angle = calculate_polygon_dimensions(center_x, center_y, side_amount, height)
     draw_polygon(start_x=start_x, 
@@ -72,13 +74,14 @@ def main():
     curr_center_x, curr_center_y = first_polygon_center_x, first_polygon_center_y
    
     for _  in range(POLYGON_AMOUNT_IN_ROW):
-        for _ in range(POLYGON_AMOUNT_IN_COL): 
+        shuffle(POLYGON_POSSIBLE_COLORS)
+        for polygon_in_row in range(POLYGON_AMOUNT_IN_COL): 
             draw_random_polygon(center_x=curr_center_x, 
                                 center_y=curr_center_y, 
                                 height=POLYGON_HEIGHT, 
                                 min_possible_side_amount=POLYGON_MIN_POSSIBLE_SIDE_AMOUNT, 
                                 max_possible_side_amount=POLYGON_MAX_POSSIBLE_SIDE_AMOUNT, 
-                                colors=POLYGON_POSSIBLE_COLORS)
+                                color=POLYGON_POSSIBLE_COLORS[polygon_in_row])
             curr_center_x += POLYGON_CENTER_DISTANCE
         curr_center_x = first_polygon_center_x
         curr_center_y -= POLYGON_CENTER_DISTANCE
