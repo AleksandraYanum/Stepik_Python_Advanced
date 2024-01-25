@@ -1,18 +1,19 @@
 from turtle import *
 from random import shuffle, randint
-from math import sin, cos, tan, pi
+from math import sin, tan, pi, sqrt, radians
 
 
 SCREEN_WIDTH, SCREEN_HEIGHT = 500, 500
 
-POLYGON_HEIGHT = 70
+# POLYGON_HEIGHT = 70
+POLYGON_AREA = 5000
 
 # The amount of colors is not less than the amount of polygons in a row
 POLYGON_POSSIBLE_COLORS = ['yellow', 'lightblue', 'violet', 'orange', 'red', 'blue', 'green']
 
 BORDER_DISTANCE = 50
 POLYGON_DISTANCE = 30
-POLYGON_CENTER_DISTANCE = POLYGON_HEIGHT + POLYGON_DISTANCE
+POLYGON_CENTER_DISTANCE = 100
 POLYGON_AMOUNT_IN_ROW = 5
 POLYGON_AMOUNT_IN_COL = 5
 POLYGON_MIN_POSSIBLE_SIDE_AMOUNT = 3
@@ -33,28 +34,28 @@ def draw_polygon(start_x, start_y, start_turn_angle, side_amount, side, color):
     end_fill()
 
 
-def calculate_polygon_dimensions_by_height(center_x, center_y, side_amount, height):
+def calculate_polygon_dimensions_by_area(area, side_amount, center_x, center_y):
 
     # For polygons with an odd number of sides (3, 5, 7), the starting point is the center of the bottom border
     # For polygons with an even number of sides (4, 6) - the leftmost point lying on the upper boundary
     
     turn_angle = 360 / side_amount
+    side = sqrt(area * 4 * tan(radians(180) / side_amount) / side_amount)
+    incircle_radius = side / (2 * tan(pi / side_amount)) # радиус вписанной окружности
+
     if side_amount % 2 == 1:
-        excircle_radius = height / (cos(pi / side_amount) + 1) # радиус описанной окружности
-        side = 2 * excircle_radius * sin(pi / side_amount) 
+        excircle_radius = side / (2 * sin(pi / side_amount)) # радиус описанной окружности
         start_turn_angle = 180 - turn_angle / 2
-        start_x, start_y = center_x, center_y - height / 2  # drawing sratrting coordinate
+        start_x, start_y = center_x, center_y - (incircle_radius + excircle_radius) / 2  # drawing sratrting coordinate
     else:
-        side = 2 * (height / 2) * tan(pi / side_amount)
         start_turn_angle = 0
-        start_x, start_y = center_x - side / 2, center_y + height / 2
+        start_x, start_y = center_x - side / 2, center_y + incircle_radius
 
     return start_x, start_y, side, start_turn_angle
-
   
-def draw_random_polygon(center_x, center_y, height, min_possible_side_amount, max_possible_side_amount, color):
+def draw_random_polygon(center_x, center_y, area, min_possible_side_amount, max_possible_side_amount, color):
     side_amount = randint(min_possible_side_amount, max_possible_side_amount)
-    start_x, start_y, side, start_turn_angle = calculate_polygon_dimensions_by_height(center_x, center_y, side_amount, height)
+    start_x, start_y, side, start_turn_angle = calculate_polygon_dimensions_by_area(area, side_amount, center_x, center_y)
     draw_polygon(start_x=start_x, 
                  start_y=start_y, 
                  start_turn_angle=start_turn_angle, 
@@ -78,7 +79,7 @@ def main():
         for polygon_in_row in range(POLYGON_AMOUNT_IN_COL): 
             draw_random_polygon(center_x=curr_center_x, 
                                 center_y=curr_center_y, 
-                                height=POLYGON_HEIGHT, 
+                                area=POLYGON_AREA, 
                                 min_possible_side_amount=POLYGON_MIN_POSSIBLE_SIDE_AMOUNT, 
                                 max_possible_side_amount=POLYGON_MAX_POSSIBLE_SIDE_AMOUNT, 
                                 color=POLYGON_POSSIBLE_COLORS[polygon_in_row])
