@@ -40,8 +40,8 @@ def calculate_polygon_dimensions_by_height(center_x, center_y, side_amount, heig
     
     turn_angle = 360 / side_amount
     if side_amount % 2 == 1:
-        сircumcircle_radius = height / (cos(pi / side_amount) + 1) # радиус описанной окружности
-        side = 2 * сircumcircle_radius * sin(pi / side_amount) 
+        excircle_radius = height / (cos(pi / side_amount) + 1) # радиус описанной окружности
+        side = 2 * excircle_radius * sin(pi / side_amount) 
         start_turn_angle = 180 - turn_angle / 2
         start_x, start_y = center_x, center_y - height / 2  # drawing sratrting coordinate
     else:
