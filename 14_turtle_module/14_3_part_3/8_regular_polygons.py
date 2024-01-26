@@ -19,7 +19,7 @@ POLYGON_MIN_POSSIBLE_SIDE_AMOUNT = 3
 POLYGON_MAX_POSSIBLE_SIDE_AMOUNT = 7
 
 
-def draw_polygon(center_x, center_y, side_amount, side, color):
+def get_start_drawing_coords_angle(center_x, center_y, side_amount, side):
     turn_angle = 360 / side_amount
     excircle_radius = side / (2 * sin(pi / side_amount))
     height = excircle_radius * (cos(pi / side_amount) + 1)
@@ -29,6 +29,12 @@ def draw_polygon(center_x, center_y, side_amount, side, color):
     else:
         start_turn_angle = 0
         start_x, start_y = center_x - side / 2, center_y + height / 2
+    
+    return start_x, start_y, start_turn_angle
+
+def draw_polygon(center_x, center_y, side_amount, side, color):
+    turn_angle = 360 / side_amount
+    start_x, start_y, start_turn_angle = get_start_drawing_coords_angle(center_x, center_y, side_amount, side)
 
     penup() 
     setheading(start_turn_angle)
