@@ -12,7 +12,7 @@ POLYGON_AREA = 5000
 POLYGON_POSSIBLE_COLORS = ['yellow', 'lightblue', 'violet', 'orange', 'red', 'blue', 'green']
 
 BORDER_DISTANCE = 50
-POLYGON_DISTANCE = 30
+POLYGON_DISTANCE = 50
 POLYGON_CENTER_DISTANCE = POLYGON_HEIGHT + POLYGON_DISTANCE
 POLYGON_AMOUNT_IN_ROW = 5
 POLYGON_AMOUNT_IN_COL = 5
@@ -22,7 +22,7 @@ POLYGON_MAX_POSSIBLE_SIDE_AMOUNT = 7
 EQUAL_HEIGHT = 1
 EQUAL_AREA = 2
 # Choose one of the options above
-DRAW_MODE = EQUAL_AREA
+DRAW_MODE = EQUAL_HEIGHT
 
 
 def get_start_drawing_coords_angle(center_x, center_y, side_amount, side):
@@ -108,7 +108,7 @@ def draw_random_polygon_by_area(center_x, center_y, area, min_possible_side_amou
 
 
 def draw_random_polygon_matrix_by_area(first_center_x, first_center_y, amount_in_row, amount_in_col, area, min_possible_side_amount, 
-                          max_possible_side_amount, center_distance, colors):
+                                       max_possible_side_amount, center_distance, colors):
     curr_center_x, curr_center_y = first_center_x, first_center_y
 
     for _ in range(amount_in_row):
@@ -125,7 +125,7 @@ def draw_random_polygon_matrix_by_area(first_center_x, first_center_y, amount_in
 
 
 def draw_random_polygon_matrix_by_height(first_center_x, first_center_y, amount_in_row, amount_in_col, height, min_possible_side_amount, 
-                          max_possible_side_amount, center_distance, colors):
+                                         max_possible_side_amount, center_distance, colors):
     curr_center_x, curr_center_y = first_center_x, first_center_y
 
     for _ in range(amount_in_row):
