@@ -1,5 +1,5 @@
 from turtle import *
-from random import shuffle, randint
+from random import choice, randint
 from math import sin, cos, tan, pi
 
 
@@ -7,7 +7,6 @@ SCREEN_WIDTH, SCREEN_HEIGHT = 500, 500
 
 POLYGON_HEIGHT = 70
 
-# The amount of colors is not less than the amount of polygons in a row
 POLYGON_POSSIBLE_COLORS = ['yellow', 'lightblue', 'violet', 'orange', 'red', 'blue', 'green']
 
 BORDER_DISTANCE = 50
@@ -103,14 +102,13 @@ def main():
     curr_center_x, curr_center_y = first_polygon_center_x, first_polygon_center_y
    
     for _ in range(POLYGON_AMOUNT_IN_ROW):
-        shuffle(POLYGON_POSSIBLE_COLORS)
-        for polygon_idx in range(POLYGON_AMOUNT_IN_COL): 
+        for _ in range(POLYGON_AMOUNT_IN_COL): 
             draw_random_polygon(center_x=curr_center_x, 
                                 center_y=curr_center_y, 
                                 height=POLYGON_HEIGHT, 
                                 min_possible_side_amount=POLYGON_MIN_POSSIBLE_SIDE_AMOUNT, 
                                 max_possible_side_amount=POLYGON_MAX_POSSIBLE_SIDE_AMOUNT, 
-                                color=POLYGON_POSSIBLE_COLORS[polygon_idx])
+                                color=choice(POLYGON_POSSIBLE_COLORS))
             curr_center_x += POLYGON_CENTER_DISTANCE
         curr_center_x = first_polygon_center_x
         curr_center_y -= POLYGON_CENTER_DISTANCE
