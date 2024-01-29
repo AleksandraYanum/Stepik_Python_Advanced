@@ -22,15 +22,17 @@ POLYGON_MAX_POSSIBLE_SIDE_AMOUNT = 7
 def get_start_drawing_coords_angle(center_x, center_y, side_amount, side):
     turn_angle = 360 / side_amount
     excircle_radius = side / (2 * sin(pi / side_amount))
-    height = excircle_radius * (cos(pi / side_amount) + 1)
     if side_amount % 2 == 1:
+        height = excircle_radius * (cos(pi / side_amount) + 1)
         start_turn_angle = 180 - turn_angle / 2
         start_x, start_y = center_x, center_y - height / 2  
     else:
+        height = 2 * (side / (2* tan(pi / side_amount)))
         start_turn_angle = 0
         start_x, start_y = center_x - side / 2, center_y + height / 2
     
     return start_x, start_y, start_turn_angle
+
 
 def draw_polygon(center_x, center_y, side_amount, side, color):
     turn_angle = 360 / side_amount
