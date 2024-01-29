@@ -22,7 +22,7 @@ POLYGON_MAX_POSSIBLE_SIDE_AMOUNT = 7
 EQUAL_HEIGHT = 1
 EQUAL_AREA = 2
 # Choose one of the options above
-DRAW_MODE = EQUAL_HEIGHT
+DRAW_MODE = EQUAL_AREA
 
 
 def get_start_drawing_coords_angle(center_x, center_y, side_amount, side):
@@ -115,15 +115,23 @@ def main():
     first_polygon_center_x = - (SCREEN_WIDTH // 2 - BORDER_DISTANCE)  #center
     first_polygon_center_y = SCREEN_HEIGHT // 2 - BORDER_DISTANCE   #center
     curr_center_x, curr_center_y = first_polygon_center_x, first_polygon_center_y
-   
+  
     for _ in range(POLYGON_AMOUNT_IN_ROW):
         for _ in range(POLYGON_AMOUNT_IN_COL): 
-            draw_random_polygon_by_area(center_x=curr_center_x, 
-                                center_y=curr_center_y, 
-                                area=POLYGON_AREA, 
-                                min_possible_side_amount=POLYGON_MIN_POSSIBLE_SIDE_AMOUNT, 
-                                max_possible_side_amount=POLYGON_MAX_POSSIBLE_SIDE_AMOUNT, 
-                                color=choice(POLYGON_POSSIBLE_COLORS))
+            if DRAW_MODE == EQUAL_AREA:
+                draw_random_polygon_by_area(center_x=curr_center_x, 
+                                    center_y=curr_center_y, 
+                                    area=POLYGON_AREA, 
+                                    min_possible_side_amount=POLYGON_MIN_POSSIBLE_SIDE_AMOUNT, 
+                                    max_possible_side_amount=POLYGON_MAX_POSSIBLE_SIDE_AMOUNT, 
+                                    color=choice(POLYGON_POSSIBLE_COLORS))
+            elif DRAW_MODE == EQUAL_HEIGHT:
+                draw_random_polygon_by_height(center_x=curr_center_x, 
+                                    center_y=curr_center_y, 
+                                    height=POLYGON_HEIGHT, 
+                                    min_possible_side_amount=POLYGON_MIN_POSSIBLE_SIDE_AMOUNT, 
+                                    max_possible_side_amount=POLYGON_MAX_POSSIBLE_SIDE_AMOUNT, 
+                                    color=choice(POLYGON_POSSIBLE_COLORS))
             curr_center_x += POLYGON_CENTER_DISTANCE
         curr_center_x = first_polygon_center_x
         curr_center_y -= POLYGON_CENTER_DISTANCE
