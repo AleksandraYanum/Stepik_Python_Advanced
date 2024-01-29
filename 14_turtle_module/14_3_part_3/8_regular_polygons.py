@@ -34,7 +34,7 @@ def get_start_drawing_coords_angle(center_x, center_y, side_amount, side):
     return start_x, start_y, start_turn_angle
 
 
-def calculate_polygon_dimensions(height, side_amount, center_x, center_y):
+def calculate_polygon_dimensions(center_x, center_y, height, side_amount):
 
     # For polygons with an odd number of sides (3, 5, 7), the starting point is the center of the bottom border
     # For polygons with an even number of sides (4, 6) - the leftmost point lying on the upper boundary
@@ -69,9 +69,9 @@ def draw_polygon(center_x, center_y, side_amount, side, color):
     end_fill()
 
 
-def draw_polygon_by_height(height, side_amount, center_x, center_y, color):
+def draw_polygon_by_height(center_x, center_y, height, side_amount, color):
     turn_angle = 360 / side_amount
-    side, start_x, start_y, start_turn_angle = calculate_polygon_dimensions(height, side_amount, center_x, center_y)
+    side, start_x, start_y, start_turn_angle = calculate_polygon_dimensions(center_x, center_y, height, side_amount, )
 
     penup() 
     setheading(start_turn_angle)
@@ -88,7 +88,7 @@ def draw_polygon_by_height(height, side_amount, center_x, center_y, color):
 def draw_random_polygon(center_x, center_y, height, min_possible_side_amount, max_possible_side_amount, color):
     side_amount = randint(min_possible_side_amount, max_possible_side_amount)
     
-    draw_polygon_by_height(height, side_amount, center_x, center_y, color)
+    draw_polygon_by_height(center_x, center_y, height, side_amount, color)
 
 
 
