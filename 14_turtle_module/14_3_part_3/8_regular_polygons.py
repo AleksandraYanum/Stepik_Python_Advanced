@@ -6,6 +6,8 @@ from math import sin, cos, tan, pi
 SCREEN_WIDTH, SCREEN_HEIGHT = 500, 500
 
 POLYGON_HEIGHT = 70
+POLYGON_AREA = 5000
+
 
 POLYGON_POSSIBLE_COLORS = ['yellow', 'lightblue', 'violet', 'orange', 'red', 'blue', 'green']
 
@@ -92,7 +94,7 @@ def draw_polygon_by_height(center_x, center_y, height, side_amount, color):
     setposition(init_x, init_y) 
 
 
-def draw_random_polygon(center_x, center_y, height, min_possible_side_amount, max_possible_side_amount, color):
+def draw_random_polygon_by_height(center_x, center_y, height, min_possible_side_amount, max_possible_side_amount, color):
     side_amount = randint(min_possible_side_amount, max_possible_side_amount)
     
     draw_polygon_by_height(center_x, center_y, height, side_amount, color)
@@ -108,7 +110,7 @@ def main():
    
     for _ in range(POLYGON_AMOUNT_IN_ROW):
         for _ in range(POLYGON_AMOUNT_IN_COL): 
-            draw_random_polygon(center_x=curr_center_x, 
+            draw_random_polygon_by_height(center_x=curr_center_x, 
                                 center_y=curr_center_y, 
                                 height=POLYGON_HEIGHT, 
                                 min_possible_side_amount=POLYGON_MIN_POSSIBLE_SIDE_AMOUNT, 
