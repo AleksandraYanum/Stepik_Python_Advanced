@@ -73,6 +73,7 @@ def draw_polygon_by_height(center_x, center_y, height, side_amount, color):
     turn_angle = 360 / side_amount
     start_x, start_y, start_turn_angle, side = get_drawing_init_values(center_x, center_y, height, side_amount)
 
+    init_x, init_y = pos()
     penup() 
     setheading(start_turn_angle)
     setposition(start_x, start_y)
@@ -83,6 +84,10 @@ def draw_polygon_by_height(center_x, center_y, height, side_amount, color):
         forward(side)
         right(turn_angle)
     end_fill()
+    penup()
+    setposition(init_x, init_y) 
+
+
 
 
 def draw_random_polygon(center_x, center_y, height, min_possible_side_amount, max_possible_side_amount, color):
