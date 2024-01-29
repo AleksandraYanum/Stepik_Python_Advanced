@@ -34,11 +34,11 @@ def get_start_drawing_coords_angle(center_x, center_y, side_amount, side):
     return start_x, start_y, start_turn_angle
 
 
-def get_drawing_init_values(center_x, center_y, height, side_amount):
+# For polygons with an odd number of sides (3, 5, 7), the starting point is the center of the bottom border
+# For polygons with an even number of sides (4, 6) - the leftmost point lying on the upper boundary
 
-    # For polygons with an odd number of sides (3, 5, 7), the starting point is the center of the bottom border
-    # For polygons with an even number of sides (4, 6) - the leftmost point lying on the upper boundary
-    
+def get_drawing_init_values(center_x, center_y, height, side_amount):
+   
     turn_angle = 360 / side_amount
     if side_amount % 2 == 1:
         сircumcircle_radius = height / (cos(pi / side_amount) + 1) # радиус описанной окружности
