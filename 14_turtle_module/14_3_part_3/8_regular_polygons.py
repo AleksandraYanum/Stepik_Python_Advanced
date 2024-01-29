@@ -107,6 +107,39 @@ def draw_random_polygon_by_area(center_x, center_y, area, min_possible_side_amou
     draw_polygon_by_side(center_x, center_y, side, side_amount, color)
 
 
+def draw_random_polygon_matrix_by_area(first_center_x, first_center_y, amount_in_row, amount_in_col, area, min_possible_side_amount, 
+                          max_possible_side_amount, center_distance, colors):
+    curr_center_x, curr_center_y = first_center_x, first_center_y
+
+    for _ in range(amount_in_row):
+        for _ in range(amount_in_col): 
+                draw_random_polygon_by_area(center_x=curr_center_x, 
+                                            center_y=curr_center_y, 
+                                            area=area, 
+                                            min_possible_side_amount=min_possible_side_amount, 
+                                            max_possible_side_amount=max_possible_side_amount, 
+                                            color=choice(colors))  
+                curr_center_x += center_distance
+        curr_center_x = first_center_x
+        curr_center_y -= center_distance
+
+
+def draw_random_polygon_matrix_by_height(first_center_x, first_center_y, amount_in_row, amount_in_col, height, min_possible_side_amount, 
+                          max_possible_side_amount, center_distance, colors):
+    curr_center_x, curr_center_y = first_center_x, first_center_y
+
+    for _ in range(amount_in_row):
+        for _ in range(amount_in_col): 
+                draw_random_polygon_by_height(center_x=curr_center_x, 
+                                            center_y=curr_center_y, 
+                                            height=height, 
+                                            min_possible_side_amount=min_possible_side_amount, 
+                                            max_possible_side_amount=max_possible_side_amount, 
+                                            color=choice(colors))  
+                curr_center_x += center_distance
+        curr_center_x = first_center_x
+        curr_center_y -= center_distance
+
 
 def main():
     Screen().setup(SCREEN_WIDTH, SCREEN_HEIGHT)
@@ -114,27 +147,27 @@ def main():
 
     first_polygon_center_x = - (SCREEN_WIDTH // 2 - BORDER_DISTANCE)  #center
     first_polygon_center_y = SCREEN_HEIGHT // 2 - BORDER_DISTANCE   #center
-    curr_center_x, curr_center_y = first_polygon_center_x, first_polygon_center_y
   
-    for _ in range(POLYGON_AMOUNT_IN_ROW):
-        for _ in range(POLYGON_AMOUNT_IN_COL): 
-            if DRAW_MODE == EQUAL_AREA:
-                draw_random_polygon_by_area(center_x=curr_center_x, 
-                                    center_y=curr_center_y, 
-                                    area=POLYGON_AREA, 
-                                    min_possible_side_amount=POLYGON_MIN_POSSIBLE_SIDE_AMOUNT, 
-                                    max_possible_side_amount=POLYGON_MAX_POSSIBLE_SIDE_AMOUNT, 
-                                    color=choice(POLYGON_POSSIBLE_COLORS))
-            elif DRAW_MODE == EQUAL_HEIGHT:
-                draw_random_polygon_by_height(center_x=curr_center_x, 
-                                    center_y=curr_center_y, 
-                                    height=POLYGON_HEIGHT, 
-                                    min_possible_side_amount=POLYGON_MIN_POSSIBLE_SIDE_AMOUNT, 
-                                    max_possible_side_amount=POLYGON_MAX_POSSIBLE_SIDE_AMOUNT, 
-                                    color=choice(POLYGON_POSSIBLE_COLORS))
-            curr_center_x += POLYGON_CENTER_DISTANCE
-        curr_center_x = first_polygon_center_x
-        curr_center_y -= POLYGON_CENTER_DISTANCE
+    if DRAW_MODE == EQUAL_AREA:
+        draw_random_polygon_matrix_by_area(first_center_x=first_polygon_center_x,
+                                           first_center_y=first_polygon_center_y,
+                                           amount_in_row=POLYGON_AMOUNT_IN_ROW,
+                                           amount_in_col=POLYGON_AMOUNT_IN_COL,
+                                           area=POLYGON_AREA,
+                                           min_possible_side_amount=POLYGON_MIN_POSSIBLE_SIDE_AMOUNT, 
+                                           max_possible_side_amount=POLYGON_MAX_POSSIBLE_SIDE_AMOUNT, 
+                                           center_distance=POLYGON_CENTER_DISTANCE,
+                                           colors=POLYGON_POSSIBLE_COLORS)
+    elif DRAW_MODE == EQUAL_HEIGHT:
+        draw_random_polygon_matrix_by_height(first_center_x=first_polygon_center_x,
+                                             first_center_y=first_polygon_center_y,
+                                             amount_in_row=POLYGON_AMOUNT_IN_ROW,
+                                             amount_in_col=POLYGON_AMOUNT_IN_COL,
+                                             height=POLYGON_HEIGHT,
+                                             min_possible_side_amount=POLYGON_MIN_POSSIBLE_SIDE_AMOUNT, 
+                                             max_possible_side_amount=POLYGON_MAX_POSSIBLE_SIDE_AMOUNT, 
+                                             center_distance=POLYGON_CENTER_DISTANCE,
+                                             colors=POLYGON_POSSIBLE_COLORS)
 
     hideturtle()
     input()
