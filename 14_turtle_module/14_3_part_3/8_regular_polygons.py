@@ -1,6 +1,6 @@
 from turtle import *
 from random import choice, randint
-from math import sin, cos, tan, pi
+from math import sin, cos, tan, pi, sqrt, radians
 
 
 SCREEN_WIDTH, SCREEN_HEIGHT = 500, 500
@@ -100,6 +100,14 @@ def draw_random_polygon_by_height(center_x, center_y, height, min_possible_side_
     draw_polygon_by_height(center_x, center_y, height, side_amount, color)
 
 
+def draw_random_polygon_by_area(center_x, center_y, area, min_possible_side_amount, max_possible_side_amount, color):
+    side_amount = randint(min_possible_side_amount, max_possible_side_amount)
+    side = sqrt(area * 4 * tan(radians(180) / side_amount) / side_amount)
+
+    draw_polygon_by_side(center_x, center_y, side, side_amount, color)
+
+
+
 def main():
     Screen().setup(SCREEN_WIDTH, SCREEN_HEIGHT)
     speed(0) 
@@ -110,9 +118,9 @@ def main():
    
     for _ in range(POLYGON_AMOUNT_IN_ROW):
         for _ in range(POLYGON_AMOUNT_IN_COL): 
-            draw_random_polygon_by_height(center_x=curr_center_x, 
+            draw_random_polygon_by_area(center_x=curr_center_x, 
                                 center_y=curr_center_y, 
-                                height=POLYGON_HEIGHT, 
+                                area=POLYGON_AREA, 
                                 min_possible_side_amount=POLYGON_MIN_POSSIBLE_SIDE_AMOUNT, 
                                 max_possible_side_amount=POLYGON_MAX_POSSIBLE_SIDE_AMOUNT, 
                                 color=choice(POLYGON_POSSIBLE_COLORS))
