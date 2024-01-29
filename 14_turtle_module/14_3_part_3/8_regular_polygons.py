@@ -88,13 +88,10 @@ def draw_polygon_by_height(center_x, center_y, height, side_amount, color):
     setposition(init_x, init_y) 
 
 
-
-
 def draw_random_polygon(center_x, center_y, height, min_possible_side_amount, max_possible_side_amount, color):
     side_amount = randint(min_possible_side_amount, max_possible_side_amount)
     
     draw_polygon_by_height(center_x, center_y, height, side_amount, color)
-
 
 
 def main():
