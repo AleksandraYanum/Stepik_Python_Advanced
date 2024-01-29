@@ -34,6 +34,25 @@ def get_start_drawing_coords_angle(center_x, center_y, side_amount, side):
     return start_x, start_y, start_turn_angle
 
 
+def calculate_polygon_dimensions(height, side_amount, center_x, center_y):
+
+    # For polygons with an odd number of sides (3, 5, 7), the starting point is the center of the bottom border
+    # For polygons with an even number of sides (4, 6) - the leftmost point lying on the upper boundary
+    
+    turn_angle = 360 / side_amount
+    if side_amount % 2 == 1:
+        сircumcircle_radius = height / (cos(pi / side_amount) + 1) # радиус описанной окружности
+        side = 2 * сircumcircle_radius * sin(pi / side_amount) 
+        start_turn_angle = 180 - turn_angle / 2
+        start_x, start_y = center_x, center_y - height / 2  # drawing sratrting coordinate
+    else:
+        side = 2 * (height / 2) * tan(pi / side_amount)
+        start_turn_angle = 0
+        start_x, start_y = center_x - side / 2, center_y + height / 2
+
+    return side, start_x, start_y, start_turn_angle
+
+
 def draw_polygon(center_x, center_y, side_amount, side, color):
     turn_angle = 360 / side_amount
     start_x, start_y, start_turn_angle = get_start_drawing_coords_angle(center_x, center_y, side_amount, side)
@@ -49,19 +68,28 @@ def draw_polygon(center_x, center_y, side_amount, side, color):
         right(turn_angle)
     end_fill()
 
-  
+
+def draw_polygon_by_height(height, side_amount, center_x, center_y, color):
+    turn_angle = 360 / side_amount
+    side, start_x, start_y, start_turn_angle = calculate_polygon_dimensions(height, side_amount, center_x, center_y)
+
+    penup() 
+    setheading(start_turn_angle)
+    setposition(start_x, start_y)
+    fillcolor(color)
+    pendown()
+    begin_fill()
+    for _ in range(side_amount): 
+        forward(side)
+        right(turn_angle)
+    end_fill()
+
+
 def draw_random_polygon(center_x, center_y, height, min_possible_side_amount, max_possible_side_amount, color):
     side_amount = randint(min_possible_side_amount, max_possible_side_amount)
     
-    if side_amount % 2 == 1:
-        excircle_radius = height / (cos(pi / side_amount) + 1) # радиус описанной окружности
-        side = 2 * excircle_radius * sin(pi / side_amount) 
-    else:
-        side = 2 * (height / 2) * tan(pi / side_amount)
+    draw_polygon_by_height(height, side_amount, center_x, center_y, color)
 
-    draw_polygon(center_x, center_y, side_amount, side, color)
-
-    return side
 
 
 def main():
