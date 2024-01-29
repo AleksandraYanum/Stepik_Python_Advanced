@@ -53,7 +53,7 @@ def calculate_polygon_dimensions(center_x, center_y, height, side_amount):
     return side, start_x, start_y, start_turn_angle
 
 
-def draw_polygon(center_x, center_y, side_amount, side, color):
+def draw_polygon_by_side(center_x, center_y, side, side_amount, color):
     turn_angle = 360 / side_amount
     start_x, start_y, start_turn_angle = get_start_drawing_coords_angle(center_x, center_y, side_amount, side)
 
