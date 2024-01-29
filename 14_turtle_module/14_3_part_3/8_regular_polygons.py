@@ -44,13 +44,13 @@ def get_drawing_init_values(center_x, center_y, height, side_amount):
         сircumcircle_radius = height / (cos(pi / side_amount) + 1) # радиус описанной окружности
         side = 2 * сircumcircle_radius * sin(pi / side_amount) 
         start_turn_angle = 180 - turn_angle / 2
-        start_x, start_y = center_x, center_y - height / 2  # drawing sratrting coordinate
+        start_x, start_y = center_x, center_y - height / 2  # drawing starting coordinate
     else:
         side = 2 * (height / 2) * tan(pi / side_amount)
         start_turn_angle = 0
         start_x, start_y = center_x - side / 2, center_y + height / 2
 
-    return side, start_x, start_y, start_turn_angle
+    return start_x, start_y, start_turn_angle, side
 
 
 def draw_polygon_by_side(center_x, center_y, side, side_amount, color):
@@ -71,7 +71,7 @@ def draw_polygon_by_side(center_x, center_y, side, side_amount, color):
 
 def draw_polygon_by_height(center_x, center_y, height, side_amount, color):
     turn_angle = 360 / side_amount
-    side, start_x, start_y, start_turn_angle = get_drawing_init_values(center_x, center_y, height, side_amount, )
+    start_x, start_y, start_turn_angle, side = get_drawing_init_values(center_x, center_y, height, side_amount)
 
     penup() 
     setheading(start_turn_angle)
