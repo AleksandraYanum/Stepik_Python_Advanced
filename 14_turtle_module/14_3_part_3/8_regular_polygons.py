@@ -17,6 +17,11 @@ POLYGON_AMOUNT_IN_COL = 5
 POLYGON_MIN_POSSIBLE_SIDE_AMOUNT = 3
 POLYGON_MAX_POSSIBLE_SIDE_AMOUNT = 7
 
+EQUAL_HEIGHT = 1
+EQUAL_AREA = 2
+# Choose one of the options above
+DRAW_MODE = EQUAL_HEIGHT
+
 
 def get_start_drawing_coords_angle(center_x, center_y, side_amount, side):
     turn_angle = 360 / side_amount
