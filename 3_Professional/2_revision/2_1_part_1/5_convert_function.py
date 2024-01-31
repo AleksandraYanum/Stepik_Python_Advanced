@@ -12,3 +12,9 @@ def convert(string):
     edited_string = string.lower() if lower_alpha_count >= upper_alpha_count else string.upper()
 
     return edited_string
+
+
+def convert_v2(string):
+    edited_string = string.lower() if sum(map(str.islower, string)) >= sum(map(str.isupper, string)) else string.upper() 
+    
+    return edited_string
