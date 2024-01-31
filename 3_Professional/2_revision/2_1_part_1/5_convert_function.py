@@ -1,4 +1,4 @@
-# Code is loger, but with 1 loop
+# Code is longer, but with 1 loop
 def convert(string):
     lower_alpha_count = 0
     upper_alpha_count = 0
