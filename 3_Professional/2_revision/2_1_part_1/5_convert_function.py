@@ -16,5 +16,18 @@ def convert(string):
 
 def convert_v2(string):
     edited_string = string.lower() if sum(map(str.islower, string)) >= sum(map(str.isupper, string)) else string.upper() 
+
+    return edited_string
+
+
+def convert_v3(string):
+    edited_string = string.lower() if sum(map(lambda c: (1 if c.isupper() else -1) if c.isalpha() else 0, string)) <= 0 else string.upper()
     
     return edited_string
+
+
+def main():
+    print(convert('pi31415!'))
+
+
+main()
