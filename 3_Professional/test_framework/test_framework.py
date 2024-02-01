@@ -16,3 +16,9 @@ def hide_card(card_number):
     hided_card_number = HIDING_SYM * HIDING_SYM_AMOUNT + card_number_only_digit[- NOT_HIDED_DIGIT_AMOUNT:]
     return hided_card_number
 
+
+def test():
+    pass
+
+
+test()
