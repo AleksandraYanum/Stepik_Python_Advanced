@@ -24,11 +24,10 @@ def is_booked(start_date_for_booking, end_date_for_booking, booked_ranges):
 
         idx += 1
 
-        if booked_start_date <= start_date_for_booking <= booked_end_date or \
-           booked_start_date <= end_date_for_booking <= booked_end_date  or \
-           start_date_for_booking <= booked_start_date <= end_date_for_booking:
-                
-                is_booked = True
+        is_booked =  booked_start_date <= start_date_for_booking <= booked_end_date or \
+                     booked_start_date <= end_date_for_booking <= booked_end_date  or \
+                     start_date_for_booking <= booked_start_date <= end_date_for_booking
+    
                 
     return is_booked
 
