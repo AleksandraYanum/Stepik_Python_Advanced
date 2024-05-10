@@ -10,24 +10,6 @@ def parse_date(date_str):
     return parsed_date
 
 
-def is_booked(start_date_for_booking, end_date_for_booking, booked_ranges):
-
-    idx = 0
-    is_booked = False
-
-    while not is_booked and idx < len(booked_ranges):
-        
-        start_booked_date, end_booked_date = get_date_range(booked_ranges[idx])
-
-        is_booked =  start_booked_date <= start_date_for_booking <= end_booked_date or \
-                     start_booked_date <= end_date_for_booking <= end_booked_date  or \
-                     start_date_for_booking <= start_booked_date <= end_date_for_booking
-            
-        idx += 1
-        
-    return is_booked
-
-
 def get_date_range(date_str):
 
     start, *rest = date_str.split(DATE_DIVIDER)
@@ -37,15 +19,21 @@ def get_date_range(date_str):
     return start_date, end_date
 
 
-
 def is_available_date(booked_dates, date_for_booking):
 
     start_date_for_booking, end_date_for_booking = get_date_range(date_for_booking)
 
-    is_available_date = not is_booked(start_date_for_booking, end_date_for_booking, booked_dates)
+    idx = 0
+    is_available = True
 
-    return is_available_date
+    while is_available and idx < len(booked_dates):
+        
+        start_booked_date, end_booked_date = get_date_range(booked_dates[idx])
+        is_available =  (start_date_for_booking > end_booked_date and end_date_for_booking > end_booked_date) or \
+                        (start_date_for_booking < end_booked_date and  end_date_for_booking < start_booked_date)
+        idx += 1
 
+    return is_available
 
 
 def main():
