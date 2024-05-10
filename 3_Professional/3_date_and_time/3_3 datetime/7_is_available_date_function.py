@@ -5,17 +5,11 @@ DATE_FORMAT = '%d.%m.%Y'
 DATE_DIVIDER = '-'
 
 
-def parse_date(date_str):
-    parsed_date = datetime.strptime(date_str, DATE_FORMAT)
-    
-    return parsed_date
-
-
 def get_date_range(date_str):
 
     start, *rest = date_str.split(DATE_DIVIDER)
     end = rest[0] if rest else start
-    start_date, end_date = map(parse_date, [start, end])
+    start_date, end_date = map(lambda x: datetime.strptime(x, DATE_FORMAT), [start, end])
 
     return start_date, end_date
 
