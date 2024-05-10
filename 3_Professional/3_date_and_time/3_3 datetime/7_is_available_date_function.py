@@ -7,6 +7,7 @@ DATE_DIVIDER = '-'
 
 def parse_date(date_str):
     parsed_date = datetime.strptime(date_str, DATE_FORMAT)
+    
     return parsed_date
 
 
@@ -29,8 +30,7 @@ def is_available_date(booked_dates, date_for_booking):
     while is_available and idx < len(booked_dates):
         
         start_booked_date, end_booked_date = get_date_range(booked_dates[idx])
-        is_available =  (start_date_for_booking > end_booked_date and end_date_for_booking > end_booked_date) or \
-                        (start_date_for_booking < end_booked_date and  end_date_for_booking < start_booked_date)
+        is_available =  (start_date_for_booking > end_booked_date) or (end_date_for_booking < start_booked_date)
         idx += 1
 
     return is_available
@@ -40,6 +40,10 @@ def main():
 
     dates = ['01.11.2021', '05.11.2021-09.11.2021', '12.11.2021', '15.11.2021-21.11.2021']
     some_date = '10.11.2021-14.11.2021'
+    print(is_available_date(dates, some_date))
+
+    dates = ['04.11.2021', '05.11.2021-09.11.2021']
+    some_date = '01.11.2021'
     print(is_available_date(dates, some_date))
 
 
