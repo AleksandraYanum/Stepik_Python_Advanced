@@ -9,8 +9,7 @@ last_turn_socks_amount = 0
 
 
 for line in sys.stdin:
-    socks_amount = int(line.strip())
-    last_turn_socks_amount = socks_amount
+    last_turn_socks_amount = int(line.strip())
     сurrent_player = next(PLAYERS)
 
 winner = сurrent_player if last_turn_socks_amount % 2 == 0 else next(PLAYERS)
