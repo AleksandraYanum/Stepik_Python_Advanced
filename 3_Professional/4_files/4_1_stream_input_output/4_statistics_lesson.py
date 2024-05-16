@@ -1,5 +1,4 @@
 import sys
-from statistics import mean
 
 EMPTY_INPUT_MSG = 'нет учеников'
 TALLEST_HEIGHT_MSG = 'Рост самого высокого ученика: {}'
@@ -7,19 +6,26 @@ SHORTEST_HEIGHT_MSG = 'Рост самого низкого ученика: {}'
 AVERAGE_HEIGHT_MSG = 'Средний рост: {}'
 
 
-student_heights = []
-185
+min_height, max_height = 1000, -1
+total_height_sum = 0
+student_count = 0
+
 for line in sys.stdin:
-    current_height = int(line.strip())
-    student_heights.append(current_height)
+    current_height = int(line)
+
+    if current_height < min_height:
+        min_height = current_height
+    if current_height > max_height:
+        max_height = current_height
+
+    total_height_sum += current_height
+    student_count += 1
 
 output = EMPTY_INPUT_MSG
 
-if student_heights:
+if student_count:
 
-    min_height = min(student_heights)
-    max_height = max(student_heights)
-    average_height = mean(student_heights)
+    average_height = total_height_sum / student_count
 
     output = '\n'.join([SHORTEST_HEIGHT_MSG.format(min_height), 
                     TALLEST_HEIGHT_MSG.format(max_height), 
