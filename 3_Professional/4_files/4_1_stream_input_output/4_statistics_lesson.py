@@ -1,4 +1,5 @@
-import sys
+from sys import stdin
+
 
 EMPTY_INPUT_MSG = 'нет учеников'
 TALLEST_HEIGHT_MSG = 'Рост самого высокого ученика: {}'
