@@ -6,9 +6,9 @@ ASC_ORDER = 1
 DESC_ORDER = 2
 MIX_ORDER = 3
 
-ASCENDING_MSG = 'ASC'
-DESCENDING_MSG = 'DESC'
-MIXED_MSG = 'MIX'
+ASC_MSG = 'ASC'
+DESC_MSG = 'DESC'
+MIX_MSG = 'MIX'
 DATE_FROMAT = '%d.%m.%Y'
 
 
@@ -34,7 +34,7 @@ def main():
             
             prev_date = curr_date
 
-    output = ASCENDING_MSG if date_order == ASC_ORDER else (DESCENDING_MSG if date_order == DESC_ORDER else MIXED_MSG)
+    output = ASC_MSG if date_order == ASC_ORDER else (DESC_MSG if date_order == DESC_ORDER else MIX_MSG)
 
     print(output)
 
