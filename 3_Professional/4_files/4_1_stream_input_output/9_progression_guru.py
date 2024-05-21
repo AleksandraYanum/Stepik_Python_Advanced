@@ -4,7 +4,7 @@ from operator import truediv, sub
 
 ARITHMETIC_PROGRESSION = sub
 GEOMETRIC_PROGRESSION = truediv
-NOT_PROGRESSION = 3
+NOT_PROGRESSION = 1
 
 PROGRESSION_OUTPUT = {
     ARITHMETIC_PROGRESSION: 'Арифметическая прогрессия',
