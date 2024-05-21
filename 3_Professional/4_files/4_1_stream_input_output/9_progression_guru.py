@@ -6,10 +6,12 @@ ARITHMETIC_PROGRESSION = sub
 GEOMETRIC_PROGRESSION = truediv
 NOT_PROGRESSION = 3
 
-ARITHMETIC_PROGRESSION_MSG = 'Арифметическая прогрессия'
-GEOMETRIC_PROGRESSION_MSG = 'Геометрическая прогрессия'
-NOT_PROGRESSION_MSG = 'Не прогрессия'
-
+PROGRESSION_OUTPUT = {
+    ARITHMETIC_PROGRESSION: 'Арифметическая прогрессия',
+    GEOMETRIC_PROGRESSION: 'Геометрическая прогрессия',
+    NOT_PROGRESSION:  'Не прогрессия'
+}
+                      
 
 def is_right_progression_in_stdin(progression_type, curr_num, step):
 
@@ -43,8 +45,7 @@ def main():
         if not is_right_progression_in_stdin(progression_type, curr_num, step):
             progression_type = NOT_PROGRESSION
           
-    output = ARITHMETIC_PROGRESSION_MSG if progression_type == ARITHMETIC_PROGRESSION else \
-            (GEOMETRIC_PROGRESSION_MSG if progression_type == GEOMETRIC_PROGRESSION else NOT_PROGRESSION_MSG)
+    output = PROGRESSION_OUTPUT[progression_type]
     
     print(output)
 
