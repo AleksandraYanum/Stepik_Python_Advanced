@@ -11,6 +11,19 @@ GEOMETRIC_PROGRESSION_MSG = 'Геометрическая прогрессия'
 NOT_PROGRESSION_MSG = 'Не прогрессия'
 
 
+def is_right_progression_in_stdin(progression_type, curr_num, step):
+
+    for line in stdin:
+        prev_num = curr_num
+        curr_num = int(line)
+        result = progression_type(curr_num, prev_num) == step
+
+        if not result:
+            break
+
+    return result
+    
+
 def main():
 
     prev_prev_num, prev_num, curr_num = int(stdin.readline()), int(stdin.readline()), int(stdin.readline())
@@ -28,21 +41,13 @@ def main():
     if progression_type != NOT_PROGRESSION: 
             
             if progression_type == ARITHMETIC_PROGRESSION:
-                for line in stdin:
-                    prev_num = curr_num
-                    curr_num = int(line)
-                    if ARITHMETIC_PROGRESSION(curr_num, prev_num) != difference:
-                        progression_type = NOT_PROGRESSION
-                        break
+                if not is_right_progression_in_stdin(ARITHMETIC_PROGRESSION, curr_num, difference):
+                    progression_type = NOT_PROGRESSION
 
-            elif progression_type == GEOMETRIC_PROGRESSION:
-                for line in stdin:
-                    prev_num = curr_num
-                    curr_num = int(line)
-                    if GEOMETRIC_PROGRESSION(curr_num, prev_num) != quotient:
-                        progression_type = NOT_PROGRESSION
-                        break            
-
+            if progression_type == GEOMETRIC_PROGRESSION:
+                if not is_right_progression_in_stdin(GEOMETRIC_PROGRESSION, curr_num, quotient):
+                    progression_type = NOT_PROGRESSION
+          
     output = ARITHMETIC_PROGRESSION_MSG if progression_type == ARITHMETIC_PROGRESSION else \
             (GEOMETRIC_PROGRESSION_MSG if progression_type == GEOMETRIC_PROGRESSION else NOT_PROGRESSION_MSG)
     
