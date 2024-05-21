@@ -35,7 +35,7 @@ def main():
                         progression_type = NOT_PROGRESSION
                         break
 
-            if progression_type == GEOMETRIC_PROGRESSION:
+            elif progression_type == GEOMETRIC_PROGRESSION:
                 for line in stdin:
                     prev_num = curr_num
                     curr_num = int(line)
