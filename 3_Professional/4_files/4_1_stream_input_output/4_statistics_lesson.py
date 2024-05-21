@@ -8,18 +8,19 @@ AVERAGE_HEIGHT_MSG = 'Средний рост: {}'
 
 
 def main():
-    min_height, max_height = 1000, -1
-    total_height_sum = 0
-    student_count = 0
+    curr_height = int(stdin.readline().strip())
+    min_height, max_height = curr_height, curr_height
+    total_height_sum = curr_height
+    student_count = 1
 
     for line in stdin:
         current_height = int(line)
 
-        if current_height < min_height:
-            min_height = current_height
         if current_height > max_height:
             max_height = current_height
-
+        elif current_height < min_height:
+            min_height = current_height
+        
         total_height_sum += current_height
         student_count += 1
 
@@ -36,4 +37,4 @@ def main():
     print(output)
 
 
-    main()
+main()
