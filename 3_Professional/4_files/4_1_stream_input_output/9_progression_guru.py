@@ -1,8 +1,9 @@
 from sys import stdin
+from operator import truediv, sub
 
 
-ARITHMETIC_PROGRESSION = 1
-GEOMETRIC_PROGRESSION = 2
+ARITHMETIC_PROGRESSION = sub
+GEOMETRIC_PROGRESSION = truediv
 NOT_PROGRESSION = 3
 
 ARITHMETIC_PROGRESSION_MSG = 'Арифметическая прогрессия'
@@ -26,14 +27,21 @@ def main():
 
     if progression_type != NOT_PROGRESSION: 
             
-            for line in stdin:
-                prev_num = curr_num
-                curr_num = int(line)
+            if progression_type == ARITHMETIC_PROGRESSION:
+                for line in stdin:
+                    prev_num = curr_num
+                    curr_num = int(line)
+                    if ARITHMETIC_PROGRESSION(curr_num, prev_num) != difference:
+                        progression_type = NOT_PROGRESSION
+                        break
 
-                if  (curr_num - prev_num != difference and progression_type == ARITHMETIC_PROGRESSION) or \
-                    (curr_num / prev_num != quotient and progression_type == GEOMETRIC_PROGRESSION):
-                     progression_type = NOT_PROGRESSION
-                     break
+            if progression_type == GEOMETRIC_PROGRESSION:
+                for line in stdin:
+                    prev_num = curr_num
+                    curr_num = int(line)
+                    if GEOMETRIC_PROGRESSION(curr_num, prev_num) != quotient:
+                        progression_type = NOT_PROGRESSION
+                        break            
 
     output = ARITHMETIC_PROGRESSION_MSG if progression_type == ARITHMETIC_PROGRESSION else \
             (GEOMETRIC_PROGRESSION_MSG if progression_type == GEOMETRIC_PROGRESSION else NOT_PROGRESSION_MSG)
