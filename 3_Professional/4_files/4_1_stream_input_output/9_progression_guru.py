@@ -16,6 +16,8 @@ PROGRESSION_OUTPUT = {
 def is_right_progression_in_stdin(progression_func, init_num, step):
 
     curr_num = init_num
+    result = False
+    
     for line in stdin:
         prev_num = curr_num
         curr_num = int(line)
