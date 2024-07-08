@@ -1,4 +1,6 @@
-from datetime import date, time, datetime, timedelta
+from datetime import datetime
+
+TIME_PATTERN = "%H:%M"
 
 
 data = [('07:14', '08:46'),
@@ -13,10 +15,9 @@ data = [('07:14', '08:46'),
 total_minutes = 0
 
 for start_time_str, end_time_str in data:
-    start_time = datetime.strptime(start_time_str, "%H:%M")
-    end_time = datetime.strptime(end_time_str, "%H:%M")
+    start_time = datetime.strptime(start_time_str, TIME_PATTERN)
+    end_time = datetime.strptime(end_time_str, TIME_PATTERN)
     
-    time_difference = end_time - start_time
-    total_minutes += time_difference.total_seconds() // 60
+    total_minutes += (end_time - start_time).total_seconds() // 60
 
 print(int(total_minutes))
