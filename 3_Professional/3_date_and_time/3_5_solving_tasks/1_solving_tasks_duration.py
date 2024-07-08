@@ -18,3 +18,5 @@ for start_time_str, end_time_str in data:
     
     time_difference = end_time - start_time
     total_minutes += time_difference.total_seconds() // 60
+
+print(int(total_minutes))
