@@ -9,10 +9,10 @@ HOTSPOT_POS = 3
 district_hotspot_dict = defaultdict(int)
 
 with open('wifi.csv', encoding='utf-8') as file:
-    reader = csv.reader(file, delimiter=';')
-    next(reader)  # skip title
+    rows = csv.reader(file, delimiter=';')
+    next(rows)  # skip title
 
-    for row in reader:
+    for row in rows:
         district = row[DISTRICT_POS]
         hotspot_amount = int(row[HOTSPOT_POS])
         district_hotspot_dict[district] += hotspot_amount
