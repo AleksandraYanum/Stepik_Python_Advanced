@@ -1,29 +1,29 @@
 import csv
 
 
-DELIMITER_SYM = ';'
-SURVIVED_POS = 0
-NAME_POS = 1
-SEX_POS = 2
-AGE_POS = 3
-SURVIVED_SYM = '1'
-MALE_SYM = 'male'
+DELIMITER_CSV = ';'
+IS_SURVIVED_CSV = 0
+NAME_CSV = 1
+SEX_CSV = 2
+AGE_CSV = 3
+IS_SURVIVED = '1'
+MALE = 'male'
 MATURITY_AGE = 18
 
 
 with open('titanic.csv', 'r', encoding='utf-8') as file:
 
-    rows = csv.reader(file, delimiter=DELIMITER_SYM)
-    next(rows)
+    titanic_passengers = csv.reader(file, delimiter=DELIMITER_CSV)
+    next(titanic_passengers)
     males = []
     females = []
     
-    for row in rows:
-        if row[SURVIVED_POS] == SURVIVED_SYM and row[AGE_POS] and float(row[AGE_POS]) < MATURITY_AGE:
-            if row[SEX_POS] == MALE_SYM:
-                males.append(row[NAME_POS])
+    for row in titanic_passengers:
+        if row[IS_SURVIVED_CSV] == IS_SURVIVED and row[AGE_CSV] and float(row[AGE_CSV]) < MATURITY_AGE:
+            if row[SEX_CSV] == MALE:
+                males.append(row[NAME_CSV])
             else:
-                females.append(row[NAME_POS])
+                females.append(row[NAME_CSV])
     
     for name in males:
         print(name)
