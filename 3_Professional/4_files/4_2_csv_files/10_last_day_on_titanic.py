@@ -11,6 +11,7 @@ MALE = 'male'
 MATURITY_AGE = 18
 
 
+
 with open('titanic.csv', 'r', encoding='utf-8') as file:
 
     titanic_passengers = DictReader(file, delimiter=DELIMITER_CSV)
@@ -18,7 +19,7 @@ with open('titanic.csv', 'r', encoding='utf-8') as file:
     females = []
     
     for row in titanic_passengers:
-        if row[IS_SURVIVED_COL_NAME] == IS_SURVIVED and row[AGE_COL_NAME] and float(row[AGE_COL_NAME]) < MATURITY_AGE:
+        if row[IS_SURVIVED_COL_NAME] == IS_SURVIVED and float(row.get(AGE_COL_NAME, MATURITY_AGE)) < MATURITY_AGE:
             if row[SEX_COL_NAME] == MALE:
                 males.append(row[NAME_COL_NAME])
             else:
