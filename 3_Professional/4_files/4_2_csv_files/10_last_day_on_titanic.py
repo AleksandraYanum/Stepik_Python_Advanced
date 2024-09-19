@@ -1,11 +1,11 @@
-import csv
+from csv import DictReader
 
 
 DELIMITER_CSV = ';'
-IS_SURVIVED_CSV = 0
-NAME_CSV = 1
-SEX_CSV = 2
-AGE_CSV = 3
+IS_SURVIVED_CSV = 'survived'
+NAME_CSV = 'name'
+SEX_CSV = 'sex'
+AGE_CSV = 'age'
 IS_SURVIVED = '1'
 MALE = 'male'
 MATURITY_AGE = 18
@@ -13,8 +13,7 @@ MATURITY_AGE = 18
 
 with open('titanic.csv', 'r', encoding='utf-8') as file:
 
-    titanic_passengers = csv.reader(file, delimiter=DELIMITER_CSV)
-    next(titanic_passengers)
+    titanic_passengers = DictReader(file, delimiter=DELIMITER_CSV)
     males = []
     females = []
     
