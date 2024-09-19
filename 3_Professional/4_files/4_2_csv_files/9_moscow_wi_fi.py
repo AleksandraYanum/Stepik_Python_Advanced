@@ -1,24 +1,24 @@
-import csv
+from csv import DictReader
 from collections import defaultdict
 
 
-DISTRICT_POS = 1
-HOTSPOT_POS = 3
+DELIMITER_CSV = ';'
+DISTRICT_CSV = 'district'
+ACCESS_POINTS_CSV = 'number_of_access_points'
 
 
-district_hotspot_dict = defaultdict(int)
+district_access_point_dict = defaultdict(int)
 
 with open('wifi.csv', encoding='utf-8') as file:
-    rows = csv.reader(file, delimiter=';')
-    next(rows)  # skip title
+    wifi_data = DictReader(file, delimiter=DELIMITER_CSV)
 
-    for row in rows:
-        district = row[DISTRICT_POS]
-        hotspot_amount = int(row[HOTSPOT_POS])
-        district_hotspot_dict[district] += hotspot_amount
+    for row in wifi_data:
+        district = row[DISTRICT_CSV]
+        access_point_amount = int(row[ACCESS_POINTS_CSV])
+        district_access_point_dict[district] += access_point_amount
 
 # sort by hotspot amount and alphabet
-sorted_districts = sorted(district_hotspot_dict.items(), key=lambda x: (-x[1], x[0]))
+sorted_districts = sorted(district_access_point_dict.items(), key=lambda x: (-x[1], x[0]))
 
-for district, hotspot_amount in sorted_districts:
-    print(f'{district}: {hotspot_amount}')
+for district, access_point_amount in sorted_districts:
+    print(f'{district}: {access_point_amount}')
