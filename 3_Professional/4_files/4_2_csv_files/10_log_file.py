@@ -14,7 +14,6 @@ DATETIME_PATTERN = '%d/%m/%Y %H:%M'
 
 latest_name_changes = defaultdict(lambda: {CHANGE_LOG_COL_NAME: None, CHANGE_TIME: None})
 
-
 with open('name_log.csv', 'r', encoding='utf-8') as file_read:
     name_changes = DictReader(file_read, delimiter=DELIMITER_SYM)
     
