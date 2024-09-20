@@ -23,7 +23,6 @@ with open('name_log.csv', 'r', encoding='utf-8') as file_read:
         if latest_name_changes[email][DATETIME_COL_NAME] is None or change_time > latest_name_changes[email][DATETIME_COL_NAME]:
             latest_name_changes[email] = {
                 USERNAME_COL_NAME: name_change[USERNAME_COL_NAME],
-                EMAIL_COL_NAME: email,
                 DATETIME_COL_NAME: change_time
             }
  
@@ -31,6 +30,11 @@ with open('new_name_log.csv', 'w', encoding='utf-8', newline='') as file_write:
     writer = DictWriter(file_write, fieldnames=[USERNAME_COL_NAME, EMAIL_COL_NAME, DATETIME_COL_NAME])
     writer.writeheader()
     
-    for log in sorted(latest_name_changes.values(), key=lambda x: x[EMAIL_COL_NAME]):
+    for email, log in sorted(latest_name_changes.items(), key=lambda x: x[0]):
+        
         log[DATETIME_COL_NAME] = log[DATETIME_COL_NAME].strftime(DATETIME_PATTERN)
-        writer.writerow(log)
+        writer.writerow({
+            USERNAME_COL_NAME: log[USERNAME_COL_NAME],
+            EMAIL_COL_NAME: email, 
+            DATETIME_COL_NAME: log[DATETIME_COL_NAME]
+        })
