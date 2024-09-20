@@ -22,7 +22,7 @@ with open('salary_data.csv', encoding='utf-8') as csv_file:
 
 average_salaries = [
     (company, data[TOTAL_SALARY] / data[EMPLOYEE_AMOUNT])
-    for company, data in company_data.items() if data[EMPLOYEE_AMOUNT] > 0
+    for company, data in company_data.items()
 ]
 
 sorted_companies = sorted(average_salaries, key=lambda x: (x[1], x[0]))
