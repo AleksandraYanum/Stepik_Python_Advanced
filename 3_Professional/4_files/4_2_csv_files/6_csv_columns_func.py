@@ -1,14 +1,16 @@
-from csv import reader
+from csv import DictReader
+from collections import defaultdict
+
 
 def csv_columns(filename):
+
+    column_value_dict = defaultdict(list)
+
     with open(filename, encoding='utf-8') as file:
-        rows = reader(file)
-        headers = next(rows)
-        
-        columns = {header: [] for header in headers}
-        
+        rows = DictReader(file)
+               
         for row in rows:
-            for header, value in zip(headers, row):
-                columns[header].append(value)
-                
-    return columns
+            for header in rows.fieldnames:
+                column_value_dict[header].append(row[header])
+
+    return dict(column_value_dict)
