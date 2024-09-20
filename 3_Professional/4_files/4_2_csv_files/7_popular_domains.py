@@ -1,9 +1,12 @@
-import csv
+from csv import DictReader, DictWriter
 from collections import defaultdict
 
 
 DOMAIN_SYM = '@'
-EMAIL_IDX = 2
+EMAIL_COL_NAME = 'email'
+DOMAIN_COL_NAME = 'domain'
+DOMAIN_AMOUNT_COL_NAME = 'count'
+DELIMETER_SYM = ','
 
 
 def get_domain(email):
@@ -15,21 +18,22 @@ def count_domain_usage(input_file, output_file):
     domain_count = defaultdict(int)
     
     with open(input_file, encoding='utf-8') as file:
-        reader = csv.reader(file)
-        next(reader) # Skip title
+        user_data = DictReader(file)
         
-        for row in reader:
-            domain = get_domain(row[EMAIL_IDX])
+        for user in user_data:
+            domain = get_domain(user[EMAIL_COL_NAME])
             domain_count[domain] += 1 
     
     # Sort by amount and alphabet
     sorted_domains = sorted(domain_count.items(), key=lambda x: (x[1], x[0]))
     
-    # Print data to file
     with open(output_file, 'w', encoding='utf-8', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow(['domain', 'count']) 
-        writer.writerows(sorted_domains)
+        headers = [DOMAIN_COL_NAME, DOMAIN_AMOUNT_COL_NAME]
+        domain_data = DictWriter(file, fieldnames=headers)
+        domain_data.writeheader()
+
+        for domain, count in sorted_domains:
+            domain_data.writerow({DOMAIN_COL_NAME: domain, DOMAIN_AMOUNT_COL_NAME: count})
 
         
 def main():
