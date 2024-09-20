@@ -11,7 +11,6 @@ MALE = 'male'
 MATURITY_AGE = 18
 
 
-
 with open('titanic.csv', 'r', encoding='utf-8') as file:
 
     titanic_passengers = DictReader(file, delimiter=DELIMITER_CSV)
