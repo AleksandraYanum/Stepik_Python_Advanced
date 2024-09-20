@@ -9,7 +9,6 @@ SALARY_COL_NAME = 'salary'
 DELIMITER_SYM = ';'
 
 
-# Словарь для хранения сумм зарплат и количества сотрудников для каждой компании
 company_data = defaultdict(lambda: {TOTAL_SALARY: 0, EMPLOYEE_AMOUNT: 0})
 
 with open('salary_data.csv', encoding='utf-8') as csv_file:
