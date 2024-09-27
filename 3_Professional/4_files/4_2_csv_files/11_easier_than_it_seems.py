@@ -19,7 +19,7 @@ def condense_csv(file_name, id_name):
             value = row[VALUE_COL_NAME]
             item_data[item][property] = value
 
-    property_list = list(next(iter(item_data.values())).keys())
+    property_list = list(next(iter(item_data.values())).keys()) # use classic way, understand iter
 
     with open('condensed.csv', 'w', encoding='utf-8', newline='') as file:
         writer = DictWriter(file, fieldnames=[id_name] + property_list)
