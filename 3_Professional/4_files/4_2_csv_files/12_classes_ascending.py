@@ -13,17 +13,17 @@ def sorted_student_counts(input_file, output_file):
     classes = sorted(classes_data[0].keys() - {YEAR_COL_NAME}, 
                      key=lambda x: (int(x.split(CLASS_DELIMITER)[0]), x.split(CLASS_DELIMITER)[1]))
     sorted_headers = [YEAR_COL_NAME] + classes
-    sorted_data = []
+    sorted_classes_data = []
 
     for row in classes_data:
         sorted_row = {YEAR_COL_NAME: row[YEAR_COL_NAME]}
         sorted_row.update({cls: row[cls] for cls in classes})
-        sorted_data.append(sorted_row)
+        sorted_classes_data.append(sorted_row)
 
     with open(output_file, 'w', encoding='utf-8', newline='') as file:
         writer = DictWriter(file, fieldnames=sorted_headers)
         writer.writeheader()
-        writer.writerows(sorted_data)
+        writer.writerows(sorted_classes_data)
 
 
 def main():
