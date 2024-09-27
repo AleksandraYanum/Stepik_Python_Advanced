@@ -1,3 +1,7 @@
+# TODO: 
+# 1. streaming processing: line by line
+# 2. extract classes in func
+
 from csv import DictReader, DictWriter
 
 
