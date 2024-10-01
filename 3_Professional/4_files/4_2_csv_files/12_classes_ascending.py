@@ -9,6 +9,14 @@ YEAR_COL_NAME = 'year'
 CLASS_DELIMITER = '-'
 
 
+# Extract and sort class names from the first row
+def extract_sorted_classes(row, year_col_name=YEAR_COL_NAME, class_delimiter=CLASS_DELIMITER):
+    
+    sorted_classes= sorted(row.keys() - {year_col_name}, 
+                  key=lambda x: (int(x.split(class_delimiter)[0]), x.split(class_delimiter)[1]))
+    return sorted_classes
+
+
 def sorted_student_counts(input_file, output_file):
     with open(input_file, encoding='utf-8') as file:
         reader = DictReader(file)
