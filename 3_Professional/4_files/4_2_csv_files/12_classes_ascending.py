@@ -33,17 +33,20 @@ def sorted_student_counts(input_file, output_file):
         first_row = next(reader)
         classes = extract_sorted_classes(first_row)
         sorted_headers = [YEAR_COL_NAME] + classes
-        sorted_classes_data = []
 
-    with open(output_file, 'w', encoding='utf-8', newline='') as file:
+        with open(output_file, 'w', encoding='utf-8', newline='') as file:
 
-        writer = DictWriter(file, fieldnames=sorted_headers)
-        writer.writeheader()
-        writer.writerows(sorted_classes_data)
+            writer = DictWriter(file, fieldnames=sorted_headers)
+            writer.writeheader()
 
-        sorted_row = {YEAR_COL_NAME: first_row[YEAR_COL_NAME]}
-        sorted_row.update({cls: first_row[cls] for cls in classes})
-        writer.writerow(sorted_row)
+            # Process the first row
+            sorted_row = create_sorted_row(first_row, classes)
+            writer.writerow(sorted_row)
+
+            # Process the rest of the rows
+            for row in reader:
+                sorted_row = create_sorted_row(row, classes)
+                writer.writerow(sorted_row)
 
 
 def main():
