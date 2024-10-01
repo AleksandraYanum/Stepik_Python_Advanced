@@ -19,7 +19,9 @@ def condense_csv(file_name, id_name):
             value = row[VALUE_COL_NAME]
             item_data[item][property] = value
 
-    property_list = list(next(iter(item_data.values())).keys()) # use classic way, understand iter
+    property_list = list(next(iter(item_data.values())).keys())
+    # classic way without iter:
+    # property_list = list(item_data.values())[0].keys()
 
     with open('condensed.csv', 'w', encoding='utf-8', newline='') as file:
         writer = DictWriter(file, fieldnames=[id_name] + property_list)
@@ -28,4 +30,4 @@ def condense_csv(file_name, id_name):
         for item in sorted(item_data):
             item_row = {id_name: item}
             item_row.update(item_data[item])
-            writer.writerow(item_row)
+            writer.writerow(item_row) 
