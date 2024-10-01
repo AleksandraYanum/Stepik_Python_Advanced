@@ -1,6 +1,3 @@
-# TODO: unpack items
-
-
 from csv import DictReader
 
 
@@ -18,20 +15,20 @@ def find_cheapest_product(file_name):
         reader = DictReader(file, delimiter=DELIMITER)
 
         for row in reader:
+            store = row.pop(STORE_COL_NAME) 
             for product, price in row.items():
-                if product != STORE_COL_NAME:
-                    price = int(price)
-                    if price < min_price:
-                        min_price = price
-                        cheapest_product = product
-                        cheapest_store = row[STORE_COL_NAME]
+                price = int(price)
+                if price < min_price:
+                    min_price = price
+                    cheapest_product = product
+                    cheapest_store = store
 
-                    elif price == min_price:
-                        if product < cheapest_product: # Lexicographic product check
-                            cheapest_product = product
-                            cheapest_store = row[STORE_COL_NAME]
-                        elif product == cheapest_product and row[STORE_COL_NAME] < cheapest_store:
-                            cheapest_store = row[STORE_COL_NAME]
+                elif price == min_price:
+                    if product < cheapest_product: # Lexicographic product check
+                        cheapest_product = product
+                        cheapest_store = store
+                    elif product == cheapest_product and store < cheapest_store:
+                        cheapest_store = store
 
     cheapest_product_store_result = f"{cheapest_product}: {cheapest_store}"
 
