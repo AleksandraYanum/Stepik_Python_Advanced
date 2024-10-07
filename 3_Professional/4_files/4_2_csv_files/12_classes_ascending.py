@@ -26,27 +26,26 @@ def create_sorted_row(row, classes, year_col_name=YEAR_COL_NAME):
 
 def sorted_student_counts(input_file, output_file):
 
-    with open(input_file, encoding='utf-8') as file:
+    with open(input_file, encoding='utf-8') as file_in, \
+         open(output_file, 'w', encoding='utf-8', newline='') as file_out:
 
-        reader = DictReader(file)
+        reader = DictReader(file_in)
 
         first_row = next(reader)
         classes = extract_sorted_classes(first_row)
         sorted_headers = [YEAR_COL_NAME] + classes
 
-        with open(output_file, 'w', encoding='utf-8', newline='') as file:
+        writer = DictWriter(file_out, fieldnames=sorted_headers)
+        writer.writeheader()
 
-            writer = DictWriter(file, fieldnames=sorted_headers)
-            writer.writeheader()
+        # Process the first row
+        sorted_row = create_sorted_row(first_row, classes)
+        writer.writerow(sorted_row)
 
-            # Process the first row
-            sorted_row = create_sorted_row(first_row, classes)
+        # Process the rest of the rows
+        for row in reader:
+            sorted_row = create_sorted_row(row, classes)
             writer.writerow(sorted_row)
-
-            # Process the rest of the rows
-            for row in reader:
-                sorted_row = create_sorted_row(row, classes)
-                writer.writerow(sorted_row)
 
 
 def main():
